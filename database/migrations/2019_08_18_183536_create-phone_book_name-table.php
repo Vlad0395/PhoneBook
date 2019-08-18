@@ -18,8 +18,8 @@ class CreatePhoneBookNameTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('photo_contact');
-            $table->data('birth_day');
-            $table->string('email');
+            $table->date('birth_day');
+            $table->string('email')->unique();;
             $table->string('company');
 
         });
