@@ -2,6 +2,6 @@ require('./bootstrap');
 import React from 'react';
 import { render } from 'react-dom';
 
-import Example from './components/Example';
+import Index from './Router/index';
 
-render(<Example />, document.getElementById('example'));
+render(<Index />, document.getElementById('example'));
