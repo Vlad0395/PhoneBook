@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use App\Contact;
 class Phone extends Model
 {
-    public function Contact (){
+    protected $table = 'phone_book_number';
+
+    public function contact (){
         return $this->belongsTo('App/Contact');
     }
 }
