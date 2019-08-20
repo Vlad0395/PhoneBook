@@ -13,10 +13,10 @@ class CreatePhoneNumberTable extends Migration
      */
     public function up()
     {
-        Schema::create('phone_book_contact', function (Blueprint $table) {
+        Schema::create('phone_book_number', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->integer('number')->unsigned();
-            $table->integer('contact_id');
+            $table->integer('contact_id')->unsigned();;
             $table->foreign('contact_id')->references('id')->on('phone_book_contact')->onDelete('cascade');
         });
     }
