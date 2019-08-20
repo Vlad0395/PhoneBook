@@ -1,19 +1,18 @@
 import React, {Component} from 'react'
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import Example from "../components/Example";
-
-class Index extends Component {
+import Example2 from "../components/Example2";
+class Router extends Component {
     render() {
         return (
             <BrowserRouter>
                 <Switch>
-                    <Route path='/' component={Example}/>
-                    <Route path='/ex' component={Example}/>
-
+                    <Route path='/' exact component={Example}/>
+                    <Route path='/ex' component={Example2}/>
                 </Switch>
             </BrowserRouter>
         )
     }
 }
 
-export default Index
+export default Router;
