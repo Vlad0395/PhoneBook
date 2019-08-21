@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {BrowserRouter, Switch, Route} from "react-router-dom";
-import Example from "../components/Example";
+import Contacts from "../components/Contacts";
 import PersonalContact from "../components/PersonalContact";
 
 class Router extends Component {
@@ -9,7 +9,7 @@ class Router extends Component {
             <BrowserRouter>
                 < Switch>
                     <Route path='/'
-                           exact component={Example}
+                           exact component={Contacts}
                     />
                     <Route path='/personalcontact'
                            component={PersonalContact}
