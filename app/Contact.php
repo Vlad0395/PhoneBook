@@ -9,6 +9,6 @@ class Contact extends Model
     protected $table = 'phone_book_contact';
 
     public function phones(){
-        return $this->hasMany('App/Phone');
+        return $this->hasMany('App\Phone');
     }
 }

@@ -9,6 +9,6 @@ class Phone extends Model
     protected $table = 'phone_book_number';
 
     public function contact (){
-        return $this->belongsTo('App/Contact');
+        return $this->belongsTo('App\Contact');
     }
 }

@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Contact;
 use Illuminate\Http\Request;
 
 class ContactsController extends Controller
 {
     public function index()
     {
-        //
+        $contacts = Contact::with('phones')->get();
+        return response()->json($contacts);
     }
 
 
