@@ -11,7 +11,7 @@ class Router extends Component {
                     <Route path='/'
                            exact component={Contacts}
                     />
-                    <Route path='/personalcontact'
+                    <Route path='/personalcontact/:id'
                            component={PersonalContact}
                     />
                 </Switch>
