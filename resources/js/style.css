@@ -1,8 +1,10 @@
 .card {
     background: lightblue;
     width: 20%;
+    height: 50%;
     text-align: center;
     padding: 5px;
+    margin: 0 auto;
 }
 
 .edit {
@@ -11,4 +13,11 @@
     color: white;
     padding: 10px;
     background: blueviolet;
+}
+
+.create {
+    border-radius: 50%;
+    text-align: right;
+    padding: 5px;
+    background: #3546d8
 }

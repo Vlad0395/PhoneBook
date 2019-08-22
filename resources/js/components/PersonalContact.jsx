@@ -40,7 +40,7 @@ class PersonalContact extends Component {
                     <div className="col-md-12">e-mail</div>
                 </div>
                 <div className="row">
-                    <div className="col-md-12 text-right"><i className="far fa-edit edit"></i></div>
+                    <div className="col-md-12 text-right"><i className="far fa-edit edit fa-2x"></i></div>
                 </div>
             </div>
         )
