@@ -3,6 +3,7 @@ import { getContacts } from '../actions/ContactActions'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
+
 class Contacts extends Component {
     componentDidMount() {
         this.props.dispatch(getContacts())
@@ -19,19 +20,21 @@ class Contacts extends Component {
 
         return (
             <div className='card'>
-                <form className="form">
-                    <input type="text" placeholde="Search" name="Search" /><i className="fas fa-search "></i>
+                <form className="form-group">
+                    <input className="form-control" type="text" placeholde="Search" name="Search" /><i className="fas fa-search "></i>
                 </form>
                 {contacts && contacts.map(contact =>
                     <div>
                         <Link to={/personalcontact/ + contact.id}>
-                            <p key={contact.id}>{contact.first_name} {contact.last_name}</p>
+                            <p >{contact.first_name} {contact.last_name}</p>
                         </Link>
                     </div>
                 )}
                 <div className="row ">
                     <div className="col-md-12 text-right">
-                    <i className="fas fa-plus-circle fa-2x"></i>
+                        <Link to='/create'>
+                            <i className="fas fa-plus-circle fa-2x"></i>
+                        </Link>
                     </div>
                 </div>
             </div>
