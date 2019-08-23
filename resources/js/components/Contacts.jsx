@@ -25,7 +25,7 @@ class Contacts extends Component {
                 {contacts && contacts.map(contact =>
                     <div>
                         <Link to={/personalcontact/ + contact.id}>
-                            <h3>{contact.first_name} {contact.last_name}</h3>
+                            <p key={contact.id}>{contact.first_name} {contact.last_name}</p>
                         </Link>
                     </div>
                 )}

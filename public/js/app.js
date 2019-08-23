@@ -6398,7 +6398,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".card {\n    background: lightblue;\n    width: 20%;\n    height: 50%;\n    text-align: center;\n    padding: 5px;\n    margin: 0 auto;\n}\n\n.edit {\n    border-radius: 50%;\n    text-align: center;\n    color: white;\n    padding: 10px;\n    background: blueviolet;\n}\n\n.create {\n    border-radius: 50%;\n    text-align: right;\n    padding: 5px;\n    background: #3546d8\n}", ""]);
+exports.push([module.i, ".card {\r\n    background: lightblue;\r\n    width: 270px;\r\n    height: 300px;\r\n    text-align: center;\r\n    padding: 5px;\r\n    margin: 0 auto;\r\n}\r\n\r\n.edit {\r\n    border-radius: 50%;\r\n    text-align: center;\r\n    color: white;\r\n    padding: 10px;\r\n    background: blueviolet;\r\n}\r\n\r\n.create {\r\n    border-radius: 50%;\r\n    text-align: right;\r\n    padding: 5px;\r\n    background: #3546d8\r\n}", ""]);
 
 // exports
 
@@ -66318,7 +66318,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -73157,6 +73157,9 @@ function (_Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
         path: "/personalcontact/:id",
         component: _components_PersonalContact__WEBPACK_IMPORTED_MODULE_3__["default"]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+        path: "/create",
+        component: CreateContact
       })));
     }
   }]);
@@ -73373,7 +73376,9 @@ function (_Component) {
       })), contacts && contacts.map(function (contact) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
           to: /personalcontact/ + contact.id
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, contact.first_name, " ", contact.last_name)));
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          key: contact.id
+        }, contact.first_name, " ", contact.last_name)));
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row "
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -73644,8 +73649,8 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\course\GitHub\PhoneBook\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\course\GitHub\PhoneBook\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\OSPanel\domains\PhoneBook\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\OSPanel\domains\PhoneBook\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
