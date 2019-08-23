@@ -6398,7 +6398,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".card {\n    background: lightblue;\n    width: 20%;\n    text-align: center;\n    padding: 5px;\n}\n\n.edit {\n    border-radius: 50%;\n    text-align: center;\n    color: white;\n    padding: 10px;\n    background: blueviolet;\n}", ""]);
+exports.push([module.i, ".card {\n    background: lightblue;\n    width: 20%;\n    height: 50%;\n    text-align: center;\n    padding: 5px;\n    margin: 0 auto;\n}\n\n.edit {\n    border-radius: 50%;\n    text-align: center;\n    color: white;\n    padding: 10px;\n    background: blueviolet;\n}\n\n.create {\n    border-radius: 50%;\n    text-align: right;\n    padding: 5px;\n    background: #3546d8\n}", ""]);
 
 // exports
 
@@ -73354,14 +73354,33 @@ function (_Component) {
     key: "render",
     value: function render() {
       var contacts = this.props.contacts;
-      console.log(contacts, "check Contact");
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, contacts && contacts.map(function (contact) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
-          key: contact.id
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+      console.log(contacts, "check Contact"); // handleChange = (event) => {
+      //     this.setState({
+      //         [event.target.name]: event.target.value
+      //     })
+      // }
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        placeholde: "Search",
+        name: "Search"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-search "
+      })), contacts && contacts.map(function (contact) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
           to: /personalcontact/ + contact.id
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, contact.first_name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, contact.last_name)));
-      }));
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, contact.first_name, " ", contact.last_name)));
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row "
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-md-12 text-right"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-plus-circle fa-2x"
+      }))));
     }
   }]);
 
@@ -73479,7 +73498,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-md-12 text-right"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "far fa-edit edit"
+        className: "far fa-edit edit fa-2x"
       }))));
     }
   }]);

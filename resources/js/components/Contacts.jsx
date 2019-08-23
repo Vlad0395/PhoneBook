@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { getContacts } from '../actions/ContactActions'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+
 class Contacts extends Component {
     componentDidMount() {
         this.props.dispatch(getContacts())
@@ -10,16 +11,29 @@ class Contacts extends Component {
         const { contacts } = this.props
         console.log(contacts, "check Contact");
 
+        // handleChange = (event) => {
+        //     this.setState({
+        //         [event.target.name]: event.target.value
+        //     })
+        // }
+
         return (
-            <div>
+            <div className='card'>
+                <form className="form">
+                    <input type="text" placeholde="Search" name="Search" /><i className="fas fa-search "></i>
+                </form>
                 {contacts && contacts.map(contact =>
-                    <Fragment key={contact.id}>
-                        <Link to={/personalcontact/+contact.id}>
-                            <h1>{contact.first_name}</h1>
-                            <h1>{contact.last_name}</h1>
+                    <div>
+                        <Link to={/personalcontact/ + contact.id}>
+                            <h3>{contact.first_name} {contact.last_name}</h3>
                         </Link>
-                    </Fragment>
+                    </div>
                 )}
+                <div className="row ">
+                    <div className="col-md-12 text-right">
+                    <i className="fas fa-plus-circle fa-2x"></i>
+                    </div>
+                </div>
             </div>
         )
     }
