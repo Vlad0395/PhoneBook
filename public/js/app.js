@@ -73177,12 +73177,13 @@ function (_Component) {
 /*!*************************************************!*\
   !*** ./resources/js/actions/ContactActions.jsx ***!
   \*************************************************/
-/*! exports provided: getContacts */
+/*! exports provided: getContacts, CreateContact */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getContacts", function() { return getContacts; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreateContact", function() { return CreateContact; });
 /* harmony import */ var _constants_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants/index */ "./resources/js/constants/index.jsx");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
@@ -73203,6 +73204,11 @@ var getContacts = function getContacts() {
         data: response.data
       });
     });
+  };
+};
+var CreateContact = function CreateContact(data) {
+  return function (dispatch) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('api/contacts', data).then(function (response) {});
   };
 };
 
@@ -73629,7 +73635,9 @@ var constants = {
   GET_CONTACTS_SUCCESS: 'GET_CONTACTS_SUCCESS',
   GET_CONTACTS_ERROR: 'GET_CONTACTS_ERROR',
   GET_CONTACT_PHONES_SUCCES: 'GET_CONTACT_PHONES_SUCCES',
-  GET_CONTACT_PHONES_ERROR: 'GET_CONTACT_PHONES_ERROR'
+  GET_CONTACT_PHONES_ERROR: 'GET_CONTACT_PHONES_ERROR',
+  POST_CREATE_CONTACT_SUCCES: 'POST_CREATE_CONTACT_SUCCES',
+  POST_CREATE_CONTACT_ERROR: 'POST_CREATE_CONTACT_ERROR'
 };
 
 /***/ }),
@@ -73739,8 +73747,8 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\OSPanel\domains\PhoneBook\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\OSPanel\domains\PhoneBook\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\course\GitHub\PhoneBook\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\course\GitHub\PhoneBook\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
