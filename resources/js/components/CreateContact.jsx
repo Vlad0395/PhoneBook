@@ -13,6 +13,9 @@ class CreateContact extends Component{
                <label htmlFor="Mobile">
                    <input className="form-control" type="tel" name='Mobile' placeholder="Phone" maxLength='12'/>
                </label>
+               <label htmlFor="submitForm">
+                   <input type="submit" className="btn btn-primary" name="submitForm" value="send"/>
+               </label>
            </form>
         );
     }

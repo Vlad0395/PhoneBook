@@ -12,10 +12,11 @@
     <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css">
     <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/821f2cbf10.js"></script>
 </head>
 <body>
 <div id="example"></div>
-<script src="https://kit.fontawesome.com/821f2cbf10.js"></script>
+
 <script src="{{asset('js/app.js')}}" ></script>
 </body>
 </html>

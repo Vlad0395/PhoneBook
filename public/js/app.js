@@ -73478,6 +73478,13 @@ function (_Component) {
         name: "Mobile",
         placeholder: "Phone",
         maxLength: "12"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "submitForm"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "submit",
+        className: "btn btn-primary",
+        name: "submitForm",
+        value: "send"
       })));
     }
   }]);
