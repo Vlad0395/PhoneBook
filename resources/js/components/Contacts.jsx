@@ -12,12 +12,6 @@ class Contacts extends Component {
         const { contacts } = this.props
         console.log(contacts, "check Contact");
 
-        // handleChange = (event) => {
-        //     this.setState({
-        //         [event.target.name]: event.target.value
-        //     })
-        // }
-
         return (
             <div className='card'>
                 <form className="form-group">

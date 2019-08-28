@@ -22,11 +22,14 @@ export const getContacts = () => {
     }
 }
 
-export const CreateContact = (data) => {
+export const AddContact = (data) => {
     return dispatch => {
         axios.post('api/contacts', data)
             .then(response => {
-
+                console.log('check')
+            })
+            .catch(error => {
+                console.log('error')
             })
     }
 }
