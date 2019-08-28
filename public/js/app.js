@@ -66318,7 +66318,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -73114,7 +73114,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Contacts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Contacts */ "./resources/js/components/Contacts.jsx");
 /* harmony import */ var _components_PersonalContact__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/PersonalContact */ "./resources/js/components/PersonalContact.jsx");
 /* harmony import */ var _components_CreateContact__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/CreateContact */ "./resources/js/components/CreateContact.jsx");
-/* harmony import */ var _components_CreateContact__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_components_CreateContact__WEBPACK_IMPORTED_MODULE_4__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -73162,7 +73161,7 @@ function (_Component) {
         component: _components_PersonalContact__WEBPACK_IMPORTED_MODULE_3__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
         path: "/create",
-        component: _components_CreateContact__WEBPACK_IMPORTED_MODULE_4___default.a
+        component: _components_CreateContact__WEBPACK_IMPORTED_MODULE_4__["default"]
       })));
     }
   }]);
@@ -73419,10 +73418,141 @@ var mapStateToProps = function mapStateToProps(state) {
 /*!***************************************************!*\
   !*** ./resources/js/components/CreateContact.jsx ***!
   \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: D:\\course\\GitHub\\PhoneBook\\resources\\js\\components\\CreateContact.jsx: Support for the experimental syntax 'classProperties' isn't currently enabled (5:11):\n\n\u001b[0m \u001b[90m 3 | \u001b[39m\u001b[36mimport\u001b[39m { connect } from \u001b[32m'react-redux'\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 4 | \u001b[39m\u001b[36mclass\u001b[39m \u001b[33mCreateContact\u001b[39m \u001b[36mextends\u001b[39m \u001b[33mComponent\u001b[39m {\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 5 | \u001b[39m    state \u001b[33m=\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m   | \u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 6 | \u001b[39m        first_name\u001b[33m:\u001b[39m \u001b[32m'Vlad'\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 7 | \u001b[39m        last_name\u001b[33m:\u001b[39m \u001b[32m'Tymoshenko'\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 8 | \u001b[39m        mobile\u001b[33m:\u001b[39m \u001b[32m'0994580747'\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\nAdd @babel/plugin-proposal-class-properties (https://git.io/vb4SL) to the 'plugins' section of your Babel config to enable transformation.\n    at Object.raise (D:\\course\\GitHub\\PhoneBook\\node_modules\\@babel\\parser\\lib\\index.js:6325:17)\n    at Object.expectPlugin (D:\\course\\GitHub\\PhoneBook\\node_modules\\@babel\\parser\\lib\\index.js:7647:18)\n    at Object.parseClassProperty (D:\\course\\GitHub\\PhoneBook\\node_modules\\@babel\\parser\\lib\\index.js:10830:12)\n    at Object.pushClassProperty (D:\\course\\GitHub\\PhoneBook\\node_modules\\@babel\\parser\\lib\\index.js:10795:30)\n    at Object.parseClassMemberWithIsStatic (D:\\course\\GitHub\\PhoneBook\\node_modules\\@babel\\parser\\lib\\index.js:10734:14)\n    at Object.parseClassMember (D:\\course\\GitHub\\PhoneBook\\node_modules\\@babel\\parser\\lib\\index.js:10668:10)\n    at withTopicForbiddingContext (D:\\course\\GitHub\\PhoneBook\\node_modules\\@babel\\parser\\lib\\index.js:10623:14)\n    at Object.withTopicForbiddingContext (D:\\course\\GitHub\\PhoneBook\\node_modules\\@babel\\parser\\lib\\index.js:9702:14)\n    at Object.parseClassBody (D:\\course\\GitHub\\PhoneBook\\node_modules\\@babel\\parser\\lib\\index.js:10600:10)\n    at Object.parseClass (D:\\course\\GitHub\\PhoneBook\\node_modules\\@babel\\parser\\lib\\index.js:10574:22)\n    at Object.parseStatementContent (D:\\course\\GitHub\\PhoneBook\\node_modules\\@babel\\parser\\lib\\index.js:9871:21)\n    at Object.parseStatement (D:\\course\\GitHub\\PhoneBook\\node_modules\\@babel\\parser\\lib\\index.js:9829:17)\n    at Object.parseBlockOrModuleBlockBody (D:\\course\\GitHub\\PhoneBook\\node_modules\\@babel\\parser\\lib\\index.js:10405:25)\n    at Object.parseBlockBody (D:\\course\\GitHub\\PhoneBook\\node_modules\\@babel\\parser\\lib\\index.js:10392:10)\n    at Object.parseTopLevel (D:\\course\\GitHub\\PhoneBook\\node_modules\\@babel\\parser\\lib\\index.js:9758:10)\n    at Object.parse (D:\\course\\GitHub\\PhoneBook\\node_modules\\@babel\\parser\\lib\\index.js:11270:17)\n    at parse (D:\\course\\GitHub\\PhoneBook\\node_modules\\@babel\\parser\\lib\\index.js:11306:38)\n    at parser (D:\\course\\GitHub\\PhoneBook\\node_modules\\@babel\\core\\lib\\transformation\\normalize-file.js:170:34)\n    at normalizeFile (D:\\course\\GitHub\\PhoneBook\\node_modules\\@babel\\core\\lib\\transformation\\normalize-file.js:138:11)\n    at runSync (D:\\course\\GitHub\\PhoneBook\\node_modules\\@babel\\core\\lib\\transformation\\index.js:44:43)\n    at runAsync (D:\\course\\GitHub\\PhoneBook\\node_modules\\@babel\\core\\lib\\transformation\\index.js:35:14)\n    at process.nextTick (D:\\course\\GitHub\\PhoneBook\\node_modules\\@babel\\core\\lib\\transform.js:34:34)\n    at _combinedTickCallback (internal/process/next_tick.js:131:7)\n    at process._tickCallback (internal/process/next_tick.js:180:9)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _actions_ContactActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/ContactActions */ "./resources/js/actions/ContactActions.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+var CreateContact =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(CreateContact, _Component);
+
+  function CreateContact() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    _classCallCheck(this, CreateContact);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CreateContact)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_this), "state", {
+      first_name: 'Vlad',
+      last_name: 'Tymoshenko',
+      mobile: '0994580747',
+      company: 'OriginCompany',
+      photo_contact: 'photo',
+      email: 'vlad2009_@ukr.net',
+      birth_day: '03.03.95'
+    });
+
+    return _this;
+  }
+
+  _createClass(CreateContact, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group card"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row center"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-md-2"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        name: "cancel"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-times"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-md-6"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Save Contact")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-md-2"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        name: "send",
+        onClick: function onClick() {
+          return _this2.props.dispatch(Object(_actions_ContactActions__WEBPACK_IMPORTED_MODULE_1__["AddContact"])(_this2.setState));
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-check"
+      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-control",
+        type: "text",
+        name: "first_name",
+        placeholder: "First name",
+        value: this.state.first_name
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-control",
+        type: "text",
+        name: "last_name",
+        placeholder: "Last name",
+        value: this.state.last_name
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-control",
+        type: "tel",
+        name: "mobile",
+        placeholder: "Phone",
+        maxLength: "12",
+        value: this.state.mobile
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-control",
+        type: "text",
+        name: "company",
+        placeholder: "Company",
+        value: this.state.company
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-control",
+        type: "email",
+        name: "email",
+        placeholder: "e-mail",
+        value: this.state.email
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-control",
+        type: "date",
+        name: "birthDay",
+        placeholder: "your birth day",
+        value: this.state.birth_day
+      }));
+    }
+  }]);
+
+  return CreateContact;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])()(CreateContact));
 
 /***/ }),
 

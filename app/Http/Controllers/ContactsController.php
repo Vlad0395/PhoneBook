@@ -26,7 +26,7 @@ class ContactsController extends Controller
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
                 'company' => $data['company'],
-                'photo_contact' => $data['photo_contact'],
+                // 'photo_contact' => $data['photo_contact'],
                 'email' => $data['email'],
                 'birth_day' => $data['birth_day'],
             ]);
