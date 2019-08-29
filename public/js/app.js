@@ -6398,7 +6398,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".card {\r\n    background: lightblue;\r\n    width: 270px;\r\n    height: 300px;\r\n    text-align: center;\r\n    padding: 5px;\r\n    margin: 0 auto;\r\n}\r\n\r\n.edit {\r\n    border-radius: 50%;\r\n    text-align: center;\r\n    color: white;\r\n    padding: 10px;\r\n    background: blueviolet;\r\n}\r\n\r\n.create {\r\n    border-radius: 50%;\r\n    text-align: right;\r\n    padding: 5px;\r\n    background: #3546d8\r\n}", ""]);
+exports.push([module.i, ".card {\n    background: lightblue;\n    width: 270px;\n    height: 300px;\n    text-align: center;\n    padding: 5px;\n    margin: 0 auto;\n}\n\n.edit {\n    border-radius: 50%;\n    text-align: center;\n    color: white;\n    padding: 10px;\n    background: blueviolet;\n}\n\n.create {\n    border-radius: 50%;\n    text-align: right;\n    padding: 5px;\n    background: #3546d8\n}", ""]);
 
 // exports
 
@@ -73476,7 +73476,7 @@ function (_Component) {
       company: 'OriginCompany',
       photo_contact: 'photo',
       email: 'vlad2009_@ukr.net',
-      birth_day: '03.03.95'
+      birth_day: '03-03-1995'
     });
 
     return _this;
@@ -73504,7 +73504,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         name: "send",
         onClick: function onClick() {
-          return _this2.props.dispatch(Object(_actions_ContactActions__WEBPACK_IMPORTED_MODULE_1__["AddContact"])(_this2.setState));
+          return _this2.props.dispatch(Object(_actions_ContactActions__WEBPACK_IMPORTED_MODULE_1__["AddContact"])(_this2.state));
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-check"
@@ -73799,8 +73799,8 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\course\GitHub\PhoneBook\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\course\GitHub\PhoneBook\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/vlad/Projects/PhoneBook/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vlad/Projects/PhoneBook/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

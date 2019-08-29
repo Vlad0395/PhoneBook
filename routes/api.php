@@ -18,6 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/contacts', 'ContactsController@index');
-Route::post('/contacts', 'ContactsControoler@create');
+Route::post('/contacts', 'ContactsController@create');
 Route::get('/phones/{id}', 'PhonesController@index');
 Route::post('/phone', 'PhoneController@create');

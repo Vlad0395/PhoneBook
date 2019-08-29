@@ -9,7 +9,7 @@ class CreateContact extends Component {
         company: 'OriginCompany',
         photo_contact: 'photo',
         email: 'vlad2009_@ukr.net',
-        birth_day: '03.03.95'
+        birth_day: '03-03-1995'
     }
 
 
@@ -27,7 +27,7 @@ class CreateContact extends Component {
                         <p>Save Contact</p>
                     </div>
                     <div className="col-md-2">
-                        <button name="send" onClick={() => this.props.dispatch(AddContact(this.setState))}>
+                        <button name="send" onClick={() => this.props.dispatch(AddContact(this.state))}>
                             <i className="fas fa-check"></i>
                         </button>
                     </div>
