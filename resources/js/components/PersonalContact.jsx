@@ -6,13 +6,10 @@ class PersonalContact extends Component {
 
     render() {
         const { contacts } = this.props
-        console.log(contacts, 'check PersonalContact');
-        var url = window.location.href;
-        var id = url.substring(url.lastIndexOf('/') + 1);
-        console.log(url, id)
-
+        let url = window.location.href;
+        let id = url.substring(url.lastIndexOf('/') + 1);
         let a = contacts.find(it => it.id == id);
-        console.log('a', a)
+
         return (
 
             <div className='container card'>

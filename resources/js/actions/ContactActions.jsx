@@ -5,7 +5,6 @@ export const getContacts = () => {
     return dispatch => {
         axios.get('api/contacts')
             .then(response => {
-                console.log(response);
                 dispatch({
                     type: constants.GET_CONTACTS_SUCCESS,
                     data: response.data,

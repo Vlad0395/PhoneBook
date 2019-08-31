@@ -73192,7 +73192,6 @@ __webpack_require__.r(__webpack_exports__);
 var getContacts = function getContacts() {
   return function (dispatch) {
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('api/contacts').then(function (response) {
-      console.log(response);
       dispatch({
         type: _constants_index__WEBPACK_IMPORTED_MODULE_0__["constants"].GET_CONTACTS_SUCCESS,
         data: response.data
@@ -73369,7 +73368,6 @@ function (_Component) {
     key: "render",
     value: function render() {
       var contacts = this.props.contacts;
-      console.log(contacts, "check Contact");
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -73382,7 +73380,9 @@ function (_Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-search "
       })), contacts && contacts.map(function (contact) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          key: contact.id
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
           to: /personalcontact/ + contact.id
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, contact.first_name, " ", contact.last_name)));
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -73470,13 +73470,17 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CreateContact)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_this), "state", {
-      first_name: 'Vlad',
-      last_name: 'Tymoshenko',
-      mobile: '0994580747',
-      company: 'OriginCompany',
-      photo_contact: 'photo',
-      email: 'vlad2009_@ukr.net',
-      birth_day: '03-03-1995'
+      first_name: '',
+      last_name: '',
+      mobile: '',
+      company: '',
+      photo_contact: '',
+      email: '',
+      birth_day: ''
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleChange", function (event) {
+      _this.setState(_defineProperty({}, event.target.name, event.target.value));
     });
 
     return _this;
@@ -73494,7 +73498,10 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-md-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        name: "cancel"
+        name: "cancel",
+        onClick: function onClick() {
+          return _this2.props.history.push('/');
+        }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-times"
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -73513,18 +73520,21 @@ function (_Component) {
         type: "text",
         name: "first_name",
         placeholder: "First name",
+        onChange: this.handleChange,
         value: this.state.first_name
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "form-control",
         type: "text",
         name: "last_name",
         placeholder: "Last name",
+        onChange: this.handleChange,
         value: this.state.last_name
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "form-control",
         type: "tel",
         name: "mobile",
         placeholder: "Phone",
+        onChange: this.handleChange,
         maxLength: "12",
         value: this.state.mobile
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -73532,18 +73542,27 @@ function (_Component) {
         type: "text",
         name: "company",
         placeholder: "Company",
+        onChange: this.handleChange,
         value: this.state.company
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-control",
+        type: "text",
+        name: "photo_contact",
+        placeholder: "your photo",
+        onChange: this.handleChange,
+        value: this.state.photo_contact
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "form-control",
         type: "email",
         name: "email",
         placeholder: "e-mail",
+        onChange: this.handleChange,
         value: this.state.email
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "form-control",
         type: "date",
-        name: "birthDay",
-        placeholder: "your birth day",
+        name: "birth_day",
+        onChange: this.handleChange,
         value: this.state.birth_day
       }));
     }
@@ -73606,14 +73625,11 @@ function (_Component) {
     key: "render",
     value: function render() {
       var contacts = this.props.contacts;
-      console.log(contacts, 'check PersonalContact');
       var url = window.location.href;
       var id = url.substring(url.lastIndexOf('/') + 1);
-      console.log(url, id);
       var a = contacts.find(function (it) {
         return it.id == id;
       });
-      console.log('a', a);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container card"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
