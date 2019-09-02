@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import FormContact from './FormContact'
+import { UpdateContact } from '../actions/ContactActions'
+
 class EditContact extends Component {
     state = {
         first_name: '',
@@ -27,6 +29,7 @@ class EditContact extends Component {
                 mobile={mobile}
                 photo_contact={photo_contact}
                 email={email}
+                ActionWithData={this.props.dispatch(UpdateContact(this.state))}
             />
         )
     }

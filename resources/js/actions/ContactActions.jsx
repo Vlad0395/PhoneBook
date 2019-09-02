@@ -32,3 +32,14 @@ export const AddContact = (data) => {
             })
     }
 }
+export const UpdateContact = (data) => {
+    return dispatch => {
+        axios.post('api/constants', data)
+            .then(response => {
+                console.log('check')
+            })
+            .catch(error => {
+                console.log('error')
+            })
+    }
+}
