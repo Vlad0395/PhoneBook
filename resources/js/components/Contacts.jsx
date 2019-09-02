@@ -19,27 +19,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-
-const options = [
-  'Edit',
-  'Delete'
-];
-
-
-
-
-const open = Boolean(anchorEl);
-
-function handleClick(event) {
-  setAnchorEl(event.currentTarget);
-}
-
-function handleClose() {
-  setAnchorEl(null);
-}
-
 const Styles = (theme) => ({
     root: {
         flexGrow: 1,
@@ -103,6 +82,31 @@ class Contacts extends Component {
         const { contacts, classes } = this.props
 
         return (
+            // <div className='card'>
+            //     <form className="form-group search">
+            //         <input className="form-control " type="search" placeholde="Search" name="Search" /><SearchContact className='searchContact' />
+            //     </form>
+            //     {contacts && contacts.map(contact =>
+            //         <div className="row persContact align-items-center h-100">
+            //             <div className="offset-md-2 col-md-2 photo">
+
+            //             </div>
+            //             <div className="col-md-8" key={contact.id} >
+            //                 <Link to={/personalcontact/ + contact.id}>
+            //                     <p >{contact.first_name} {contact.last_name}</p>
+            //                 </Link>
+            //             </div>
+
+            //         </div>
+            //     )}
+            //     <div className="row ">
+            //         <div className="col-md-12 text-right">
+            //             <Link to='/create'>
+            //                 <AddContact className />
+            //             </Link>
+            //         </div>
+            //     </div>
+            // </div>
 
             <div className={classes.root}>
                 <Grid container justify="center" spacing={1}>
@@ -138,34 +142,14 @@ class Contacts extends Component {
                                     </Avatar>
                                     }
                                     action={
-                                        <div>
-                                            <IconButton
-                                                aria-label="more"
-                                                aria-controls="long-menu"
-                                                aria-haspopup="true"
-                                                onClick={handleClick}
-                                            >
-                                                <MoreVertIcon />
-                                            </IconButton>
-                                            <Menu
-                                                id="long-menu"
-                                                
-                                                open={open}
-                                                onClose={handleClose}
-                                                PaperProps={{
-                                                    style: {
-                                                        maxHeight: ITEM_HEIGHT * 4.5,
-                                                        width: 200,
-                                                    },
-                                                }}
-                                            >
-                                                {options.map(option => (
-                                                    <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
-                                                        {option}
-                                                    </MenuItem>
-                                                ))}
-                                            </Menu>
-                                        </div>
+                                        <IconButton
+                                            aria-label="more"
+                                            aria-controls="long-menu"
+                                            aria-haspopup="true"
+                                            onClick={handleClick}
+                                        >
+                                            <MoreVertIcon />
+                                        </IconButton>
                                     }
                                     title={`${contact.first_name} ${contact.last_name}`}
                                 />
