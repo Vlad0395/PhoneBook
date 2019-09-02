@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PhoneRequest;
 use App\Phone;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 
 class PhonesController extends Controller
 {
+    /**
+     * @param $id
+     * @return JsonResponse
+     */
     public function index($id)
     {
         $phones = Phone::where('contact_id', $id)->first();
@@ -16,6 +20,7 @@ class PhonesController extends Controller
 
     /**
      * @param PhoneRequest $request
+     * @return JsonResponse
      */
     public function create(PhoneRequest $request)
     {
@@ -29,9 +34,14 @@ class PhonesController extends Controller
         return response()->json($phone ?? null);
     }
 
+    /**
+     * @param PhoneRequest $request
+     * @param $id
+     * @return JsonResponse
+     */
     public function update(PhoneRequest $request, $id)
     {
-        $phone = Phone::find($id)->first();
+        $phone = Phone::find($id);
 
         $data = $request->validated();
         if ($data) {
@@ -40,6 +50,18 @@ class PhonesController extends Controller
                 'contact_id' => $data['contact_id'],
             ]);
         }
-        return response()->json($phone ?? null);
+        return response()->json($phone);
+    }
+
+    /**
+     * @param $id
+     * @return int
+     */
+    public function destroy($id)
+    {
+        $phone = Phone::find($id);
+        $phone->delete();
+
+        return response()->status(200);
     }
 }
