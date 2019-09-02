@@ -21,10 +21,25 @@ class PhonesController extends Controller
     {
         $data = $request->validated();
         if ($data) {
-            Phone::create([
+            $phone = Phone::create([
                 'number' => $data['number'],
                 'contact_id' => $data['contact_id'],
             ]);
         }
+        return response()->json($phone ?? null);
+    }
+
+    public function update(PhoneRequest $request, $id)
+    {
+        $phone = Phone::find($id)->first();
+
+        $data = $request->validated();
+        if ($data) {
+            $phone->update([
+                'number' => $data['number'],
+                'contact_id' => $data['contact_id'],
+            ]);
+        }
+        return response()->json($phone ?? null);
     }
 }

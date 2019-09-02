@@ -26,7 +26,7 @@ class ContactsController extends Controller
         $conv_day_birth = new DateTime($data['birth_day']);
 
         if ($data) {
-            Contact::create([
+            $contact = Contact::create([
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
                 'company' => $data['company'],
@@ -35,6 +35,7 @@ class ContactsController extends Controller
                 'birth_day' => $conv_day_birth
             ]);
         }
+        return response()->json($contact ?? null);
     }
 
     public function show($id)
@@ -44,7 +45,22 @@ class ContactsController extends Controller
 
     public function update(ContactRequest $request, $id)
     {
-        //
+        $contact = Contact::find($id)->first();
+        $data = $request->validated();
+
+        $conv_day_birth = new DateTime($data['birth_day']);
+
+        if ($data) {
+            $contact->update([
+                'first_name' => $data['first_name'],
+                'last_name' => $data['last_name'],
+                'company' => $data['company'],
+                'photo_contact' => $data['photo_contact'],
+                'email' => $data['email'],
+                'birth_day' => $conv_day_birth
+            ]);
+        }
+        return response()->json($contact);
     }
 
 
