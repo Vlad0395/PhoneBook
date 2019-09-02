@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import EditContact from '@material-ui/icons/Edit';
+import BackAllContact from '@material-ui/icons/ReplyAll';
 
 class PersonalContact extends Component {
 
@@ -15,7 +17,7 @@ class PersonalContact extends Component {
             <div className='container card'>
                 <div className="row">
                     <div className="col-md-12 text-left">
-                        <Link to='/'> <i className="fas fa-arrow-circle-left"></i> All Contacts</Link>
+                        <Link to='/'><BackAllContact />All Contacts</Link>
                     </div>
                 </div>
                 <div className="row">
@@ -34,10 +36,12 @@ class PersonalContact extends Component {
                     <div className="col-md-12">{a.company}</div>
                 </div>
                 <div className="row">
-                    <div className="col-md-12">e-mail</div>
+                    <div className="col-md-12">{a.email}</div>
                 </div>
-                <div className="row">
-                    <div className="col-md-12 text-right"><i className="far fa-edit edit fa-2x"></i></div>
+                <div className="row text-right">
+                    <Link to='/edit'>
+                        <EditContact />
+                    </Link>
                 </div>
             </div>
         )

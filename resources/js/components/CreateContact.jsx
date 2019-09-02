@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import { AddContact } from '../actions/ContactActions'
 import { connect } from 'react-redux'
+import SaveContact from '@material-ui/icons/CheckCircleOutline';
+import CancelContact from '@material-ui/icons/Cancel';
+
+
 class CreateContact extends Component {
     state = {
         first_name: '',
@@ -23,8 +27,8 @@ class CreateContact extends Component {
             <div className="form-group card">
                 <div className="row center">
                     <div className="col-md-2">
-                        <button name='cancel' onClick={()=>this.props.history.push('/')}>
-                            <i className="fas fa-times"></i>
+                        <button name='cancel' onClick={() => this.props.history.push('/')}>
+                            <CancelContact />
                         </button>
                     </div>
                     <div className="col-md-6">
@@ -32,7 +36,7 @@ class CreateContact extends Component {
                     </div>
                     <div className="col-md-2">
                         <button name="send" onClick={() => this.props.dispatch(AddContact(this.state))}>
-                            <i className="fas fa-check"></i>
+                            <SaveContact />
                         </button>
                     </div>
                 </div>
