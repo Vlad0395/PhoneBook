@@ -92685,21 +92685,25 @@ var AddContact = function AddContact(data) {
     });
   };
 };
-var UpdateContact = function UpdateContact(data) {
+var UpdateContact = function UpdateContact(data, id) {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_1___default.a.patch('api/constants', data).then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.patch('api/contacts/' + id, data).then(function (response) {
       console.log('check');
     })["catch"](function (error) {
-      console.log('error');
+      console.log('update_error', error);
     });
   };
 };
-var DeleteContact = function DeleteContact(data) {
+var DeleteContact = function DeleteContact(id) {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]('api/constants', data).then(function (response) {
-      console.log('check');
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]('api/contacts/' + id).then(function (response) {
+      console.log(response, 'response');
+      return dispatch({
+        type: _constants_index__WEBPACK_IMPORTED_MODULE_0__["constants"].DELETE_CONTACT_SUCCESS,
+        data: response.data
+      });
     })["catch"](function (error) {
-      console.log('error');
+      console.log('delete_error', error);
     });
   };
 };
@@ -92944,12 +92948,14 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Contacts)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_this), "state", {
-      anchorEl: null
+      anchorEl: null,
+      selectedId: null
     });
 
-    _defineProperty(_assertThisInitialized(_this), "handleClick", function (event) {
+    _defineProperty(_assertThisInitialized(_this), "handleClick", function (event, id) {
       _this.setState({
-        anchorEl: event.currentTarget
+        anchorEl: event.currentTarget,
+        selectedId: id
       });
     });
 
@@ -92975,7 +92981,9 @@ function (_Component) {
       var _this$props = this.props,
           contacts = _this$props.contacts,
           classes = _this$props.classes;
-      var anchorEl = this.state.anchorEl;
+      var _this$state = this.state,
+          anchorEl = _this$state.anchorEl,
+          selectedId = _this$state.selectedId;
       var open = Boolean(anchorEl);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: classes.root
@@ -93021,7 +93029,9 @@ function (_Component) {
             "aria-label": "more",
             "aria-controls": "long-menu",
             "aria-haspopup": "true",
-            onClick: _this2.handleClick
+            onClick: function onClick(e) {
+              return _this2.handleClick(e, contact.id);
+            }
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_MoreVert__WEBPACK_IMPORTED_MODULE_16___default.a, null))),
           title: "".concat(contact.first_name, " ").concat(contact.last_name)
         }));
@@ -93039,9 +93049,15 @@ function (_Component) {
       }, options.map(function (option) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_18__["default"], {
           key: option,
-          onClick: _this2.handleClose
+          onClick: function onClick() {
+            if (option === 'Delete') {
+              _this2.props.dispatch(Object(_actions_ContactActions__WEBPACK_IMPORTED_MODULE_1__["DeleteContact"])(selectedId));
+            }
+
+            _this2.handleClose();
+          }
         }, option === 'Edit' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
-          to: '/edit/' + contact.id
+          to: '/edit/' + selectedId
         }, "Edit") : option);
       })));
     }
@@ -93608,7 +93624,9 @@ var constants = {
   GET_CONTACTS_SUCCESS: 'GET_CONTACTS_SUCCESS',
   GET_CONTACTS_ERROR: 'GET_CONTACTS_ERROR',
   GET_CONTACT_PHONES_SUCCES: 'GET_CONTACT_PHONES_SUCCES',
-  GET_CONTACT_PHONES_ERROR: 'GET_CONTACT_PHONES_ERROR'
+  GET_CONTACT_PHONES_ERROR: 'GET_CONTACT_PHONES_ERROR',
+  DELETE_CONTACT_SUCCESS: 'DELETE_CONTACT_SUCCESS',
+  DELETE_CONTACT_ERROR: 'DELETE_CONTACT_ERROR'
 };
 
 /***/ }),
@@ -93642,6 +93660,14 @@ var initialState = {
     case _constants_index__WEBPACK_IMPORTED_MODULE_0__["constants"].GET_CONTACTS_SUCCESS:
       return _objectSpread({}, state, {
         contacts: action.data
+      });
+
+    case _constants_index__WEBPACK_IMPORTED_MODULE_0__["constants"].DELETE_CONTACT_SUCCESS:
+      var contacts = state.contacts.filter(function (contact) {
+        return contact.id != action.data;
+      });
+      return _objectSpread({}, state, {
+        contacts: contacts
       });
 
     default:

@@ -12,6 +12,12 @@ export default (state = initialState, action) => {
                 ...state,
                 contacts: action.data,
             }
+        case constants.DELETE_CONTACT_SUCCESS:
+            let contacts = state.contacts.filter(contact => contact.id != action.data);
+            return {
+                ...state,
+                contacts: contacts
+            }
         default:
             return state
     }

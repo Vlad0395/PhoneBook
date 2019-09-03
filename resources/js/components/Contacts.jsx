@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { getContacts } from '../actions/ContactActions'
+import { getContacts, DeleteContact } from '../actions/ContactActions'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import AddContact from '@material-ui/icons/Add';
@@ -84,14 +84,15 @@ const Styles = (theme) => ({
 class Contacts extends Component {
     state = {
         anchorEl: null,
+        selectedId: null
     }
 
     componentDidMount() {
         this.props.dispatch(getContacts());
     }
 
-    handleClick = (event) => {
-        this.setState({ anchorEl: event.currentTarget });
+    handleClick = (event, id) => {
+        this.setState({ anchorEl: event.currentTarget, selectedId: id });
     }
 
     handleClose = () => {
@@ -100,7 +101,7 @@ class Contacts extends Component {
 
     render() {
         const { contacts, classes } = this.props
-        const { anchorEl } = this.state;
+        const { anchorEl, selectedId } = this.state;
 
         const open = Boolean(anchorEl);
 
@@ -144,7 +145,7 @@ class Contacts extends Component {
                                                 aria-label="more"
                                                 aria-controls="long-menu"
                                                 aria-haspopup="true"
-                                                onClick={this.handleClick}
+                                                onClick={(e) => this.handleClick(e, contact.id)}
                                             >
                                                 <MoreVertIcon />
                                             </IconButton>
@@ -170,9 +171,13 @@ class Contacts extends Component {
                     }}
                 >
                     {options.map(option => (
-                        <MenuItem key={option} onClick={this.handleClose}>
-                            {option === 'Edit' ? <Link to={'/edit/' + contact.id}>Edit</Link> : option}
-
+                        <MenuItem key={option} onClick={() => {
+                            if (option === 'Delete') {
+                                this.props.dispatch(DeleteContact(selectedId))
+                            }
+                            this.handleClose()
+                        }}>
+                            {option === 'Edit' ? <Link to={'/edit/' + selectedId}>Edit</Link> : option}
                         </MenuItem>
                     ))}
                 </Menu>

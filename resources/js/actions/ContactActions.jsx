@@ -32,25 +32,29 @@ export const AddContact = (data) => {
             })
     }
 }
-export const UpdateContact = (data) => {
+export const UpdateContact = (data, id) => {
     return dispatch => {
-        axios.patch('api/constants', data)
+        axios.patch('api/contacts/' + id, data)
             .then(response => {
                 console.log('check')
             })
             .catch(error => {
-                console.log('error')
+                console.log('update_error', error)
             })
     }
 }
-export const DeleteContact = (data) => {
+export const DeleteContact = (id) => {
     return dispatch => {
-        axios.delete('api/constants', data)
+        axios.delete('api/contacts/' + id)
             .then(response => {
-                console.log('check')
+                console.log(response, 'response')
+                return dispatch({
+                    type: constants.DELETE_CONTACT_SUCCESS,
+                    data: response.data,
+                })
             })
             .catch(error => {
-                console.log('error')
+                console.log('delete_error', error)
             })
     }
 }

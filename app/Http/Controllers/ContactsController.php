@@ -84,6 +84,6 @@ class ContactsController extends Controller
     {
         $contact = Contact::find($id);
         $contact->delete();
-        return response()->status(200);
+        return response()->json($id);
     }
 }
