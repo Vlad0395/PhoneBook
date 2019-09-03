@@ -3,7 +3,9 @@ import {BrowserRouter, Switch, Route} from "react-router-dom";
 import Contacts from "../components/Contacts";
 import PersonalContact from "../components/PersonalContact";
 import CreateContact from "../components/CreateContact";
-import EditContact from "../components/EditContact"
+import EditContact from "../components/EditContact";
+
+
 class Router extends Component {
     render() {
         return (

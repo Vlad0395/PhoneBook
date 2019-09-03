@@ -92646,7 +92646,7 @@ function (_Component) {
 /*!*************************************************!*\
   !*** ./resources/js/actions/ContactActions.jsx ***!
   \*************************************************/
-/*! exports provided: getContacts, AddContact, UpdateContact */
+/*! exports provided: getContacts, AddContact, UpdateContact, DeleteContact */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -92654,6 +92654,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getContacts", function() { return getContacts; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddContact", function() { return AddContact; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UpdateContact", function() { return UpdateContact; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DeleteContact", function() { return DeleteContact; });
 /* harmony import */ var _constants_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants/index */ "./resources/js/constants/index.jsx");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
@@ -92686,7 +92687,16 @@ var AddContact = function AddContact(data) {
 };
 var UpdateContact = function UpdateContact(data) {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('api/constants', data).then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.patch('api/constants', data).then(function (response) {
+      console.log('check');
+    })["catch"](function (error) {
+      console.log('error');
+    });
+  };
+};
+var DeleteContact = function DeleteContact(data) {
+  return function (dispatch) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]('api/constants', data).then(function (response) {
       console.log('check');
     })["catch"](function (error) {
       console.log('error');
@@ -93029,7 +93039,9 @@ function (_Component) {
               key: option,
               selected: option === 'Pyxis',
               onClick: _this2.handleClose
-            }, option);
+            }, option === 'Edit' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+              to: '/edit/' + contact.id
+            }, "Edit") : option);
           }))),
           title: "".concat(contact.first_name, " ").concat(contact.last_name)
         }));

@@ -168,7 +168,7 @@ class Contacts extends Component {
                                             >
                                                 {options.map(option => (
                                                     <MenuItem key={option} selected={option === 'Pyxis'} onClick={this.handleClose}>
-                                                        {option}
+                                                        {option === 'Edit' ? <Link to={'/edit/' + contact.id}>Edit</Link> : option}
                                                     </MenuItem>
                                                 ))}
                                             </Menu>
