@@ -61,7 +61,6 @@ class PhonesController extends Controller
     {
         $phone = Phone::find($id);
         $phone->delete();
-
         return response()->status(200);
     }
 }

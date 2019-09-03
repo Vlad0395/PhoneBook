@@ -83,29 +83,26 @@ const Styles = (theme) => ({
 
 class Contacts extends Component {
     state = {
-        anchorEl: null
-
+        anchorEl: null,
     }
 
     componentDidMount() {
-        this.props.dispatch(getContacts())
+        this.props.dispatch(getContacts());
     }
 
     handleClick = (event) => {
-        this.setState({
-            anchorEl: event.currentTarget
-        })
+        this.setState({ anchorEl: event.currentTarget });
     }
+
     handleClose = () => {
-        this.setState({
-            anchorEl: null
-        })
+        this.setState({ anchorEl: null });
     }
+
     render() {
-        const open = Boolean(this.state.anchorEl);
-
-
         const { contacts, classes } = this.props
+        const { anchorEl } = this.state;
+
+        const open = Boolean(anchorEl);
 
         return (
             <div className={classes.root}>
@@ -151,28 +148,6 @@ class Contacts extends Component {
                                             >
                                                 <MoreVertIcon />
                                             </IconButton>
-                                            {open && <Menu
-                                                id="long-menu"
-                                                anchorEl={this.state.anchorEl}
-                                                keepMounted={false}
-
-                                                open={open}
-                                                onClose={this.handleClose}
-                                                PaperProps={{
-                                                    // unmountOnExit: true,
-                                                    style: {
-                                                        maxHeight: ITEM_HEIGHT * 4.5,
-                                                        width: 200,
-                                                    },
-                                                }}
-                                            >
-                                                {options.map(option => (
-                                                    <MenuItem key={option} selected={option === 'Pyxis'} onClick={this.handleClose}>
-                                                        {option}
-                                                    </MenuItem>
-                                                ))}
-                                            </Menu>
-                                            }
                                         </div>
                                     }
                                     title={`${contact.first_name} ${contact.last_name}`}
@@ -182,6 +157,25 @@ class Contacts extends Component {
                         )}
                     </Grid>
                 </Grid>
+                {open && <Menu
+                    id="long-menu"
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={this.handleClose}
+                    PaperProps={{
+                        style: {
+                            maxHeight: ITEM_HEIGHT * 4.5,
+                            width: 200,
+                        },
+                    }}
+                >
+                    {options.map(option => (
+                        <MenuItem key={option} onClick={this.handleClose}>
+                            {option}
+                        </MenuItem>
+                    ))}
+                </Menu>
+                }
             </div >
 
 
@@ -196,4 +190,4 @@ const mapStateToProps = (state) => {
         error
     }
 }
-export default connect(mapStateToProps)(withStyles(Styles)(Contacts)) 
+export default connect(mapStateToProps)(withStyles(Styles)(Contacts))

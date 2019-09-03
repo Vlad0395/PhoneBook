@@ -92962,10 +92962,11 @@ function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      var open = Boolean(this.state.anchorEl);
       var _this$props = this.props,
           contacts = _this$props.contacts,
           classes = _this$props.classes;
+      var anchorEl = this.state.anchorEl;
+      var open = Boolean(anchorEl);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: classes.root
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -93011,29 +93012,26 @@ function (_Component) {
             "aria-controls": "long-menu",
             "aria-haspopup": "true",
             onClick: _this2.handleClick
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_MoreVert__WEBPACK_IMPORTED_MODULE_16___default.a, null)), open && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Menu__WEBPACK_IMPORTED_MODULE_17__["default"], {
-            id: "long-menu",
-            anchorEl: _this2.state.anchorEl,
-            keepMounted: false,
-            open: open,
-            onClose: _this2.handleClose,
-            PaperProps: {
-              // unmountOnExit: true,
-              style: {
-                maxHeight: ITEM_HEIGHT * 4.5,
-                width: 200
-              }
-            }
-          }, options.map(function (option) {
-            return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_18__["default"], {
-              key: option,
-              selected: option === 'Pyxis',
-              onClick: _this2.handleClose
-            }, option);
-          }))),
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_MoreVert__WEBPACK_IMPORTED_MODULE_16___default.a, null))),
           title: "".concat(contact.first_name, " ").concat(contact.last_name)
         }));
-      }))));
+      }))), open && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Menu__WEBPACK_IMPORTED_MODULE_17__["default"], {
+        id: "long-menu",
+        anchorEl: anchorEl,
+        open: open,
+        onClose: this.handleClose,
+        PaperProps: {
+          style: {
+            maxHeight: ITEM_HEIGHT * 4.5,
+            width: 200
+          }
+        }
+      }, options.map(function (option) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_18__["default"], {
+          key: option,
+          onClick: _this2.handleClose
+        }, option);
+      })));
     }
   }]);
 
@@ -93708,8 +93706,8 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vlad/Projects/PhoneBook/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vlad/Projects/PhoneBook/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/rostyslav/Projects/PhoneBook/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/rostyslav/Projects/PhoneBook/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
