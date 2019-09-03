@@ -92697,7 +92697,6 @@ var UpdateContact = function UpdateContact(data, id) {
 var DeleteContact = function DeleteContact(id) {
   return function (dispatch) {
     axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]('api/contacts/' + id).then(function (response) {
-      console.log(response, 'response');
       return dispatch({
         type: _constants_index__WEBPACK_IMPORTED_MODULE_0__["constants"].DELETE_CONTACT_SUCCESS,
         data: response.data
@@ -92985,7 +92984,7 @@ function (_Component) {
           anchorEl = _this$state.anchorEl,
           selectedId = _this$state.selectedId;
       var open = Boolean(anchorEl);
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_7__["default"], {
         className: classes.root
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_7__["default"], {
         container: true,
@@ -92996,9 +92995,9 @@ function (_Component) {
         xs: 3
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_AppBar__WEBPACK_IMPORTED_MODULE_8__["default"], {
         position: "static"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Toolbar__WEBPACK_IMPORTED_MODULE_9__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Toolbar__WEBPACK_IMPORTED_MODULE_9__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_7__["default"], {
         className: classes.search
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_7__["default"], {
         className: classes.searchIcon
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Search__WEBPACK_IMPORTED_MODULE_5___default.a, null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_InputBase__WEBPACK_IMPORTED_MODULE_10__["default"], {
         placeholder: "Search\u2026",
@@ -93025,14 +93024,14 @@ function (_Component) {
             "aria-label": "recipe",
             className: classes.avatar
           }, "R"),
-          action: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_14__["default"], {
+          action: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_14__["default"], {
             "aria-label": "more",
             "aria-controls": "long-menu",
             "aria-haspopup": "true",
             onClick: function onClick(e) {
               return _this2.handleClick(e, contact.id);
             }
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_MoreVert__WEBPACK_IMPORTED_MODULE_16___default.a, null))),
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_MoreVert__WEBPACK_IMPORTED_MODULE_16___default.a, null)),
           title: "".concat(contact.first_name, " ").concat(contact.last_name)
         }));
       }))), open && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Menu__WEBPACK_IMPORTED_MODULE_17__["default"], {
@@ -93665,7 +93664,8 @@ var initialState = {
     case _constants_index__WEBPACK_IMPORTED_MODULE_0__["constants"].DELETE_CONTACT_SUCCESS:
       var contacts = state.contacts.filter(function (contact) {
         return contact.id != action.data;
-      });
+      }); // let lalalal = state.contacts.map(cont => { cont.id === action.data.id ? action.data : cont })
+
       return _objectSpread({}, state, {
         contacts: contacts
       });

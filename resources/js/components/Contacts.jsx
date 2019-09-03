@@ -106,15 +106,15 @@ class Contacts extends Component {
         const open = Boolean(anchorEl);
 
         return (
-            <div className={classes.root}>
+            <Grid className={classes.root}>
                 <Grid container justify="center" spacing={1}>
                     <Grid item xs={3} >
                         <AppBar position="static">
                             <Toolbar>
-                                <div className={classes.search}>
-                                    <div className={classes.searchIcon}>
+                                <Grid className={classes.search}>
+                                    <Grid className={classes.searchIcon}>
                                         <SearchIcon />
-                                    </div>
+                                    </Grid>
                                     <InputBase
                                         placeholder="Search…"
                                         classes={{
@@ -123,7 +123,7 @@ class Contacts extends Component {
                                         }}
                                         inputProps={{ 'aria-label': 'search' }}
                                     />
-                                </div>
+                                </Grid>
                             </Toolbar>
                         </AppBar>
                     </Grid>
@@ -140,16 +140,14 @@ class Contacts extends Component {
                                     </Avatar>
                                     }
                                     action={
-                                        <div>
-                                            <IconButton
-                                                aria-label="more"
-                                                aria-controls="long-menu"
-                                                aria-haspopup="true"
-                                                onClick={(e) => this.handleClick(e, contact.id)}
-                                            >
-                                                <MoreVertIcon />
-                                            </IconButton>
-                                        </div>
+                                        <IconButton
+                                            aria-label="more"
+                                            aria-controls="long-menu"
+                                            aria-haspopup="true"
+                                            onClick={(e) => this.handleClick(e, contact.id)}
+                                        >
+                                            <MoreVertIcon />
+                                        </IconButton>
                                     }
                                     title={`${contact.first_name} ${contact.last_name}`}
                                 />
@@ -182,7 +180,7 @@ class Contacts extends Component {
                     ))}
                 </Menu>
                 }
-            </div >
+            </Grid >
 
 
         )
