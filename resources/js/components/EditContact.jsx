@@ -29,7 +29,7 @@ class EditContact extends Component {
                 mobile={mobile}
                 photo_contact={photo_contact}
                 email={email}
-                ActionWithData={this.props.dispatch(UpdateContact(this.state))}
+                // ActionWithData={this.props.dispatch(UpdateContact(this.state))}
             />
         )
     }

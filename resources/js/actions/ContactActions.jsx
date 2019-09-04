@@ -28,7 +28,7 @@ export const AddContact = (data) => {
                 console.log('check')
             })
             .catch(error => {
-                console.log('error')
+                console.log('create_error')
             })
     }
 }
