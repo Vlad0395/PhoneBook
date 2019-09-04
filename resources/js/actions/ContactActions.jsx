@@ -36,7 +36,10 @@ export const UpdateContact = (data, id) => {
     return dispatch => {
         axios.patch('api/contacts/' + id, data)
             .then(response => {
-                console.log('check')
+                return dispatch({
+                    type: constants.UPDATE_CONTACT_SUCCESS,
+                    data: response.data,
+                })
             })
             .catch(error => {
                 console.log('update_error', error)

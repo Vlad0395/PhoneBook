@@ -77,6 +77,13 @@ const Styles = (theme) => ({
             },
         },
     },
+    link: {
+        color: '#000000',
+        '&:hover': {
+            color: '#000000',
+            textDecoration: 'none',
+        }
+    }
 
 });
 
@@ -98,7 +105,10 @@ class Contacts extends Component {
     handleClose = () => {
         this.setState({ anchorEl: null });
     }
-
+    // routeChange = () => {
+    //     let path = '/create'
+    //     this.props.history.push(path)
+    // }
     render() {
         const { contacts, classes } = this.props
         const { anchorEl, selectedId } = this.state;
@@ -175,11 +185,22 @@ class Contacts extends Component {
                             }
                             this.handleClose()
                         }}>
-                            {option === 'Edit' ? <Link to={'/edit/' + selectedId}>Edit</Link> : option}
+                            {option === 'Edit' ? <Link className={classes.link} to={'/edit/' + selectedId}>Edit</Link> : option}
                         </MenuItem>
                     ))}
                 </Menu>
                 }
+                <Grid container justify="center" spacing={1}>
+                    <Grid item sx={3}>
+                        <Card className={classes.card} >
+                            <Link to='/create'>
+                                <IconButton>
+                                    <AddContact />
+                                </IconButton>
+                            </Link>
+                        </Card>
+                    </Grid>
+                </Grid>
             </Grid >
 
 

@@ -14,11 +14,16 @@ export default (state = initialState, action) => {
             }
         case constants.DELETE_CONTACT_SUCCESS:
             let contacts = state.contacts.filter(contact => contact.id != action.data);
-            // let lalalal = state.contacts.map(cont => { cont.id === action.data.id ? action.data : cont })
             return {
                 ...state,
                 contacts: contacts
             }
+        case constants.UPDATE_CONTACT_SUCCESS:
+                let editContact = state.contacts.map(cont => { cont.id === action.data.id ? action.data : cont })
+                return {
+                    ...state,
+                    contacts: editContacts
+                }
         default:
             return state
     }

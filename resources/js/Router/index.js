@@ -20,7 +20,7 @@ class Router extends Component {
                     <Route path='/create'
                            component={CreateContact}
                     />
-                    <Route path='/edit'
+                    <Route path='/edit/:id'
                            component={EditContact}
                     />
                 </Switch>

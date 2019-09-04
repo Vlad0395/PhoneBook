@@ -1,14 +1,13 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import SaveContact from '@material-ui/icons/CheckCircleOutline';
 import CancelContact from '@material-ui/icons/Cancel';
 import { Grid } from '@material-ui/core';
-
+import { Link } from 'react-router-dom';
 import withStyles from '@material-ui/core/styles/withStyles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 
 
@@ -22,6 +21,14 @@ const Styles = (theme) => ({
     title: {
         flexGrow: 1,
     },
+    header: {
+        justifyContent: 'space-beetwen',
+    },
+    link: {
+        color: '#ffffff',
+        textDecoration:'none',
+    }
+
 });
 
 
@@ -30,8 +37,7 @@ class FormContact extends Component {
         expanded: false
     }
     render() {
-        const classes = this.props;
-        const { first_name, last_name, company, birth_day, mobile, photo_contact, email, handleChange, ActionWithData } = this.props;
+        const { classes, first_name, last_name, company, birth_day, mobile, photo_contact, email, handleChange, ActionWithData } = this.props;
         const { expanded } = this.state;
         return (
 
@@ -41,14 +47,18 @@ class FormContact extends Component {
                     <Grid item xs={3} >
                         <Grid className={classes.root}>
                             <AppBar position="static">
-                                <Toolbar>
-                                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                                        <CancelContact />
-                                    </IconButton>
-                                    <Typography variant="h6" className={classes.title}>
+                                <Toolbar className={classes.header}>
+                                    <Link to="/">
+                                        <IconButton className={classes.menuButton} color="inherit">
+                                            <CancelContact className={classes.link} />
+                                        </IconButton>
+                                    </Link>
+                                    <Typography variant="h4" className={classes.title}>
                                         Save Contact
                                     </Typography>
-                                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                                    <IconButton className={classes.menuButton} color="inherit"
+                                        onClick = {()=>ActionWithData()}
+                                    >
                                         <SaveContact />
                                     </IconButton>
                                 </Toolbar>
