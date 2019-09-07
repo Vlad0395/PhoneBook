@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { getContacts, DeleteContact } from '../actions/ContactActions'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import AddContact from '@material-ui/icons/Add';
+import AddIcon from '@material-ui/icons/Add';
 import SearchContact from '@material-ui/icons/Search';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
@@ -21,6 +21,9 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+
+import Tooltip from '@material-ui/core/Tooltip';
+import Fab from '@material-ui/core/Fab';
 
 const ITEM_HEIGHT = 48;
 const options = [
@@ -83,7 +86,15 @@ const Styles = (theme) => ({
             color: '#000000',
             textDecoration: 'none',
         }
-    }
+    },
+    fab: {
+        margin: theme.spacing(1),
+      },
+      absolute: {
+        position: 'absolute',
+        bottom: theme.spacing(1),
+        right: theme.spacing(91),
+      },
 
 });
 
@@ -159,7 +170,7 @@ class Contacts extends Component {
                                             <MoreVertIcon />
                                         </IconButton>
                                     }
-                                    title={`${contact.first_name} ${contact.last_name}`}
+                                    title={<Link className={classes.link} to={"/personalcontact/" + contact.id}>{`${contact.first_name} ${contact.last_name}`}</Link>}
                                 />
                                 {/* </Link> */}
                             </Card>
@@ -194,9 +205,11 @@ class Contacts extends Component {
                     <Grid item sx={3}>
                         <Card className={classes.card} >
                             <Link to='/create'>
-                                <IconButton>
-                                    <AddContact />
-                                </IconButton>
+                                <Tooltip title="Add" aria-label="add">
+                                    <Fab color="secondary" className={classes.absolute}>
+                                        <AddIcon />
+                                    </Fab>
+                                </Tooltip>
                             </Link>
                         </Card>
                     </Grid>
