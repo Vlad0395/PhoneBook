@@ -2,8 +2,6 @@ import React, { Component, Fragment } from 'react'
 import { getContacts, DeleteContact } from '../actions/ContactActions'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import AddContact from '@material-ui/icons/Add';
-import SearchContact from '@material-ui/icons/Search';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
 
@@ -16,11 +14,16 @@ import { fade } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import IconButton from '@material-ui/core/IconButton';
+
 import Avatar from '@material-ui/core/Avatar';
+
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 const ITEM_HEIGHT = 48;
 const options = [
@@ -31,6 +34,7 @@ const options = [
 const Styles = (theme) => ({
     root: {
         flexGrow: 1,
+        height: '250px'
     },
     title: {
         flexGrow: 1,
@@ -83,7 +87,24 @@ const Styles = (theme) => ({
             color: '#000000',
             textDecoration: 'none',
         }
-    }
+    },
+    fab: {
+        margin: theme.spacing(1),
+    },
+    extendedIcon: {
+        marginRight: theme.spacing(1),
+    },
+    avatar: {
+        margin: 10,
+    },
+    bigAvatar: {
+        margin: 10,
+        width: 60,
+        height: 60,
+    },
+    iconBut: {
+        alignSelf: 'center',
+    },
 
 });
 
@@ -145,12 +166,11 @@ class Contacts extends Component {
                                 {/* <Link className="link" to={/personalcontact/ + contact.id}> */}
                                 <CardHeader
                                     avatar={
-                                        <Avatar aria-label="recipe" className={classes.avatar}>
-                                            R
-                                    </Avatar>
+                                        <Avatar alt="Remy Sharp" src="./images/Contacts-icon.png" className={classes.avatar} />
                                     }
                                     action={
                                         <IconButton
+                                            className = {classes.iconBut}
                                             aria-label="more"
                                             aria-controls="long-menu"
                                             aria-haspopup="true"
@@ -159,7 +179,7 @@ class Contacts extends Component {
                                             <MoreVertIcon />
                                         </IconButton>
                                     }
-                                    title={`${contact.first_name} ${contact.last_name}`}
+                                    title={<Link className={classes.link} to={'personalcontact/'+contact.id}>{contact.first_name} {contact.last_name}`</Link>}
                                 />
                                 {/* </Link> */}
                             </Card>
@@ -192,13 +212,13 @@ class Contacts extends Component {
                 }
                 <Grid container justify="center" spacing={1}>
                     <Grid item sx={3}>
-                        <Card className={classes.card} >
-                            <Link to='/create'>
-                                <IconButton>
-                                    <AddContact />
-                                </IconButton>
-                            </Link>
-                        </Card>
+
+                        <Link to='/create'>
+                            <Fab color="primary" aria-label="add" className={classes.fab}>
+                                <AddIcon />
+                            </Fab>
+                        </Link>
+
                     </Grid>
                 </Grid>
             </Grid >

@@ -22,6 +22,6 @@ Route::post('/contacts', 'ContactsController@create');
 Route::patch('/contacts/{id}', 'ContactsController@update');
 Route::delete('/contacts/{id}', 'ContactsController@destroy');
 Route::get('/phones/{id}', 'PhonesController@index');
-Route::post('/phones', 'PhoneController@create');
 Route::patch('/phones/{id}', 'PhoneController@update');
+Route::post('/phones', 'PhoneController@create');
 Route::delete('phones/{id}', 'PhoneController@destroy');
