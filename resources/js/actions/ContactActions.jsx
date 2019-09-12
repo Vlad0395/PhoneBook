@@ -32,6 +32,21 @@ export const AddContact = (data) => {
             })
     }
 }
+export const getContact = (id) => {
+    return dispatch => {
+        axios.get('api/contacts/' + id)
+            .then(response => {
+                console.log(response, 'check_getContact_success')
+                return dispatch({
+                    type: constants.GET_CONTACT_SUCCESS,
+                    data: response.data,
+                })
+            })
+            .catch(error => {
+                console.log('check_getContact_error')
+            })
+    }
+}
 export const UpdateContact = (data, id) => {
     return dispatch => {
         axios.patch('api/contacts/' + id, data)

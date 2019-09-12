@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import SaveContact from '@material-ui/icons/CheckCircleOutline';
-import CancelContact from '@material-ui/icons/Cancel';
-import { Grid } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import { Grid } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
+import CancelContact from '@material-ui/icons/Cancel';
+import SaveContact from '@material-ui/icons/CheckCircleOutline';
 
 
 const Styles = (theme) => ({

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import FormContact from './FormContact'
 import { UpdateContact } from '../actions/ContactActions'
-import { connect } from 'react-redux'
+
 class EditContact extends Component {
     state = {
         first_name: '',

@@ -44,9 +44,14 @@ class ContactsController extends Controller
         return response()->json($contact ?? null);
     }
 
+    /**
+     * @param $id
+     * @return JsonResponse
+     */
     public function show($id)
     {
-        //
+        $contact = Contact::find($id);
+        return response()->json($contact);
     }
 
     /**

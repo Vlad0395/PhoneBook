@@ -1,6 +1,7 @@
 import { constants } from "../constants/index";
 
 const initialState = {
+    contact: null,
     contacts: null,
     error: false,
 }
@@ -19,11 +20,16 @@ export default (state = initialState, action) => {
                 contacts: contacts
             }
         case constants.UPDATE_CONTACT_SUCCESS:
-                let editContact = state.contacts.map(cont => { cont.id === action.data.id ? action.data : cont })
-                return {
-                    ...state,
-                    contacts: editContacts
-                }
+            let editContact = state.contacts.map(cont => { cont.id === action.data.id ? action.data : cont })
+            return {
+                ...state,
+                contacts: editContact
+            }
+        case constants.GET_CONTACT_SUCCESS:
+            return {
+                ...state,
+                contact: action.data,
+            }
         default:
             return state
     }

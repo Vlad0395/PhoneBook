@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
-import { AddContact } from '../actions/ContactActions'
 import { connect } from 'react-redux'
-import SaveContact from '@material-ui/icons/CheckCircleOutline';
-import CancelContact from '@material-ui/icons/Cancel';
-import { Grid } from '@material-ui/core';
 import FormContact from './FormContact';
+import { AddContact } from '../actions/ContactActions'
 
 
 class CreateContact extends Component {
