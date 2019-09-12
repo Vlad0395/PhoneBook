@@ -2,38 +2,24 @@ import React, { Component, Fragment } from 'react'
 import { getContacts, DeleteContact } from '../actions/ContactActions'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-<<<<<<< HEAD
-=======
-import AddIcon from '@material-ui/icons/Add';
-import SearchContact from '@material-ui/icons/Search';
->>>>>>> 45c35dd673f0e491aaa611eefb02e369a6419157
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
-
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import { fade } from '@material-ui/core/styles';
-
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import IconButton from '@material-ui/core/IconButton';
-
 import Avatar from '@material-ui/core/Avatar';
-
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-
-<<<<<<< HEAD
-import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-=======
 import Tooltip from '@material-ui/core/Tooltip';
 import Fab from '@material-ui/core/Fab';
->>>>>>> 45c35dd673f0e491aaa611eefb02e369a6419157
+
 
 const ITEM_HEIGHT = 48;
 const options = [
@@ -180,11 +166,7 @@ class Contacts extends Component {
                                             <MoreVertIcon />
                                         </IconButton>
                                     }
-<<<<<<< HEAD
                                     title={<Link className={classes.link} to={'personalcontact/'+contact.id}>{contact.first_name} {contact.last_name}`</Link>}
-=======
-                                    title={<Link className={classes.link} to={"/personalcontact/" + contact.id}>{`${contact.first_name} ${contact.last_name}`}</Link>}
->>>>>>> 45c35dd673f0e491aaa611eefb02e369a6419157
                                 />
                                 {/* </Link> */}
                             </Card>
@@ -217,7 +199,7 @@ class Contacts extends Component {
                 }
                 <Grid container justify="center" spacing={1}>
                     <Grid item sx={3}>
-<<<<<<< HEAD
+
 
                         <Link to='/create'>
                             <Fab color="primary" aria-label="add" className={classes.fab}>
@@ -225,7 +207,7 @@ class Contacts extends Component {
                             </Fab>
                         </Link>
 
-=======
+
                         <Card className={classes.card} >
                             <Link to='/create'>
                                 <Tooltip title="Add" aria-label="add">
@@ -235,7 +217,6 @@ class Contacts extends Component {
                                 </Tooltip>
                             </Link>
                         </Card>
->>>>>>> 45c35dd673f0e491aaa611eefb02e369a6419157
                     </Grid>
                 </Grid>
             </Grid >
