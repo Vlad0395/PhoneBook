@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
                 contacts: contacts
             }
         case constants.UPDATE_CONTACT_SUCCESS:
-            let editContact = state.contacts.map(cont => { cont.id === action.data.id ? action.data : cont })
+            let editContact = state.contacts.map(cont => cont.id === action.data.id ? action.data : cont)
             return {
                 ...state,
                 contacts: editContact

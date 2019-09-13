@@ -23,12 +23,13 @@ class ContactRequest extends FormRequest
      */
     public function rules()
     {
+    
         return [
             'first_name' => 'required|max:255',
             'last_name' => 'max:255',
             'photo_contact' => 'max:255',
             'birth_day' => 'required',
-            'email' => 'required|unique:phone_book_contact|max:255',
+            'email' => 'required|unique:phone_book_contact,id|max:255',
             'company' => 'max:255',
         ];
     }

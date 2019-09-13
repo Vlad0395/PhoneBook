@@ -11,6 +11,8 @@ import CardContent from '@material-ui/core/CardContent'
 import Fab from '@material-ui/core/Fab';
 import CardActions from '@material-ui/core/CardActions';
 import EditIcon from '@material-ui/icons/Edit';
+import IconButton from '@material-ui/core/IconButton';
+import BackCollIcon from '@material-ui/icons/ArrowBackIos';
 import { getContact } from '../actions/ContactActions';
 
 const Styles = (theme) => ({
@@ -54,6 +56,11 @@ class PersonalContact extends Component {
                 <Grid item xs={3}>
                     <Card className={classes.card}>
                         <CardActionArea>
+                            <Link to='/'>
+                                <IconButton className={classes.button} aria-label="delete" disabled color="primary">
+                                    <BackCollIcon />
+                                </IconButton>
+                            </Link>
                             <CardMedia
                                 component="img"
                                 alt="Contemplative Reptile"
@@ -81,6 +88,7 @@ class PersonalContact extends Component {
                             </Fab>
                         </CardActions>
                     </Card>
+
                 </Grid>
             </Grid>
         )

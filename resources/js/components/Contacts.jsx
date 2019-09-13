@@ -117,11 +117,12 @@ class Contacts extends Component {
     //     this.props.history.push(path)
     // }
     render() {
+
         const { contacts, classes } = this.props
         const { anchorEl, selectedId } = this.state;
 
         const open = Boolean(anchorEl);
-
+ 
         return (
             <Grid className={classes.root}>
                 <Grid container justify="center" spacing={1}>

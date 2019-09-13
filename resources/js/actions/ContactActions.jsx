@@ -36,7 +36,6 @@ export const getContact = (id) => {
     return dispatch => {
         axios.get('api/contacts/' + id)
             .then(response => {
-                console.log(response, 'check_getContact_success')
                 return dispatch({
                     type: constants.GET_CONTACT_SUCCESS,
                     data: response.data,
@@ -57,7 +56,7 @@ export const UpdateContact = (data, id) => {
                 })
             })
             .catch(error => {
-                console.log('update_error', error)
+                console.log('update_error', error.data)
             })
     }
 }
