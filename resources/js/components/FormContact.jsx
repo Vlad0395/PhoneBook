@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import CancelContact from '@material-ui/icons/Cancel';
 import SaveContact from '@material-ui/icons/CheckCircleOutline';
-
+import FileUploadComponent from './FileUploadComponent';
 
 const Styles = (theme) => ({
     root: {
@@ -67,6 +67,7 @@ class FormContact extends Component {
                     </Grid>
                 </Grid>
                 <Grid item xs={3}>
+                    <FileUploadComponent/>
                     <input className="form-control" type="text" name='photo_contact' placeholder="your photo" onChange={handleChange} value={photo_contact} />
                     <input className="form-control" type="text" name='first_name' placeholder="First name" onChange={handleChange} value={first_name} />
                     <input className="form-control" type="text" name='last_name' placeholder="Last name" onChange={handleChange} value={last_name} />
