@@ -7,6 +7,7 @@ use App\Http\Requests\ContactRequest;
 use DateTime;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class ContactsController extends Controller
 {
@@ -28,15 +29,21 @@ class ContactsController extends Controller
     public function create(ContactRequest $request)
     {
         $data = $request->validated();
-
+//        dd($request->all());
         $conv_day_birth = new DateTime($data['birth_day']);
+        if ($data['photo_contact']) {
+            $image = $data['photo_contact'];
+//            dd($image);
+            $name = time() . '.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
 
+            \Image::make($data['photo_contact'])->save(public_path('images/') . $name);
+        }
         if ($data) {
             $contact = Contact::create([
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
                 'company' => $data['company'],
-                'photo_contact' => $data['photo_contact'],
+                'photo_contact' => $name,
                 'email' => $data['email'],
                 'birth_day' => $conv_day_birth
             ]);
@@ -67,12 +74,20 @@ class ContactsController extends Controller
 
         $conv_day_birth = new DateTime($data['birth_day']);
 
+        if ($data['photo_contact']) {
+            $image = $data['photo_contact'];
+//            dd($image);
+            $name = time() . '.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+
+            \Image::make($data['photo_contact'])->save(public_path('images/') . $name);
+        }
+
         if ($data) {
             $contact->update([
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
                 'company' => $data['company'],
-                'photo_contact' => $data['photo_contact'],
+                'photo_contact' => $name,
                 'email' => $data['email'],
                 'birth_day' => $conv_day_birth
             ]);
@@ -90,22 +105,5 @@ class ContactsController extends Controller
         $contact = Contact::find($id);
         $contact->delete();
         return response()->json($id);
-    }
-    public function uploadImg(Request $request)
-    {
-        if($request->get('file'))
-       {
-          $image = $request->get('file');
-          $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
-          \Image::make($request->get('file'))->save(public_path('images/').$name);
-        }
-
-
-
-        $fileupload = new Fileupload();
-        $fileupload->photo_contact=$name;
-        $fileupload->save();
-        return response()->json('Successfully added');
-
     }
 }

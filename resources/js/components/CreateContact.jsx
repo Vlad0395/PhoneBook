@@ -16,9 +16,30 @@ class CreateContact extends Component {
     }
 
     handleChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value
-        })
+        console.log('event', event.target.name)
+
+        if (event.target.name === 'photo_contact') {
+            console.log('event_if', event.target.name)
+            let files = event.target.files || event.dataTransfer.files;
+            if (!files.length)
+                return;
+            this.createImage(files[0]);
+        }
+        else {
+            this.setState({
+                [event.target.name]: event.target.value
+            });
+        }
+    }
+
+    createImage = (file) => {
+        let reader = new FileReader();
+        reader.onload = (e) => {
+            this.setState({
+                photo_contact: e.target.result
+            })
+        };
+        reader.readAsDataURL(file);
     }
 
     render() {
@@ -56,7 +77,7 @@ class CreateContact extends Component {
                 mobile={this.state.mobile}
                 photo_contact={this.state.photo_contact}
                 email={this.state.email}
-                ActionWithData={() => { this.props.dispatch(AddContact(this.state)); this.props.history.push('/') }}
+                ActionWithData={() => { this.props.dispatch(AddContact(this.state));console.log('this.state', this.state); this.props.history.push('/') }}
             />
         );
     }
