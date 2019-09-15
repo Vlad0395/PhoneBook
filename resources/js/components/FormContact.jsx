@@ -11,33 +11,11 @@ import TextField from '@material-ui/core/TextField';
 import CancelContact from '@material-ui/icons/Cancel';
 import SaveContact from '@material-ui/icons/CheckCircleOutline';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import PhoneAndroid from '@material-ui/icons/PhoneAndroid'
-import Business from '@material-ui/icons/Business'
-import Email from '@material-ui/icons/Email'
+import PhoneAndroid from '@material-ui/icons/PhoneAndroid';
+import Business from '@material-ui/icons/Business';
+import Email from '@material-ui/icons/Email';
 import Cake from '@material-ui/icons/Cake'
-
-const Styles = (theme) => ({
-    root: {
-        flexGrow: 1,
-    },
-    menuButton: {
-        marginRight: theme.spacing(2),
-    },
-    title: {
-        flexGrow: 1,
-    },
-    header: {
-        justifyContent: 'space-beetwen',
-    },
-    link: {
-        color: '#ffffff',
-        textDecoration: 'none',
-    },
-    margin: {
-        margin: theme.spacing(1),
-    },
-
-});
+import '../styles/StyleFormContact';
 
 
 class FormContact extends Component {

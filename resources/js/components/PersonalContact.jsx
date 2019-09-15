@@ -14,25 +14,8 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import BackCollIcon from '@material-ui/icons/ArrowBackIos';
 import { getContact } from '../actions/ContactActions';
+import '../styles/StylePersonalContact';
 
-const Styles = (theme) => ({
-    card: {
-        maxWidth: 345,
-    },
-    fab: {
-        margin: theme.spacing(1),
-    },
-    extendedIcon: {
-        marginRight: theme.spacing(1),
-    },
-    link: {
-        color: '#ffffff',
-        '&:hover': {
-            color: '#ffffff',
-            textDecoration: 'none',
-        }
-    },
-})
 class PersonalContact extends Component {
 
     componentDidMount() {
