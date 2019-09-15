@@ -14,7 +14,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import BackCollIcon from '@material-ui/icons/ArrowBackIos';
 import { getContact } from '../actions/ContactActions';
-import '../styles/StylePersonalContact';
+import Styles from '../styles/StylePersonalContact';
 
 class PersonalContact extends Component {
 
@@ -40,12 +40,13 @@ class PersonalContact extends Component {
                     <Card className={classes.card}>
                         <CardActionArea>
                             <Link to='/'>
-                                <IconButton className={classes.button} aria-label="delete" disabled color="primary">
+                                <IconButton className={classes.button} aria-label="collBack" disabled color="primary">
                                     <BackCollIcon />
                                 </IconButton>
                             </Link>
                             <CardMedia
                                 component="img"
+                                height = '100px'
                                 alt="Contemplative Reptile"
                                 image="../images/myPhoto.jpg"
                                 title="Contemplative Reptile"

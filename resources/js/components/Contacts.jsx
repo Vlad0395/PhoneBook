@@ -18,7 +18,7 @@ import Fab from '@material-ui/core/Fab';
 import SearchIcon from '@material-ui/icons/Search';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import AddIcon from '@material-ui/icons/Add';
-import '../styles/StyleContact';
+import Styles from '../styles/StyleContact';
 
 const ITEM_HEIGHT = 48;
 const options = [
@@ -43,17 +43,14 @@ class Contacts extends Component {
     handleClose = () => {
         this.setState({ anchorEl: null });
     }
-    // routeChange = () => {
-    //     let path = '/create'
-    //     this.props.history.push(path)
-    // }
+
     render() {
 
         const { contacts, classes } = this.props
         const { anchorEl, selectedId } = this.state;
 
         const open = Boolean(anchorEl);
- 
+
         return (
             <Grid className={classes.root}>
                 <Grid container justify="center" spacing={1}>

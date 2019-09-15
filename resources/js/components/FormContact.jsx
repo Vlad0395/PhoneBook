@@ -15,8 +15,7 @@ import PhoneAndroid from '@material-ui/icons/PhoneAndroid';
 import Business from '@material-ui/icons/Business';
 import Email from '@material-ui/icons/Email';
 import Cake from '@material-ui/icons/Cake'
-import '../styles/StyleFormContact';
-
+import Styles from '../styles/StyleFormContact';
 
 class FormContact extends Component {
     state = {
