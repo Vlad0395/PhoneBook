@@ -28,7 +28,7 @@ class TextMaskCustom extends Component {
                 ref={ref => {
                     inputRef(ref ? ref.inputElement : null);
                 }}
-                mask={['(', /[0-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+                mask={[ /[0-9]/, /\d/, /\d/,/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]}
                 placeholderChar={'\u2000'}
                 showMask
             />
@@ -42,28 +42,19 @@ TextMaskCustom.propTypes = {
 
 
 class FormatInput extends Component {
-    state = {
-        // mobile: '(095)    -    '
-    }
-
-    // handleChange = (event) => {
-    //     this.setState({
-    //         [event.target.name]: event.target.value,
-    //     });
-    // };
 
     render() {
-        const { classes } = this.props
-        const { mobile } = this.state
+        const { classes, mobile, onChange} = this.props
+
         return (
             <div className={classes.container}>
                 <FormControl fullWidth className={classes.formControl}>
                     <InputLabel htmlFor="formatted-text-mask-input">Mobile</InputLabel>
                     <Input
                         value={mobile}
-                        // onChange={this.handleChange}
                         id="formatted-text-mask-input"
                         name='mobile'
+                        onChange = {onChange}
                         inputComponent={TextMaskCustom}
                     />
                 </FormControl>

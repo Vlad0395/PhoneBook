@@ -102,6 +102,7 @@ class FormContact extends Component {
                             <Grid item xs={10}>
                                 <FormatedInput
                                     name='mobile'
+                                    mobile = {mobile}
                                     onChange={handleChange}
                                 />
                             </Grid>

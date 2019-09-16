@@ -51,7 +51,7 @@ class EditContact extends Component {
                 last_name:contact.last_name,
                 company:contact.company,
                 birth_day:contact.birth_day,
-                // mobile:contact.mobile,
+                mobile:contact.mobile,
                 photo_contact:contact.photo_contact,
                 email:contact.email,
                 id:contact.id

@@ -26,8 +26,9 @@ class PhonesController extends Controller
     {
         $data = $request->validated();
         if ($data) {
+            // dd($data);
             $phone = Phone::create([
-                'number' => $data['number'],
+                'number' => $data['mobile'],
                 'contact_id' => $data['contact_id'],
             ]);
         }
@@ -46,7 +47,7 @@ class PhonesController extends Controller
         $data = $request->validated();
         if ($data) {
             $phone->update([
-                'number' => $data['number'],
+                'number' => $data['mobile'],
                 'contact_id' => $data['contact_id'],
             ]);
         }

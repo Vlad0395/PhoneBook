@@ -77,7 +77,6 @@ class Contacts extends Component {
                     <Grid item xs={3}>
                         {contacts && contacts.map(contact =>
                             <Card className={classes.card} key={contact.id}>
-                                {/* <Link className="link" to={/personalcontact/ + contact.id}> */}
                                 <CardHeader
                                     avatar={
                                         <Avatar alt="Remy Sharp" src="./images/Contacts-icon.png" className={classes.avatar} />
@@ -95,7 +94,6 @@ class Contacts extends Component {
                                     }
                                     title={<Link className={classes.link} to={'personalcontact/' + contact.id}>{contact.first_name} {contact.last_name}</Link>}
                                 />
-                                {/* </Link> */}
                             </Card>
                         )}
                     </Grid>

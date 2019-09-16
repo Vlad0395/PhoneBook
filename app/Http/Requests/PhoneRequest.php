@@ -23,9 +23,10 @@ class PhoneRequest extends FormRequest
      */
     public function rules()
     {
+        //  dd($this->request->all());
         return [
-            'number' => 'number|required',
-            'contact_id' => 'number|required',
+            'contact_id' => 'required',
+            'mobile' => 'required',
         ];
     }
 }

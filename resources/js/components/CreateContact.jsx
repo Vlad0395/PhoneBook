@@ -16,10 +16,7 @@ class CreateContact extends Component {
     }
 
     handleChange = (event) => {
-        console.log('event', event.target.name)
-
         if (event.target.name === 'photo_contact') {
-            console.log('event_if', event.target.name)
             let files = event.target.files || event.dataTransfer.files;
             if (!files.length)
                 return;
@@ -53,7 +50,9 @@ class CreateContact extends Component {
                 mobile={this.state.mobile}
                 photo_contact={this.state.photo_contact}
                 email={this.state.email}
-                ActionWithData={() => { this.props.dispatch(AddContact(this.state)); console.log('this.state', this.state); this.props.history.push('/') }}
+                ActionWithData={() => { 
+                    this.props.dispatch(AddContact(this.state)); 
+                    this.props.history.push('/') }}
             />
         );
     }

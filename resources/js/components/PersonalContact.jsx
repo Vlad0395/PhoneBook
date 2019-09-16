@@ -21,10 +21,8 @@ class PersonalContact extends Component {
     componentDidMount() {
         let url = window.location.href;
         let id = url.substring(url.lastIndexOf('/') + 1);
-        // debugger;
-        console.log(id, 'id')
-        if (!this.props.contacts) {
 
+        if (!this.props.contacts) {
             this.props.dispatch(getContact(id))
         }
     }

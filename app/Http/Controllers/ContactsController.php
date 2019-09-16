@@ -29,11 +29,9 @@ class ContactsController extends Controller
     public function create(ContactRequest $request)
     {
         $data = $request->validated();
-//        dd($request->all());
         $conv_day_birth = new DateTime($data['birth_day']);
         if ($data['photo_contact']) {
             $image = $data['photo_contact'];
-//            dd($image);
             $name = time() . '.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
 
             \Image::make($data['photo_contact'])->save(public_path('images/') . $name);
@@ -76,9 +74,7 @@ class ContactsController extends Controller
 
         if ($data['photo_contact']) {
             $image = $data['photo_contact'];
-//            dd($image);
             $name = time() . '.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
-
             \Image::make($data['photo_contact'])->save(public_path('images/') . $name);
         }
 
