@@ -1,3 +1,5 @@
+import { fade } from '@material-ui/core/styles';
+
 const Styles = (theme) => ({
     root: {
         flexGrow: 1,

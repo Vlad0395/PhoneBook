@@ -16,14 +16,18 @@ import Business from '@material-ui/icons/Business';
 import Email from '@material-ui/icons/Email';
 import Cake from '@material-ui/icons/Cake'
 import Styles from '../styles/StyleFormContact';
+import FormatedInput from './FormatedInput'
 
 class FormContact extends Component {
     state = {
         expanded: false
     }
+
     render() {
         const { classes, first_name, last_name, company, birth_day, mobile, photo_contact, email, handleChange, ActionWithData } = this.props;
         const { expanded } = this.state;
+        let url = window.location.href;
+        let id = url.substring(url.lastIndexOf('/') + 1);
         return (
             <Grid container justify="center" spacing={1}>
                 <Grid container justify="center" spacing={1}>
@@ -36,8 +40,8 @@ class FormContact extends Component {
                                             <CancelContact className={classes.link} />
                                         </IconButton>
                                     </Link>
-                                    <Typography variant="h4" className={classes.title}>
-                                        Save Contact
+                                    <Typography variant="h6" className={classes.title}>
+                                        {id >= 0 ? ' Edit Contact' : 'Create Contact'}
                                     </Typography>
                                     <IconButton className={classes.menuButton} color="inherit"
                                         onClick={() => ActionWithData()}
@@ -51,73 +55,64 @@ class FormContact extends Component {
                 </Grid>
                 <Grid item xs={3}>
 
-                    {/* <input className="form-control" type="file" name='photo_contact' placeholder="your photo" onChange={handleChange} />
-                    <input className="form-control" type="text" name='first_name' placeholder="First name" onChange={handleChange} value={first_name} />
-                    <input className="form-control" type="text" name='last_name' placeholder="Last name" onChange={handleChange} value={last_name} />
-                    <input className="form-control" type="tel" name='mobile' placeholder="Phone" onChange={handleChange} maxLength='12' value={mobile} />
-                    <input className="form-control" type="text" name='company' placeholder="Company" onChange={handleChange} value={company} />
-                    <input className="form-control" type="email" name='email' placeholder="e-mail" onChange={handleChange} value={email} />
-                    <input className="form-control" type="date" name='birth_day' onChange={handleChange} value={birth_day} /> */}
-
-
-                    <div className={classes.margin}>
+                    <Grid className={classes.margin}>
                         <Grid container spacing={1} >
                             <Grid item>
                                 <TextField
                                     type="file"
                                     name='photo_contact'
-                                    onChange={handleChange} 
+                                    onChange={handleChange}
                                 />
                             </Grid>
                         </Grid>
                         <Grid container spacing={1} alignItems="flex-end" >
-                            <Grid item>
+                            <Grid item xs={2} align="center">
                                 <AccountCircle />
                             </Grid>
-                            <Grid item>
+                            <Grid item xs={10}>
                                 <TextField
+                                    fullWidth
                                     id="input-with-icon-grid"
                                     name='first_name'
                                     label="First Name"
                                     onChange={handleChange}
-                                    value={first_name} 
+                                    value={first_name}
                                 />
                             </Grid>
                         </Grid>
                         <Grid container spacing={1} alignItems="flex-end">
-                            <Grid item>
+                            <Grid item xs={2} align="center">
                                 <AccountCircle />
                             </Grid>
-                            <Grid item>
+                            <Grid item xs={10}>
                                 <TextField
+                                    fullWidth
                                     id="input-with-icon-grid"
                                     name='last_name'
                                     label="Last Name"
                                     onChange={handleChange}
-                                    value={last_name} 
+                                    value={last_name}
                                 />
                             </Grid>
                         </Grid>
                         <Grid container spacing={1} alignItems="flex-end">
-                            <Grid item>
+                            <Grid item xs={2} align="center">
                                 <PhoneAndroid />
                             </Grid>
-                            <Grid item>
-                                <TextField
-                                    id="input-with-icon-grid"
+                            <Grid item xs={10}>
+                                <FormatedInput
                                     name='mobile'
-                                    label="Phone"
                                     onChange={handleChange}
-                                    value={mobile}
                                 />
                             </Grid>
                         </Grid>
                         <Grid container spacing={1} alignItems="flex-end">
-                            <Grid item>
+                            <Grid item xs={2} align="center">
                                 <Business />
                             </Grid>
-                            <Grid item>
+                            <Grid item xs={10}>
                                 <TextField
+                                    fullWidth
                                     id="input-with-icon-grid"
                                     name='company'
                                     label="Company"
@@ -126,11 +121,12 @@ class FormContact extends Component {
                             </Grid>
                         </Grid>
                         <Grid container spacing={1} alignItems="flex-end">
-                            <Grid item>
+                            <Grid item xs={2} align="center">
                                 <Email />
                             </Grid>
-                            <Grid item>
+                            <Grid item xs={10}>
                                 <TextField
+                                    fullWidth
                                     id="input-with-icon-grid"
                                     name='email'
                                     label="email"
@@ -139,11 +135,12 @@ class FormContact extends Component {
                             </Grid>
                         </Grid>
                         <Grid container spacing={1} alignItems="flex-end">
-                            <Grid item>
+                            <Grid item xs={2} align="center">
                                 <Cake />
                             </Grid>
-                            <Grid item>
+                            <Grid item xs={10}>
                                 <TextField
+                                    fullWidth
                                     type='date'
                                     id="input-with-icon-grid"
                                     name='birth_day'
@@ -151,7 +148,7 @@ class FormContact extends Component {
                                     value={birth_day} />
                             </Grid>
                         </Grid>
-                    </div>
+                    </Grid>
 
                 </Grid >
             </Grid >
