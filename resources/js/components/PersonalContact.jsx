@@ -37,14 +37,21 @@ class PersonalContact extends Component {
                 <Grid item xs={3}>
                     <Card className={classes.card}>
                         <CardActionArea>
-                            <Link to='/'>
-                                <IconButton className={classes.button} aria-label="collBack" disabled color="primary">
-                                    <BackCollIcon />
-                                </IconButton>
-                            </Link>
+                            <Grid container justify='space-between' spacing={1}>
+                                <Link to='/'>
+                                    <IconButton className={classes.button} aria-label="collBack" disabled color="primary">
+                                        <BackCollIcon />
+                                    </IconButton>
+                                </Link>
+                                <Link to={'/edit/' + a.id}>
+                                    <IconButton color="secondary" className={classes.button} aria-label="add an alarm">
+                                        <EditIcon />
+                                    </IconButton>
+                                </Link>
+                            </Grid>
                             <CardMedia
                                 component="img"
-                                height = '100px'
+                                height='100px'
                                 alt="Contemplative Reptile"
                                 image="../images/myPhoto.jpg"
                                 title="Contemplative Reptile"
@@ -64,11 +71,6 @@ class PersonalContact extends Component {
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
-                        <CardActions>
-                            <Fab color="secondary" aria-label="edit" className={classes.fab}>
-                                <Link className={classes.link} to={'/edit/' + a.id}> <EditIcon /></Link>
-                            </Fab>
-                        </CardActions>
                     </Card>
 
                 </Grid>
