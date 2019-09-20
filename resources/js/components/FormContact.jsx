@@ -17,7 +17,7 @@ import Email from '@material-ui/icons/Email';
 import Cake from '@material-ui/icons/Cake'
 import Styles from '../styles/StyleFormContact';
 import FormatedInput from './FormatedInput'
-
+import ReactCrop from 'react-image-crop'
 class FormContact extends Component {
     state = {
         expanded: false,
