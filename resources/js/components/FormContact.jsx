@@ -20,12 +20,88 @@ import FormatedInput from './FormatedInput'
 
 class FormContact extends Component {
     state = {
-        expanded: false
+        expanded: false,
+        src: null,
+        crop: {
+            unit: "%",
+            width: 30,
+            aspect: 16 / 9
+        }
+    }
+    onSelectFile = e => {
+        if (e.target.files && e.target.files.length > 0) {
+            const reader = new FileReader();
+            reader.addEventListener("load", () =>
+                this.setState({ src: reader.result })
+            );
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    };
+
+    onImageLoaded = image => {
+        this.imageRef = image;
+    };
+
+    onCropComplete = crop => {
+        this.makeClientCrop(crop);
+    };
+
+    onCropChange = (crop, percentCrop) => {
+        // You could also use percentCrop:
+        // this.setState({ crop: percentCrop });
+        this.setState({ crop });
+    };
+
+    async makeClientCrop(crop) {
+        if (this.imageRef && crop.width && crop.height) {
+            const croppedImageUrl = await this.getCroppedImg(
+                this.imageRef,
+                crop,
+                "newFile.jpeg"
+            );
+            this.setState({ croppedImageUrl });
+        }
+    }
+
+    getCroppedImg(image, crop, fileName) {
+        const canvas = document.createElement("canvas");
+        const scaleX = image.naturalWidth / image.width;
+        const scaleY = image.naturalHeight / image.height;
+        canvas.width = crop.width;
+        canvas.height = crop.height;
+        const ctx = canvas.getContext("2d");
+
+        ctx.drawImage(
+            image,
+            crop.x * scaleX,
+            crop.y * scaleY,
+            crop.width * scaleX,
+            crop.height * scaleY,
+            0,
+            0,
+            crop.width,
+            crop.height
+        );
+
+        return new Promise((resolve, reject) => {
+            canvas.toBlob(blob => {
+                if (!blob) {
+                    //reject(new Error('Canvas is empty'));
+                    console.error("Canvas is empty");
+                    return;
+                }
+                blob.name = fileName;
+                console.log(blob.name, 'blob');
+                window.URL.revokeObjectURL(this.fileUrl);
+                this.fileUrl = window.URL.createObjectURL(blob);
+                resolve(this.fileUrl);
+            }, "image/jpeg");
+        });
     }
 
     render() {
         const { classes, first_name, last_name, company, birth_day, mobile, photo_contact, email, handleChange, ActionWithData } = this.props;
-        const { expanded } = this.state;
+        const { crop, croppedImageUrl, src } = this.state;
         let url = window.location.href;
         let id = url.substring(url.lastIndexOf('/') + 1);
         return (
@@ -58,11 +134,26 @@ class FormContact extends Component {
                     <Grid className={classes.margin}>
                         <Grid container spacing={1} >
                             <Grid item>
-                                <TextField
+                                {/* <TextField
                                     type="file"
                                     name='photo_contact'
                                     onChange={handleChange}
-                                />
+                                /> */}
+                                <input type='file' name='photo_contact' onChange={this.onSelectFile} />
+                                <Grid>
+                                    {src && (
+                                        <ReactCrop
+                                            src={src}
+                                            crop={crop}
+                                            onImageLoaded={this.onImageLoaded}
+                                            onComplete={this.onCropComplete}
+                                            onChange={this.onCropChange}
+                                        />
+                                    )}
+                                    {croppedImageUrl && (
+                                        <img alt="Crop" style={{ maxWidth: "100%" }} src={croppedImageUrl} />
+                                    )}
+                                </Grid>
                             </Grid>
                         </Grid>
                         <Grid container spacing={1} alignItems="flex-end" >
@@ -102,7 +193,7 @@ class FormContact extends Component {
                             <Grid item xs={10}>
                                 <FormatedInput
                                     name='mobile'
-                                    mobile = {mobile}
+                                    mobile={mobile}
                                     onChange={handleChange}
                                 />
                             </Grid>
