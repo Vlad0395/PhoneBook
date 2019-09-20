@@ -17,7 +17,9 @@ import Email from '@material-ui/icons/Email';
 import Cake from '@material-ui/icons/Cake'
 import Styles from '../styles/StyleFormContact';
 import FormatedInput from './FormatedInput'
-import ReactCrop from 'react-image-crop'
+import ReactCrop from 'react-image-crop';
+import "react-image-crop/dist/ReactCrop.css";
+
 class FormContact extends Component {
     state = {
         expanded: false,
@@ -25,7 +27,7 @@ class FormContact extends Component {
         crop: {
             unit: "%",
             width: 30,
-            aspect: 16 / 9
+            aspect: 16 / 9,
         }
     }
     onSelectFile = e => {
@@ -64,9 +66,17 @@ class FormContact extends Component {
     }
 
     getCroppedImg(image, crop, fileName) {
+        console.log('image', image)
+        console.log('crop', crop)
+        console.log('image.naturalWidth', image.naturalWidth);
+        console.log('image.naturalHeight', image.naturalHeight);
+        console.log('image.width', image.width);
+        console.log('image.height', image.height);
         const canvas = document.createElement("canvas");
         const scaleX = image.naturalWidth / image.width;
         const scaleY = image.naturalHeight / image.height;
+        console.log('scaleX', scaleX);
+        console.log('scaleY', scaleY)
         canvas.width = crop.width;
         canvas.height = crop.height;
         const ctx = canvas.getContext("2d");
@@ -143,6 +153,10 @@ class FormContact extends Component {
                                 <Grid>
                                     {src && (
                                         <ReactCrop
+                                            style={{
+                                                width: this.imageRef && this.imageRef.naturalWidth || 100,
+                                                height: this.imageRef && this.imageRef.naturalHeight || 100,
+                                            }}
                                             src={src}
                                             crop={crop}
                                             onImageLoaded={this.onImageLoaded}
