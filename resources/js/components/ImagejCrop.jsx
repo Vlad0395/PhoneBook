@@ -7,8 +7,8 @@ class ImagejCrop extends Component {
   state = {
     src: null,
     crop: {
-      unit: "px",
-      width: 300,
+      unit: "%",
+      width: 30,
       aspect: 16 / 9
     }
   };
@@ -56,7 +56,7 @@ class ImagejCrop extends Component {
     canvas.width = crop.width;
     canvas.height = crop.height;
     const ctx = canvas.getContext("2d");
-    console.log("lalala", scaleX,scaleY, crop)
+
     ctx.drawImage(
       image,
       crop.x * scaleX,
@@ -88,7 +88,7 @@ class ImagejCrop extends Component {
     const { crop, croppedImageUrl, src } = this.state;
 
     return (
-      <div>
+      <div className="App">
         <div>
           <input type="file" onChange={this.onSelectFile} />
         </div>
@@ -108,5 +108,4 @@ class ImagejCrop extends Component {
     );
   }
 }
-
 export default ImagejCrop
