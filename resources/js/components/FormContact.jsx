@@ -17,6 +17,7 @@ import Email from '@material-ui/icons/Email';
 import Cake from '@material-ui/icons/Cake'
 import Styles from '../styles/StyleFormContact';
 import FormatedInput from './FormatedInput'
+import DialogWindow from './DialogWindow'
 
 class FormContact extends Component {
 
@@ -54,6 +55,7 @@ class FormContact extends Component {
                     <Grid className={classes.margin}>
                         <Grid container spacing={1} >
                             <Grid item>
+                                <DialogWindow/>
                                 <TextField
                                     type="file"
                                     name='photo_contact'

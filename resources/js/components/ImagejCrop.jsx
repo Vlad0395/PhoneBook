@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactCrop from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
-
+// import Dialog from "./DialogWindow"
 
 class ImagejCrop extends Component {
   state = {
@@ -100,7 +100,7 @@ class ImagejCrop extends Component {
           />
         )}
         {croppedImageUrl && (
-          <img alt="Crop" style={{ maxWidth: "100%" }} src={croppedImageUrl} />
+          <img alt="Crop" style={{ maxWidth: "50%" }} src={croppedImageUrl} />
         )}
       </div>
     );
