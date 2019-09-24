@@ -32,9 +32,7 @@ class ImagejCrop extends Component {
     this.makeClientCrop(crop);
   };
 
-  onCropChange = (crop, percentCrop) => {
-    // You could also use percentCrop:
-    // this.setState({ crop: percentCrop });
+  onCropChange = (crop) => {
     this.setState({ crop });
   };
 
@@ -72,7 +70,7 @@ class ImagejCrop extends Component {
     return new Promise((resolve, reject) => {
       canvas.toBlob(blob => {
         if (!blob) {
-          //reject(new Error('Canvas is empty'));
+          reject(new Error('Canvas is empty'));
           console.error("Canvas is empty");
           return;
         }

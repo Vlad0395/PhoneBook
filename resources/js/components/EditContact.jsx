@@ -14,10 +14,7 @@ class EditContact extends Component {
         birth_day: ''
     }
     handleChange = (event) => {
-        console.log('event', event.target.name)
-
         if (event.target.name === 'photo_contact') {
-            console.log('event_if', event.target.name)
             let files = event.target.files || event.dataTransfer.files;
             if (!files.length)
                 return;
