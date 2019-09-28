@@ -24,6 +24,10 @@ const Styles = theme => ({
 	formControlLabel: {
 		marginTop: theme.spacing(1),
 	},
+	btn: {
+		margin: 0,
+		padding: 0,
+	},
 });
 
 class MaxWidthDialog extends Component {
@@ -70,8 +74,8 @@ class MaxWidthDialog extends Component {
 		const { fullWidth, maxWidth, open } = this.state;
 		return (
 			<Grid>
-				<Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
-					Open max-width dialog
+				<Button className={classes.btn} onClick={this.handleClickOpen}>
+					Open window for donwload photo
 				</Button>
 				<Dialog
 					fullWidth={fullWidth}
@@ -101,7 +105,7 @@ class MaxWidthDialog extends Component {
 					</DialogContent>
 					<DialogActions>
 						<Button onClick={this.handleClose} color="primary">
-							Close
+							Ok
 						</Button>
 					</DialogActions>
 				</Dialog>

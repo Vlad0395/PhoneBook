@@ -15,6 +15,7 @@ import PhoneAndroid from '@material-ui/icons/PhoneAndroid';
 import Business from '@material-ui/icons/Business';
 import Email from '@material-ui/icons/Email';
 import Cake from '@material-ui/icons/Cake';
+import AddAPhoto from '@material-ui/icons/AddAPhoto';
 import Styles from '../styles/StyleFormContact';
 import FormatedInput from './FormatedInput';
 import DialogWindow from './DialogWindow';
@@ -139,7 +140,15 @@ class FormContact extends Component {
 				<Grid item xs={3}>
 					<Grid className={classes.margin}>
 						<Grid container spacing={1}>
-							<Grid item>
+							<img
+								src={croppedImageUrl}
+								alt=""
+								style={croppedImageUrl ? { display: 'block' } : { display: 'none' }}
+							/>
+							<Grid item xs={2} align="center">
+								<AddAPhoto />
+							</Grid>
+							<Grid item xs={10}>
 								<DialogWindow
 									src={src}
 									crop={crop}
@@ -151,8 +160,14 @@ class FormContact extends Component {
 									getCroppedImg={this.getCroppedImg}
 									makeClientCrop={this.makeClientCrop}
 								/>
-								<TextField type="file" name="photo_contact" onChange={handleChange} />
-								<img src={croppedImageUrl} alt="" />
+								{/* <input type="text" value={croppedImageUrl?croppedImageUrl:''}/> */}
+								<TextField
+									hidden
+									type="file"
+									name="photo_contact"
+									onChange={handleChange}
+									value={croppedImageUrl ? croppedImageUrl : ''}
+								/>
 							</Grid>
 						</Grid>
 						<Grid container spacing={1} alignItems="flex-end">
