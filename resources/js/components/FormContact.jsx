@@ -26,7 +26,7 @@ class FormContact extends Component {
 		crop: {
 			unit: '%',
 			width: 30,
-			aspect: 16 / 9,
+			// aspect: 16 / 9,
 		},
 		croppedImageUrl: null,
 	};
@@ -139,12 +139,17 @@ class FormContact extends Component {
 				</Grid>
 				<Grid item xs={3}>
 					<Grid className={classes.margin}>
+						<Grid container spacing={1} alignItems="flex-end">
+							<Grid item xs={12}>
+								<img
+									className={classes.img}
+									src={croppedImageUrl}
+									alt=""
+									style={croppedImageUrl ? { display: 'block' } : { display: 'none' }}
+								/>
+							</Grid>
+						</Grid>
 						<Grid container spacing={1}>
-							<img
-								src={croppedImageUrl}
-								alt=""
-								style={croppedImageUrl ? { display: 'block' } : { display: 'none' }}
-							/>
 							<Grid item xs={2} align="center">
 								<AddAPhoto />
 							</Grid>
@@ -160,14 +165,18 @@ class FormContact extends Component {
 									getCroppedImg={this.getCroppedImg}
 									makeClientCrop={this.makeClientCrop}
 								/>
-								{/* <input type="text" value={croppedImageUrl?croppedImageUrl:''}/> */}
-								<TextField
+								<input
+									type="text"
+									name="photo_contact"
+									value={croppedImageUrl ? croppedImageUrl : ''}
+								/>
+								{/* <TextField
 									hidden
 									type="file"
 									name="photo_contact"
 									onChange={handleChange}
-									value={croppedImageUrl ? croppedImageUrl : ''}
-								/>
+									value={croppedImageUrl?croppedImageUrl:''}
+								/> */}
 							</Grid>
 						</Grid>
 						<Grid container spacing={1} alignItems="flex-end">

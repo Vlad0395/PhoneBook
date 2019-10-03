@@ -18,7 +18,9 @@ const Styles = theme => ({
 	margin: {
 		margin: theme.spacing(1),
 	},
-	img: {},
+	img: {
+		margin: '0 auto',
+	},
 });
 
 export default Styles;

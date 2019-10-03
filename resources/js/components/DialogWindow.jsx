@@ -9,26 +9,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import FormControl from '@material-ui/core/FormControl';
 import ImagejCrop from './ImagejCrop';
 import Grid from '@material-ui/core/Grid';
-
-const Styles = theme => ({
-	form: {
-		display: 'flex',
-		flexDirection: 'column',
-		margin: 'auto',
-		width: 'fit-content',
-	},
-	formControl: {
-		marginTop: theme.spacing(2),
-		minWidth: 120,
-	},
-	formControlLabel: {
-		marginTop: theme.spacing(1),
-	},
-	btn: {
-		margin: 0,
-		padding: 0,
-	},
-});
+import Styles from '../styles/StyleDialog';
 
 class MaxWidthDialog extends Component {
 	state = {
@@ -97,8 +78,6 @@ class MaxWidthDialog extends Component {
 									onImageLoaded={onImageLoaded}
 									onCropComplete={onCropComplete}
 									onCropChange={onCropChange}
-									// getCroppedImg={getCroppedImg}
-									// makeClientCrop={makeClientCrop}
 								/>
 							</FormControl>
 						</form>
