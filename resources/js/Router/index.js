@@ -4,7 +4,7 @@ import Contacts from "../components/Contacts";
 import PersonalContact from "../components/PersonalContact";
 import CreateContact from "../components/CreateContact";
 import EditContact from "../components/EditContact";
-
+import ImagejCrop from "../components/ImagejCrop"
 
 class Router extends Component {
     render() {
@@ -22,6 +22,9 @@ class Router extends Component {
                     />
                     <Route path='/edit/:id'
                            component={EditContact}
+                    />
+                     <Route path='/jCrop'
+                           component={ImagejCrop}
                     />
                 </Switch>
             </BrowserRouter>

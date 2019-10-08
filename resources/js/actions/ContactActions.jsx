@@ -26,13 +26,10 @@ export const AddContact = (data) => {
     return dispatch => {
         axios.post('api/contacts', data)
             .then(response => {
-                // console.log('response',response)
                 dispatch(AddNumber({
                     contact_id: response.data.id,
                     mobile: data.mobile,
                 }));
-                console.log('response', response)
-                // console.log('check')
             })
             .catch(error => {
                 console.log('create_error')
