@@ -55,7 +55,8 @@ class FormContact extends Component {
 	async makeClientCrop(crop) {
 		if (this.imageRef && crop.width && crop.height) {
 			const croppedImageUrl = await this.getCroppedImg(this.imageRef, crop, 'newFile.jpeg');
-			this.setState({ croppedImageUrl });
+			this.props.handleChange({ target: { value: croppedImageUrl.blob, name: 'photo_contact' } });
+			this.setState({ croppedImageUrl: croppedImageUrl.url });
 		}
 	}
 
@@ -83,13 +84,15 @@ class FormContact extends Component {
 			canvas.toBlob(blob => {
 				if (!blob) {
 					reject(new Error('Canvas is empty'));
-					console.error('Canvas is empty');
 					return;
 				}
 				blob.name = fileName;
 				window.URL.revokeObjectURL(this.fileUrl);
 				this.fileUrl = window.URL.createObjectURL(blob);
-				resolve(this.fileUrl);
+				resolve({
+					url: this.fileUrl,
+					blob,
+				});
 			}, 'image/jpeg');
 		});
 	}
@@ -165,17 +168,17 @@ class FormContact extends Component {
 									getCroppedImg={this.getCroppedImg}
 									makeClientCrop={this.makeClientCrop}
 								/>
-								<input
+								{/* <input
 									type="text"
 									name="photo_contact"
-									value={croppedImageUrl ? croppedImageUrl : ''}
-								/>
+									value={croppedImageUrl}
+								/> */}
 								{/* <TextField
-									hidden
+									// hidden
 									type="file"
 									name="photo_contact"
 									onChange={handleChange}
-									value={croppedImageUrl?croppedImageUrl:''}
+								// value={croppedImageUrl?croppedImageUrl:''}
 								/> */}
 							</Grid>
 						</Grid>

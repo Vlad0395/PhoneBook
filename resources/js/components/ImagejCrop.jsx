@@ -20,6 +20,7 @@ class ImagejCrop extends Component {
 								{src && (
 									<ReactCrop
 										src={src}
+										name="photo_contact"
 										crop={crop}
 										onImageLoaded={onImageLoaded}
 										onComplete={onCropComplete}
