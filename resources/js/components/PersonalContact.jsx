@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardMedia from '@material-ui/core/CardMedia';
+// import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 // import CardContent from '@material-ui/core/CardContent'
 // import Fab from '@material-ui/core/Fab';
 // import CardActions from '@material-ui/core/CardActions';
@@ -18,8 +18,8 @@ import Styles from '../styles/StylePersonalContact';
 import { getPhone } from '../actions/PhoneActions';
 // import Avatar from '@material-ui/core/Avatar';
 // import MoreVertIcon from '@material-ui/icons/MoreVert';
-import CardHeader from '@material-ui/core/CardHeader';
-
+// import CardHeader from '@material-ui/core/CardHeader';
+// import TextField from '@material-ui/core/TextField';
 class PersonalContact extends Component {
 	componentDidMount() {
 		let url = window.location.href;
@@ -34,7 +34,7 @@ class PersonalContact extends Component {
 		const { contacts, classes, contact, phone } = this.props;
 		let url = window.location.href;
 		let id = url.substring(url.lastIndexOf('/') + 1);
-		let a = contacts ? contacts.find(it => it.id === id) : contact ? contact : {};
+		let a = contacts ? contacts.find(it => it.id === Number(id)) : contact ? contact : {};
 		console.log('mobile', phone);
 		return (
 			<Grid container justify="center" spacing={1}>
@@ -58,35 +58,12 @@ class PersonalContact extends Component {
 									</IconButton>
 								</Link>
 							</Grid>
-							{/* <CardMedia
-                                component="img"
-                                height='100px'
-                                alt="Contemplative Reptile"
-                                image="../images/myPhoto.jpg"
-                                title="Contemplative Reptile"
-                            /> */}
-							{/* <CardContent>
-                                <Typography component="p">
-                                    Name: {a.first_name} {a.last_name}
-                                </Typography>
-                                <Typography component="p">
-                                    Number
-                                </Typography>
-                                <Typography component="p">
-                                    Company: {a.company}
-                                </Typography>
-                                <Typography component="p">
-                                    E-mail: {a.email}
-                                </Typography>
-                            </CardContent>*/}
 						</CardActionArea>
-						{/* </Card>
-                    <Card className={classes.card}> */}
-						<CardMedia className={classes.media} image={'/images/' + a.photo_contact} title="Paella dish" />
+						{/* <CardMedia className={classes.media} image={'/images/' + a.photo_contact} title="Paella dish" />
 						<CardHeader title={a.first_name + ' ' + a.last_name} />
-						<Typography component="p">Number: {phone && phone.number}</Typography>
+						<Typography className={classes.typography} component="div">Number:<br/> {phone && phone.number}</Typography>
 						<Typography component="p">Company: {a.company}</Typography>
-						<Typography component="p">E-mail: {a.email}</Typography>
+						<Typography component="p">E-mail: {a.email}</Typography> */}
 					</Card>
 				</Grid>
 			</Grid>
