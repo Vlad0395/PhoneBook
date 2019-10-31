@@ -28,12 +28,20 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import AddIcon from '@material-ui/icons/Add';
 
+import { getContacts } from '../actions/ContactActions';
+import Avatar from '@material-ui/core/Avatar';
+import { getPhones } from '../actions/PhoneActions';
+
 class PrimarySearchAppBar extends Component {
 	state = {
 		anchorEl: null,
 		mobileMoreAnchorEl: null,
 		open: true,
 	};
+	componentDidMount() {
+		this.props.dispatch(getContacts());
+		this.props.dispatch(getPhones());
+	}
 	handleProfileMenuOpen = event => {
 		this.setState({ anchorEl: event.currentTarget });
 		console.log('MenuOpen', event);
@@ -57,8 +65,8 @@ class PrimarySearchAppBar extends Component {
 	};
 
 	render() {
-		const { classes } = this.props;
-
+		const { classes, contacts, phones } = this.props;
+		console.log('phone', phones);
 		const { anchorEl, mobileMoreAnchorEl, open } = this.state;
 		const isMenuOpen = Boolean(anchorEl);
 		const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -205,6 +213,64 @@ class PrimarySearchAppBar extends Component {
 					})}
 				>
 					<Grid className={classes.drawerHeader} />
+					<Grid container className={classes.headerTable} spacing={2}>
+						<Grid item xs={3}>
+							<Typography>Name</Typography>
+						</Grid>
+						<Grid item xs={3}>
+							<Typography>E-mail</Typography>
+						</Grid>
+						<Grid item xs={2}>
+							<Typography>Number phone</Typography>
+						</Grid>
+						<Grid item xs={2}>
+							<Typography>Company</Typography>
+						</Grid>
+						<Grid item xs={1}>
+							<Typography>Other</Typography>
+						</Grid>
+					</Grid>
+					<Grid container spacing={2}>
+						<Grid item xs={12}>
+							Contacts
+						</Grid>
+						{contacts &&
+							contacts.map(contact => (
+								<>
+									<Grid item xs={3}>
+										<Grid container alignItems="center" spacing={1}>
+											<Grid item xs={2}>
+												<Avatar
+													alt="Remy Sharp"
+													src={'./images/' + (contact.photo_contact || 'Contacts-icon.png')}
+													className={classes.avatar}
+												/>
+											</Grid>
+											<Grid item xs={10}>
+												<Link className={classes.link} to={'personalcontact/' + contact.id}>
+													{contact.first_name} {contact.last_name}
+												</Link>
+											</Grid>
+										</Grid>
+									</Grid>
+									<Grid item xs={3}>
+										<Typography>{contact.email}</Typography>
+									</Grid>
+									<Grid item xs={2}>
+										{phones &&
+											phones
+												.filter(phone => phone.contact_id === contact.id)
+												.map(item => <Typography>{item.number}</Typography>)}
+									</Grid>
+									<Grid item xs={2}>
+										<Typography>{contact.company}</Typography>
+									</Grid>
+									<Grid item xs={1}>
+										<Typography>1</Typography>
+									</Grid>
+								</>
+							))}
+					</Grid>
 				</main>
 				{renderMobileMenu}
 				{renderMenu}
@@ -213,10 +279,11 @@ class PrimarySearchAppBar extends Component {
 	}
 }
 const mapStateToProps = state => {
-	const { contacts, error } = state.ContactsReducer;
+	const { contacts, error, phones } = state.ContactsReducer;
 	return {
 		contacts,
 		error,
+		phones,
 	};
 };
 

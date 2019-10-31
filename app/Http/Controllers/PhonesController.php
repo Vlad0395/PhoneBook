@@ -8,11 +8,21 @@ use Illuminate\Http\JsonResponse;
 
 class PhonesController extends Controller
 {
+
+    /**
+     * @return JsonResponse
+     */
+    public function index()
+    {
+        $phones = Phone::all();
+        return response()->json($phones);
+    }
+
     /**
      * @param $id
      * @return JsonResponse
      */
-    public function index($id)
+    public function show($id)
     {
         $phones = Phone::where('contact_id', $id)->first();
         return response()->json($phones);

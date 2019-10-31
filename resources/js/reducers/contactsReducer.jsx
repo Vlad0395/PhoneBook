@@ -5,6 +5,7 @@ const initialState = {
 	contacts: null,
 	error: false,
 	phone: null,
+	phones: null,
 };
 
 export default (state = initialState, action) => {
@@ -35,6 +36,11 @@ export default (state = initialState, action) => {
 			return {
 				...state,
 				phone: action.data,
+			};
+		case constants.GET_PHONES_SUCCESS:
+			return {
+				...state,
+				phones: action.data,
 			};
 		default:
 			return state;

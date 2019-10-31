@@ -35,7 +35,7 @@ class PersonalContact extends Component {
 		let url = window.location.href;
 		let id = url.substring(url.lastIndexOf('/') + 1);
 		let a = contacts ? contacts.find(it => it.id === Number(id)) : contact ? contact : {};
-		console.log('mobile', phone);
+		console.log('mobile', phone.contact_id);
 		return (
 			<Grid container justify="center" spacing={1}>
 				<Grid item xs={3}>

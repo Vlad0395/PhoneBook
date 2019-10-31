@@ -114,5 +114,8 @@ const Styles = theme => ({
 		}),
 		marginLeft: 0,
 	},
+	headerTable: {
+		borderBottom: '1px solid grey',
+	},
 });
 export default Styles;
