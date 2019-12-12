@@ -36,7 +36,6 @@ class PhonesController extends Controller
     {
         $data = $request->validated();
         if ($data) {
-            // dd($data);
             $phone = Phone::create([
                 'number' => $data['mobile'],
                 'contact_id' => $data['contact_id'],
@@ -66,12 +65,12 @@ class PhonesController extends Controller
 
     /**
      * @param $id
-     * @return int
+     * @return JsonResponse
      */
     public function destroy($id)
     {
         $phone = Phone::find($id);
         $phone->delete();
-        return response()->status(200);
+        return response()->json($id);
     }
 }

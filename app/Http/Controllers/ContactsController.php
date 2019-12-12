@@ -7,7 +7,6 @@ use App\Http\Requests\ContactRequest;
 use DateTime;
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class ContactsController extends Controller
 {
@@ -91,10 +90,9 @@ class ContactsController extends Controller
         return response()->json($contact);
     }
 
-
     /**
      * @param $id
-     * @return int
+     * @return JsonResponse
      */
     public function destroy($id)
     {

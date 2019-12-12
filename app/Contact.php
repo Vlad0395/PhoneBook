@@ -3,10 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Phone;
+
 class Contact extends Model
 {
-//    protected $dateFormat = 'd-m-Y';
     protected $fillable = [
         "first_name",
         "last_name",
