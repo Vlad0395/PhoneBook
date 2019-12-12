@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import clsx from 'clsx';
 import { Link } from 'react-router-dom';
+import clsx from 'clsx';
+import Styles from '../styles/StyleContact';
 import withStyles from '@material-ui/core/styles/withStyles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -11,37 +12,43 @@ import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 import MenuIcon from '@material-ui/icons/Menu';
+import Divider from '@material-ui/core/Divider';
+import Grid from '@material-ui/core/Grid';
+import ListItem from '@material-ui/core/ListItem';
+import Avatar from '@material-ui/core/Avatar';
+import List from '@material-ui/core/List';
+import ListItemText from '@material-ui/core/ListItemText';
+import Drawer from '@material-ui/core/Drawer';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import Styles from '../styles/StyleContact';
-import Grid from '@material-ui/core/Grid';
-import Divider from '@material-ui/core/Divider';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import AddIcon from '@material-ui/icons/Add';
-
 import { getContacts } from '../actions/ContactActions';
-import Avatar from '@material-ui/core/Avatar';
 import { getPhones } from '../actions/PhoneActions';
+import DialogInfoAboutContact from './DialogInfoAboutContact';
+import map from 'lodash/map';
 
 class PrimarySearchAppBar extends Component {
 	state = {
 		anchorEl: null,
 		mobileMoreAnchorEl: null,
 		open: true,
+		dialogOpen: false,
+		selectedContact: {},
+		selectedContactKey: null,
+		userPhone: null,
 	};
+
 	componentDidMount() {
 		this.props.dispatch(getContacts());
 		this.props.dispatch(getPhones());
 	}
+
 	handleProfileMenuOpen = event => {
 		this.setState({ anchorEl: event.currentTarget });
 		console.log('MenuOpen', event);
@@ -64,10 +71,14 @@ class PrimarySearchAppBar extends Component {
 		this.setState({ open: !this.state.open });
 	};
 
+	handleDialogInfo = selectedContact => {
+		this.setState({ dialogOpen: !this.state.dialogOpen, selectedContact });
+	};
 	render() {
 		const { classes, contacts, phones } = this.props;
 		console.log('phone', phones);
-		const { anchorEl, mobileMoreAnchorEl, open } = this.state;
+		const { anchorEl, mobileMoreAnchorEl, open, dialogOpen, selectedContact } = this.state;
+		console.log('selectedContact', selectedContact);
 		const isMenuOpen = Boolean(anchorEl);
 		const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 		// const theme = useTheme();
@@ -235,10 +246,10 @@ class PrimarySearchAppBar extends Component {
 							Contacts
 						</Grid>
 						{contacts &&
-							contacts.map(contact => (
+							map(contacts, (contact, key) => (
 								<>
 									<Grid item xs={3}>
-										<Grid container alignItems="center" spacing={1}>
+										<Grid container alignItems="center" spacing={1} key={key}>
 											<Grid item xs={2}>
 												<Avatar
 													alt="Remy Sharp"
@@ -246,10 +257,11 @@ class PrimarySearchAppBar extends Component {
 													className={classes.avatar}
 												/>
 											</Grid>
-											<Grid item xs={10}>
-												<Link className={classes.link} to={'personalcontact/' + contact.id}>
+											<Grid item xs={10} onClick={() => this.handleDialogInfo(contact)}>
+												{/* <Link className={classes.link} to={'personalcontact/' + contact.id}>
 													{contact.first_name} {contact.last_name}
-												</Link>
+												</Link> */}
+												{contact.first_name} {contact.last_name}
 											</Grid>
 										</Grid>
 									</Grid>
@@ -268,6 +280,14 @@ class PrimarySearchAppBar extends Component {
 									<Grid item xs={1}>
 										<Typography>1</Typography>
 									</Grid>
+									{dialogOpen && (
+										<DialogInfoAboutContact
+											open={dialogOpen}
+											contact={selectedContact}
+											contactKey={key}
+											handleClose={this.handleDialogInfo}
+										/>
+									)}
 								</>
 							))}
 					</Grid>
