@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import Styles from '../styles/StyleContact';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -12,14 +12,14 @@ import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
+// import ListItemIcon from '@material-ui/core/ListItemIcon';
 import MenuIcon from '@material-ui/icons/Menu';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
-import ListItem from '@material-ui/core/ListItem';
+// import ListItem from '@material-ui/core/ListItem';
 import Avatar from '@material-ui/core/Avatar';
-import List from '@material-ui/core/List';
-import ListItemText from '@material-ui/core/ListItemText';
+// import List from '@material-ui/core/List';
+// import ListItemText from '@material-ui/core/ListItemText';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import SearchIcon from '@material-ui/icons/Search';
@@ -200,8 +200,8 @@ class PrimarySearchAppBar extends Component {
 					}}
 				>
 					<Divider />
-					<List>
-						<ListItem button key={100001}>
+					{/* <List>
+						<ListItem button key={}>
 							<ListItemIcon>
 								<AddIcon />
 							</ListItemIcon>
@@ -209,7 +209,13 @@ class PrimarySearchAppBar extends Component {
 								<ListItemText primary=" Create contact" />
 							</Link>
 						</ListItem>
-					</List>
+					</List> */}
+					<IconButton>
+						<Grid container>
+							<AddIcon />
+							<Typography variant="h5">Create contact</Typography>
+						</Grid>
+					</IconButton>
 					<Divider />
 				</Drawer>
 				<main
@@ -241,9 +247,9 @@ class PrimarySearchAppBar extends Component {
 						</Grid>
 						{contacts &&
 							map(contacts, (contact, key) => (
-								<>
+								<Fragment key={contact.id}>
 									<Grid item xs={3}>
-										<Grid container alignItems="center" spacing={1} key={key}>
+										<Grid container alignItems="center" spacing={1}>
 											<Grid item xs={2}>
 												<Avatar
 													alt="Remy Sharp"
@@ -266,7 +272,7 @@ class PrimarySearchAppBar extends Component {
 										{contact.phones &&
 											contact.phones
 												.filter(phone => phone.contact_id === contact.id)
-												.map(item => <Typography>{item.number}</Typography>)}
+												.map(item => <Typography key={item.id}>{item.number}</Typography>)}
 									</Grid>
 									<Grid item xs={2}>
 										<Typography>{contact.company}</Typography>
@@ -274,7 +280,7 @@ class PrimarySearchAppBar extends Component {
 									<Grid item xs={1}>
 										<Typography>1</Typography>
 									</Grid>
-								</>
+								</Fragment>
 							))}
 						{dialogOpen && (
 							<DialogInfoAboutContact

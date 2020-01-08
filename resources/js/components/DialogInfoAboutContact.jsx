@@ -7,12 +7,12 @@ import DialogContent from '@material-ui/core/DialogContent';
 // import DialogContentText from '@material-ui/core/DialogContentText';
 // import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
-import { Grid, Avatar, IconButton } from '@material-ui/core';
-import InputBase from '@material-ui/core/InputBase';
+import { Grid, Avatar, IconButton, Typography, DialogActions } from '@material-ui/core';
+// import InputBase from '@material-ui/core/InputBase';
 import Cancel from '@material-ui/icons/Cancel';
 import Edit from '@material-ui/icons/Create';
 import Delete from '@material-ui/icons/DeleteForever';
-
+import Phone from '@material-ui/icons/Phone';
 const Transition = React.forwardRef(function Transition(props, ref) {
 	return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -43,7 +43,7 @@ const Styles = theme => ({
 	},
 	width: {
 		width: 600,
-		borderBottom: '1px solid black',
+		borderBottom: '1px solid #9aad9f',
 		marginBottom: '10px',
 	},
 	margin: {
@@ -68,6 +68,8 @@ class DialogInfoAboutContact extends Component {
 	render() {
 		// const { open } = this.state;
 		const { open, handleClickOpen, handleClose, contact, contactKey, classes } = this.props;
+		console.log('contact', contact);
+		console.log('phone', contact.phones);
 		return (
 			<div>
 				<Button variant="outlined" color="primary" onClick={handleClickOpen}>
@@ -100,11 +102,14 @@ class DialogInfoAboutContact extends Component {
 											readOnly: true,
 										}}
 									/> */}
-								<InputBase
+								{/* <InputBase
 									className={classes.margin}
 									defaultValue={`${contact.first_name} ${contact.last_name}`}
 									inputProps={{ 'aria-label': 'naked' }}
-								/>
+								/> */}
+								<Typography variant="h5">
+									{contact.first_name} {contact.last_name}
+								</Typography>
 							</Grid>
 							<Grid item xs={4} container justify="space-between">
 								<IconButton className={classes.button} aria-label="edit">
@@ -113,11 +118,37 @@ class DialogInfoAboutContact extends Component {
 								<IconButton className={classes.button} aria-label="delete">
 									<Delete />
 								</IconButton>
-								<IconButton className={classes.button} aria-label="cancel">
-									<Cancel onClick={handleClose} />
+								<IconButton className={classes.button} aria-label="cancel" onClick={handleClose}>
+									<Cancel />
 								</IconButton>
 							</Grid>
 							{/* </Grid> */}
+						</Grid>
+					</DialogContent>
+					<DialogActions>
+						<Grid container justify="flex-start">
+							<Grid item xs={12}>
+								<Typography variant="h6">Сontact information</Typography>
+							</Grid>
+						</Grid>
+					</DialogActions>
+					<DialogContent>
+						<Grid container justify="flex-start">
+							{contact.phones.length > 0 ? (
+								<Grid item xs={2}>
+									<Phone />
+								</Grid>
+							) : (
+								''
+							)}
+							<Grid item xs={6}>
+								{contact.phones &&
+									contact.phones.map(phone => (
+										<Typography variant="h6" key={phone.id}>
+											{phone.number}
+										</Typography>
+									))}
+							</Grid>
 						</Grid>
 					</DialogContent>
 				</Dialog>
