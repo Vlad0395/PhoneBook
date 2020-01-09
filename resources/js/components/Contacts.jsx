@@ -29,7 +29,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import AddIcon from '@material-ui/icons/Add';
 import { getContacts } from '../actions/ContactActions';
-// import { getPhones } from '../actions/PhoneActions';
+import { getPhones } from '../actions/PhoneActions';
 import DialogInfoAboutContact from './DialogInfoAboutContact';
 import map from 'lodash/map';
 
@@ -46,10 +46,12 @@ class PrimarySearchAppBar extends Component {
 
 	componentDidMount() {
 		this.props.dispatch(getContacts());
+		this.props.dispatch(getPhones());
 	}
 
 	handleProfileMenuOpen = event => {
 		this.setState({ anchorEl: event.currentTarget });
+		console.log('MenuOpen', event);
 	};
 
 	handleMobileMenuClose = () => {
@@ -69,14 +71,17 @@ class PrimarySearchAppBar extends Component {
 		this.setState({ open: !this.state.open });
 	};
 
-	handleDialogInfo = (selectedContact, selectedContactKey) => {
-		this.setState({ dialogOpen: !this.state.dialogOpen, selectedContact, selectedContactKey });
+	handleDialogInfo = selectedContact => {
+		this.setState({ dialogOpen: !this.state.dialogOpen, selectedContact });
 	};
 	render() {
-		const { classes, contacts } = this.props;
-		const { anchorEl, mobileMoreAnchorEl, open, dialogOpen, selectedContact, selectedContactKey } = this.state;
+		const { classes, contacts, phones } = this.props;
+		console.log('phone', phones);
+		const { anchorEl, mobileMoreAnchorEl, open, dialogOpen, selectedContact } = this.state;
+		console.log('selectedContact', selectedContact);
 		const isMenuOpen = Boolean(anchorEl);
 		const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+		// const theme = useTheme();
 
 		const menuId = 'primary-search-account-menu';
 		const renderMenu = (
@@ -203,7 +208,8 @@ class PrimarySearchAppBar extends Component {
 					{/* <List>
 						<ListItem button key={}>
 							<ListItemIcon>
-								<AddIcon />
+								{' '}
+								<AddIcon />{' '}
 							</ListItemIcon>
 							<Link to="/create">
 								<ListItemText primary=" Create contact" />
@@ -257,7 +263,7 @@ class PrimarySearchAppBar extends Component {
 													className={classes.avatar}
 												/>
 											</Grid>
-											<Grid item xs={10} onClick={() => this.handleDialogInfo(contact, key)}>
+											<Grid item xs={10} onClick={() => this.handleDialogInfo(contact)}>
 												{/* <Link className={classes.link} to={'personalcontact/' + contact.id}>
 													{contact.first_name} {contact.last_name}
 												</Link> */}
@@ -269,8 +275,8 @@ class PrimarySearchAppBar extends Component {
 										<Typography>{contact.email}</Typography>
 									</Grid>
 									<Grid item xs={2}>
-										{contact.phones &&
-											contact.phones
+										{phones &&
+											phones
 												.filter(phone => phone.contact_id === contact.id)
 												.map(item => <Typography key={item.id}>{item.number}</Typography>)}
 									</Grid>
@@ -280,16 +286,16 @@ class PrimarySearchAppBar extends Component {
 									<Grid item xs={1}>
 										<Typography>1</Typography>
 									</Grid>
+									{dialogOpen && (
+										<DialogInfoAboutContact
+											open={dialogOpen}
+											contact={selectedContact}
+											contactKey={key}
+											handleClose={this.handleDialogInfo}
+										/>
+									)}
 								</Fragment>
 							))}
-						{dialogOpen && (
-							<DialogInfoAboutContact
-								open={dialogOpen}
-								contact={selectedContact}
-								contactKey={selectedContactKey}
-								handleClose={this.handleDialogInfo}
-							/>
-						)}
 					</Grid>
 				</main>
 				{renderMobileMenu}
@@ -299,10 +305,11 @@ class PrimarySearchAppBar extends Component {
 	}
 }
 const mapStateToProps = state => {
-	const { contacts, error } = state.ContactsReducer;
+	const { contacts, error, phones } = state.ContactsReducer;
 	return {
 		contacts,
 		error,
+		phones,
 	};
 };
 

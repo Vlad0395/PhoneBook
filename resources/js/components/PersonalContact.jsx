@@ -31,10 +31,11 @@ class PersonalContact extends Component {
 		this.props.dispatch(getPhone(id));
 	}
 	render() {
-		const { contacts, classes, contact } = this.props;
+		const { contacts, classes, contact, phone } = this.props;
 		let url = window.location.href;
 		let id = url.substring(url.lastIndexOf('/') + 1);
 		let a = contacts ? contacts.find(it => it.id === Number(id)) : contact ? contact : {};
+		console.log('mobile', phone.contact_id);
 		return (
 			<Grid container justify="center" spacing={1}>
 				<Grid item xs={3}>
@@ -70,11 +71,12 @@ class PersonalContact extends Component {
 	}
 }
 const mapStateToProps = state => {
-	const { contacts, error, contact } = state.ContactsReducer;
+	const { contacts, error, contact, phone } = state.ContactsReducer;
 	return {
 		contact,
 		contacts,
 		error,
+		phone,
 	};
 };
 export default connect(mapStateToProps)(withStyles(Styles)(PersonalContact));
