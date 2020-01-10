@@ -117,5 +117,8 @@ const Styles = theme => ({
 	headerTable: {
 		borderBottom: '1px solid grey',
 	},
+	dialogTitle: {
+		borderBottom: '1px solid black',
+	},
 });
 export default Styles;

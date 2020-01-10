@@ -28,12 +28,14 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import AddIcon from '@material-ui/icons/Add';
-import { getContacts } from '../actions/ContactActions';
+import { getContacts, DeleteContact } from '../actions/ContactActions';
 import { getPhones } from '../actions/PhoneActions';
 import DialogInfoAboutContact from './DialogInfoAboutContact';
 import map from 'lodash/map';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 
-class PrimarySearchAppBar extends Component {
+class Contacts extends Component {
 	state = {
 		anchorEl: null,
 		mobileMoreAnchorEl: null,
@@ -51,7 +53,6 @@ class PrimarySearchAppBar extends Component {
 
 	handleProfileMenuOpen = event => {
 		this.setState({ anchorEl: event.currentTarget });
-		console.log('MenuOpen', event);
 	};
 
 	handleMobileMenuClose = () => {
@@ -76,12 +77,9 @@ class PrimarySearchAppBar extends Component {
 	};
 	render() {
 		const { classes, contacts, phones } = this.props;
-		console.log('phone', phones);
 		const { anchorEl, mobileMoreAnchorEl, open, dialogOpen, selectedContact } = this.state;
-		console.log('selectedContact', selectedContact);
 		const isMenuOpen = Boolean(anchorEl);
 		const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-		// const theme = useTheme();
 
 		const menuId = 'primary-search-account-menu';
 		const renderMenu = (
@@ -205,17 +203,6 @@ class PrimarySearchAppBar extends Component {
 					}}
 				>
 					<Divider />
-					{/* <List>
-						<ListItem button key={}>
-							<ListItemIcon>
-								{' '}
-								<AddIcon />{' '}
-							</ListItemIcon>
-							<Link to="/create">
-								<ListItemText primary=" Create contact" />
-							</Link>
-						</ListItem>
-					</List> */}
 					<IconButton>
 						<Grid container>
 							<AddIcon />
@@ -264,9 +251,6 @@ class PrimarySearchAppBar extends Component {
 												/>
 											</Grid>
 											<Grid item xs={10} onClick={() => this.handleDialogInfo(contact)}>
-												{/* <Link className={classes.link} to={'personalcontact/' + contact.id}>
-													{contact.first_name} {contact.last_name}
-												</Link> */}
 												{contact.first_name} {contact.last_name}
 											</Grid>
 										</Grid>
@@ -284,7 +268,17 @@ class PrimarySearchAppBar extends Component {
 										<Typography>{contact.company}</Typography>
 									</Grid>
 									<Grid item xs={1}>
-										<Typography>1</Typography>
+										<IconButton aria-label="edit" className={classes.margin}>
+											<EditIcon />
+										</IconButton>
+										<IconButton
+											aria-label="delete"
+											name={contact.id}
+											className={classes.margin}
+											onClick={() => this.props.dispatch(DeleteContact(contact.id))}
+										>
+											<DeleteIcon />
+										</IconButton>
 									</Grid>
 									{dialogOpen && (
 										<DialogInfoAboutContact
@@ -313,4 +307,4 @@ const mapStateToProps = state => {
 	};
 };
 
-export default connect(mapStateToProps)(withStyles(Styles, { withTheme: true })(PrimarySearchAppBar));
+export default connect(mapStateToProps)(withStyles(Styles, { withTheme: true })(Contacts));

@@ -15,7 +15,6 @@ import IconButton from '@material-ui/core/IconButton';
 import BackCollIcon from '@material-ui/icons/ArrowBackIos';
 import { getContact } from '../actions/ContactActions';
 import Styles from '../styles/StylePersonalContact';
-import { getPhone } from '../actions/PhoneActions';
 // import Avatar from '@material-ui/core/Avatar';
 // import MoreVertIcon from '@material-ui/icons/MoreVert';
 // import CardHeader from '@material-ui/core/CardHeader';
@@ -28,14 +27,12 @@ class PersonalContact extends Component {
 		if (!this.props.contacts) {
 			this.props.dispatch(getContact(id));
 		}
-		this.props.dispatch(getPhone(id));
 	}
 	render() {
-		const { contacts, classes, contact, phone } = this.props;
+		const { contacts, classes, contact } = this.props;
 		let url = window.location.href;
 		let id = url.substring(url.lastIndexOf('/') + 1);
 		let a = contacts ? contacts.find(it => it.id === Number(id)) : contact ? contact : {};
-		console.log('mobile', phone.contact_id);
 		return (
 			<Grid container justify="center" spacing={1}>
 				<Grid item xs={3}>

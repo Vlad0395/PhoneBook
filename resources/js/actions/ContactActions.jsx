@@ -73,6 +73,7 @@ export const DeleteContact = id => {
 		axios
 			.delete('api/contacts/' + id)
 			.then(response => {
+				console.log('response', response);
 				return dispatch({
 					type: constants.DELETE_CONTACT_SUCCESS,
 					data: response.data,

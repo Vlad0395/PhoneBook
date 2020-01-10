@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
 				contacts: action.data,
 			};
 		case constants.DELETE_CONTACT_SUCCESS:
-			let contacts = state.contacts.filter(contact => contact.id !== action.data);
+			let contacts = state.contacts.filter(contact => contact.id !== Number(action.data));
 			return {
 				...state,
 				contacts: contacts,

@@ -11,7 +11,7 @@
     <title>Laravel</title>
     <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css">
-    <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
+    {{-- <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet"> --}}
     <script src="https://kit.fontawesome.com/821f2cbf10.js"></script>
 </head>
 <body>
