@@ -30,10 +30,12 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import AddIcon from '@material-ui/icons/Add';
 import { getContacts, DeleteContact } from '../actions/ContactActions';
 import { getPhones } from '../actions/PhoneActions';
-import DialogInfoAboutContact from './DialogInfoAboutContact';
+import DialogInfoAboutContact from './InfoAboutContact';
 import map from 'lodash/map';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Fab from '@material-ui/core/Fab';
+import Create from './Create';
 
 class Contacts extends Component {
 	state = {
@@ -44,6 +46,7 @@ class Contacts extends Component {
 		selectedContact: {},
 		selectedContactKey: null,
 		userPhone: null,
+		CreateContact: true,
 	};
 
 	componentDidMount() {
@@ -75,9 +78,14 @@ class Contacts extends Component {
 	handleDialogInfo = selectedContact => {
 		this.setState({ dialogOpen: !this.state.dialogOpen, selectedContact });
 	};
+
+	handleCreateContact = () => {
+		this.setState({ CreateContact: !this.state.CreateContact });
+	};
+
 	render() {
 		const { classes, contacts, phones } = this.props;
-		const { anchorEl, mobileMoreAnchorEl, open, dialogOpen, selectedContact } = this.state;
+		const { anchorEl, mobileMoreAnchorEl, open, dialogOpen, selectedContact, CreateContact } = this.state;
 		const isMenuOpen = Boolean(anchorEl);
 		const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -203,12 +211,16 @@ class Contacts extends Component {
 					}}
 				>
 					<Divider />
-					<IconButton>
+					<Fab variant="extended" className={classes.btnFab} onClick={() => this.handleCreateContact()}>
+						<AddIcon className={classes.extendedIcon} />
+						Create contact
+					</Fab>
+					{/* <IconButton>
 						<Grid container>
 							<AddIcon />
 							<Typography variant="h5">Create contact</Typography>
 						</Grid>
-					</IconButton>
+					</IconButton> */}
 					<Divider />
 				</Drawer>
 				<main
@@ -290,6 +302,7 @@ class Contacts extends Component {
 									)}
 								</Fragment>
 							))}
+						<Create open={CreateContact} handleClose={this.handleCreateContact} />
 					</Grid>
 				</main>
 				{renderMobileMenu}

@@ -120,5 +120,15 @@ const Styles = theme => ({
 	dialogTitle: {
 		borderBottom: '1px solid black',
 	},
+	extendedIcon: {
+		marginRight: theme.spacing(1),
+	},
+	btnFab: {
+		margin: '15px 10px',
+	},
+	large: {
+		width: theme.spacing(7),
+		height: theme.spacing(7),
+	},
 });
 export default Styles;

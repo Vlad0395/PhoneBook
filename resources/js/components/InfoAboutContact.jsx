@@ -25,20 +25,21 @@ class DialogInfoAboutContact extends Component {
 					TransitionComponent={Transition}
 					keepMounted
 					onClose={handleClose}
-					fullWidth="800px"
+					fullWidth
+					maxWidth="md"
 					aria-labelledby="dialog-title"
 					aria-describedby="dialog-description"
 				>
 					<DialogTitle id="dialog-title" className={classes.dialogTitle}>
-						<Grid container spacing={2} key={contactKey} alignItems="center">
+						<Grid container spacing={2} key={contactKey} alignItems="center" justify="space-between">
 							<Grid item xs={3}>
 								<Avatar alt="Remy Sharp" src="\images\Contacts-icon.png" className={classes.large} />
 							</Grid>
-							<Grid item xs={6}>
+							<Grid item xs={7}>
 								{contact.first_name} {contact.last_name}
 							</Grid>
-							<Grid item xs={3}>
-								<Grid container spacing={2} direction="row">
+							<Grid item xs={2}>
+								<Grid container spacing={2} direction="row" justify="flex-end">
 									<IconButton aria-label="edit" className={classes.margin}>
 										<EditIcon fontSize="small" />
 									</IconButton>
