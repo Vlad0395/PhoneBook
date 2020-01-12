@@ -13,22 +13,22 @@ import Styles from '../styles/StyleDialog';
 
 class MaxWidthDialog extends Component {
 	state = {
-		open: false,
+		// open: false,
 		fullWidth: true,
 		maxWidth: 'sm',
 	};
 
-	handleClickOpen = () => {
-		this.setState({
-			open: !this.state.open,
-		});
-	};
+	// handleClickOpen = () => {
+	// 	this.setState({
+	// 		open: !this.state.open,
+	// 	});
+	// };
 
-	handleClose = () => {
-		this.setState({
-			open: !this.state.open,
-		});
-	};
+	// handleClose = () => {
+	// 	this.setState({
+	// 		open: !this.state.open,
+	// 	});
+	// };
 
 	handleMaxWidthChange = event => {
 		this.setState({
@@ -51,18 +51,20 @@ class MaxWidthDialog extends Component {
 			onImageLoaded,
 			onCropComplete,
 			onCropChange,
+			open,
+			handleClose,
 		} = this.props;
-		const { fullWidth, maxWidth, open } = this.state;
+		const { fullWidth, maxWidth } = this.state;
 		return (
 			<Grid>
-				<Button className={classes.btn} onClick={this.handleClickOpen}>
+				{/* <Button className={classes.btn} onClick={this.handleClickOpen}>
 					Open window for donwload photo
-				</Button>
+				</Button> */}
 				<Dialog
 					fullWidth={fullWidth}
 					maxWidth={maxWidth}
 					open={open}
-					onClose={this.handleClose}
+					onClose={handleClose}
 					aria-labelledby="max-width-dialog-title"
 				>
 					<DialogTitle id="max-width-dialog-title">Optional sizes</DialogTitle>
@@ -83,7 +85,7 @@ class MaxWidthDialog extends Component {
 						</form>
 					</DialogContent>
 					<DialogActions>
-						<Button onClick={this.handleClose} color="primary">
+						<Button onClick={handleClose} color="primary">
 							Ok
 						</Button>
 					</DialogActions>

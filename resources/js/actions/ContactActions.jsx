@@ -26,6 +26,10 @@ export const AddContact = data => {
 		axios
 			.post('api/contacts', data)
 			.then(response => {
+				dispatch({
+					type: constants.ADD_CONTACT_SUCCESS,
+					data: response.data,
+				});
 				dispatch(
 					AddNumber({
 						contact_id: response.data.id,
@@ -73,7 +77,6 @@ export const DeleteContact = id => {
 		axios
 			.delete('api/contacts/' + id)
 			.then(response => {
-				console.log('response', response);
 				return dispatch({
 					type: constants.DELETE_CONTACT_SUCCESS,
 					data: response.data,

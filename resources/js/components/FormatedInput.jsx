@@ -6,61 +6,55 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 
-const Styles = (theme) => ({
-    container: {
-        display: 'flex',
-        flexWrap: 'wrap',
-    },
-    formControl: {
-        // margin: theme.spacing(1),
-    },
+const Styles = () => ({
+	container: {
+		display: 'flex',
+		flexWrap: 'wrap',
+		width: '45%',
+	},
 });
 
-
-
 class TextMaskCustom extends Component {
-    render() {
-        const { inputRef, ...other } = this.props;
+	render() {
+		const { inputRef, ...other } = this.props;
 
-        return (
-            <MaskedInput
-                {...other}
-                ref={ref => {
-                    inputRef(ref ? ref.inputElement : null);
-                }}
-                mask={[ /[0-9]/, /\d/, /\d/,/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]}
-                placeholderChar={'\u2000'}
-                showMask
-            />
-        );
-    }
+		return (
+			<MaskedInput
+				{...other}
+				ref={ref => {
+					inputRef(ref ? ref.inputElement : null);
+				}}
+				mask={[/[0-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]}
+				placeholderChar={'\u2000'}
+				showMask
+			/>
+		);
+	}
 }
 
 TextMaskCustom.propTypes = {
-    inputRef: PropTypes.func.isRequired,
+	inputRef: PropTypes.func.isRequired,
 };
 
-
 class FormatInput extends Component {
+	render() {
+		const { classes, mobile, onChange } = this.props;
 
-    render() {
-        const { classes, mobile, onChange} = this.props
-
-        return (
-            <div className={classes.container}>
-                <FormControl fullWidth className={classes.formControl}>
-                    <InputLabel htmlFor="formatted-text-mask-input">Mobile</InputLabel>
-                    <Input
-                        value={mobile}
-                        id="formatted-text-mask-input"
-                        name='mobile'
-                        onChange = {onChange}
-                        inputComponent={TextMaskCustom}
-                    />
-                </FormControl>
-            </div>
-        );
-    }
+		return (
+			<div className={classes.container}>
+				<FormControl fullWidth className={classes.formControl}>
+					<InputLabel htmlFor="formatted-text-mask-input">Mobile</InputLabel>
+					<Input
+						value={mobile}
+						id="formatted-text-mask-input"
+						name="mobile"
+						onChange={onChange}
+						inputComponent={TextMaskCustom}
+					/>
+				</FormControl>
+			</div>
+		);
+	}
 }
 
-export default (withStyles(Styles)(FormatInput))
+export default withStyles(Styles)(FormatInput);

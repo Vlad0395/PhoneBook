@@ -6,7 +6,6 @@ export const AddNumber = data => {
 		axios
 			.post('api/phones', data)
 			.then(response => {
-				console.log('check_create_number');
 				return dispatch({
 					type: constants.GET_CONTACT_PHONES_SUCCES,
 					data: response.data,

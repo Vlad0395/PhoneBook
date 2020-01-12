@@ -36,6 +36,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Fab from '@material-ui/core/Fab';
 import Create from './Create';
+import Edit from './Edit';
 
 class Contacts extends Component {
 	state = {
@@ -46,7 +47,8 @@ class Contacts extends Component {
 		selectedContact: {},
 		selectedContactKey: null,
 		userPhone: null,
-		CreateContact: true,
+		CreateContact: false,
+		EditContact: false,
 	};
 
 	componentDidMount() {
@@ -82,10 +84,21 @@ class Contacts extends Component {
 	handleCreateContact = () => {
 		this.setState({ CreateContact: !this.state.CreateContact });
 	};
+	handleEditContact = () => {
+		this.setState({ EditContact: !this.state.EditContact });
+	};
 
 	render() {
 		const { classes, contacts, phones } = this.props;
-		const { anchorEl, mobileMoreAnchorEl, open, dialogOpen, selectedContact, CreateContact } = this.state;
+		const {
+			anchorEl,
+			mobileMoreAnchorEl,
+			open,
+			dialogOpen,
+			selectedContact,
+			CreateContact,
+			EditContact,
+		} = this.state;
 		const isMenuOpen = Boolean(anchorEl);
 		const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -251,7 +264,7 @@ class Contacts extends Component {
 							Contacts
 						</Grid>
 						{contacts &&
-							map(contacts, (contact, key) => (
+							map(contacts, contact => (
 								<Fragment key={contact.id}>
 									<Grid item xs={3}>
 										<Grid container alignItems="center" spacing={1}>
@@ -280,7 +293,11 @@ class Contacts extends Component {
 										<Typography>{contact.company}</Typography>
 									</Grid>
 									<Grid item xs={1}>
-										<IconButton aria-label="edit" className={classes.margin}>
+										<IconButton
+											aria-label="edit"
+											className={classes.margin}
+											onClick={() => this.handleEditContact()}
+										>
 											<EditIcon />
 										</IconButton>
 										<IconButton
@@ -292,16 +309,22 @@ class Contacts extends Component {
 											<DeleteIcon />
 										</IconButton>
 									</Grid>
-									{dialogOpen && (
-										<DialogInfoAboutContact
-											open={dialogOpen}
-											contact={selectedContact}
-											contactKey={key}
-											handleClose={this.handleDialogInfo}
-										/>
-									)}
 								</Fragment>
 							))}
+						{dialogOpen && (
+							<DialogInfoAboutContact
+								open={dialogOpen}
+								contact={selectedContact}
+								handleClose={this.handleDialogInfo}
+							/>
+						)}
+						{EditContact && (
+							<Edit
+								open={EditContact}
+								contact_id={selectedContact}
+								handleClose={this.handleEditContact}
+							/>
+						)}
 						<Create open={CreateContact} handleClose={this.handleCreateContact} />
 					</Grid>
 				</main>

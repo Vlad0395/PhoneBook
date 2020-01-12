@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { AddContact } from '../actions/ContactActions';
+import { UpdateContact } from '../actions/ContactActions';
 import { Grid } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Button from '@material-ui/core/Button';
@@ -12,10 +12,10 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import DialogContent from '@material-ui/core/DialogContent';
-import FormCreate from './FormCreateEditContact';
+import FormEdit from './FormCreateEditContact';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
-	return <Slide direction="right" ref={ref} {...props} />;
+	return <Slide direction="down" ref={ref} {...props} />;
 });
 
 const Styles = theme => ({
@@ -28,7 +28,7 @@ const Styles = theme => ({
 	},
 });
 
-class CreateContact extends Component {
+class EditContact extends Component {
 	state = {
 		first_name: '',
 		last_name: '',
@@ -59,20 +59,29 @@ class CreateContact extends Component {
 			});
 		};
 	};
-	handleCleareForm = () => {
-		this.setState({
-			first_name: '',
-			last_name: '',
-			mobile: '',
-			company: '',
-			photo_contact: '',
-			email: '',
-			birth_day: '',
-		});
-	};
+
+	componentDidMount() {
+		const { contacts } = this.props;
+
+		let url = window.location.href;
+		let id = url.substring(url.lastIndexOf('/') + 1);
+		const contact = contacts && contacts.find(it => it.id === id);
+		if (contact) {
+			this.setState({
+				first_name: contact.first_name,
+				last_name: contact.last_name,
+				company: contact.company,
+				birth_day: contact.birth_day,
+				mobile: contact.mobile,
+				photo_contact: contact.photo_contact,
+				email: contact.email,
+				id: contact.id,
+			});
+		}
+	}
+
 	render() {
 		const { open, classes } = this.props;
-
 		return (
 			<Grid>
 				<Dialog fullScreen open={open} onClose={this.props.handleClose} TransitionComponent={Transition}>
@@ -87,15 +96,14 @@ class CreateContact extends Component {
 								<CloseIcon />
 							</IconButton>
 							<Typography variant="h6" className={classes.title}>
-								Create Contact
+								Edit Contact
 							</Typography>
 							<Button
 								autoFocus
 								color="inherit"
 								onClick={() => {
-									this.props.dispatch(AddContact(this.state));
+									this.props.dispatch(UpdateContact(this.state, this.state.id));
 									this.props.handleClose();
-									this.handleCleareForm();
 								}}
 							>
 								save
@@ -103,7 +111,7 @@ class CreateContact extends Component {
 						</Toolbar>
 					</AppBar>
 					<DialogContent>
-						<FormCreate
+						<FormEdit
 							handleChange={this.handleChange}
 							first_name={this.state.first_name}
 							last_name={this.state.last_name}
@@ -112,10 +120,6 @@ class CreateContact extends Component {
 							mobile={this.state.mobile}
 							photo_contact={this.state.photo_contact}
 							email={this.state.email}
-							// ActionWithData={() => {
-							// 	this.props.dispatch(AddContact(this.state));
-							// 	this.props.history.push('/');
-							// }}
 						/>
 					</DialogContent>
 				</Dialog>
@@ -124,4 +128,12 @@ class CreateContact extends Component {
 	}
 }
 
-export default connect()(withStyles(Styles)(CreateContact));
+const mapStateToProps = state => {
+	const { contacts, error } = state.ContactsReducer;
+	return {
+		contacts,
+		error,
+	};
+};
+
+export default connect(mapStateToProps)(withStyles(Styles)(EditContact));
