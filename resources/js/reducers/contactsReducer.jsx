@@ -5,6 +5,7 @@ const initialState = {
 	contacts: null,
 	error: false,
 	phone: null,
+	phones: null,
 };
 
 export default (state = initialState, action) => {
@@ -14,8 +15,13 @@ export default (state = initialState, action) => {
 				...state,
 				contacts: action.data,
 			};
+		case constants.ADD_CONTACT_SUCCESS:
+			return {
+				...state,
+				contacts: [...state.contacts, action.data],
+			};
 		case constants.DELETE_CONTACT_SUCCESS:
-			let contacts = state.contacts.filter(contact => contact.id !== action.data);
+			let contacts = state.contacts.filter(contact => contact.id !== Number(action.data));
 			return {
 				...state,
 				contacts: contacts,
@@ -35,6 +41,11 @@ export default (state = initialState, action) => {
 			return {
 				...state,
 				phone: action.data,
+			};
+		case constants.GET_PHONES_SUCCESS:
+			return {
+				...state,
+				phones: action.data,
 			};
 		default:
 			return state;

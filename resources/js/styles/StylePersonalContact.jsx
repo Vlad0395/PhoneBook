@@ -35,6 +35,9 @@ const Styles = theme => ({
 	avatar: {
 		backgroundColor: 'red',
 	},
+	typography: {
+		padding: '10px',
+	},
 });
 
 export default Styles;

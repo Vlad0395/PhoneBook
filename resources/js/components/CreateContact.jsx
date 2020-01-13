@@ -1,7 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import FormContact from './FormContact';
 import { AddContact } from '../actions/ContactActions';
+import { Grid } from '@material-ui/core';
+import withStyles from '@material-ui/core/styles/withStyles';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import CloseIcon from '@material-ui/icons/Close';
+import Slide from '@material-ui/core/Slide';
+import DialogContent from '@material-ui/core/DialogContent';
+import FormCreate from './FormCreateEditContact';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+	return <Slide direction="right" ref={ref} {...props} />;
+});
+
+const Styles = theme => ({
+	appBar: {
+		position: 'relative',
+	},
+	title: {
+		marginLeft: theme.spacing(2),
+		flex: 1,
+	},
+});
 
 class CreateContact extends Component {
 	state = {
@@ -34,25 +59,69 @@ class CreateContact extends Component {
 			});
 		};
 	};
-
+	handleCleareForm = () => {
+		this.setState({
+			first_name: '',
+			last_name: '',
+			mobile: '',
+			company: '',
+			photo_contact: '',
+			email: '',
+			birth_day: '',
+		});
+	};
 	render() {
+		const { open, classes } = this.props;
+
 		return (
-			<FormContact
-				handleChange={this.handleChange}
-				first_name={this.state.first_name}
-				last_name={this.state.last_name}
-				company={this.state.company}
-				birth_day={this.state.birth_day}
-				mobile={this.state.mobile}
-				photo_contact={this.state.photo_contact}
-				email={this.state.email}
-				ActionWithData={() => {
-					this.props.dispatch(AddContact(this.state));
-					this.props.history.push('/');
-				}}
-			/>
+			<Grid>
+				<Dialog fullScreen open={open} onClose={this.props.handleClose} TransitionComponent={Transition}>
+					<AppBar className={classes.appBar}>
+						<Toolbar>
+							<IconButton
+								edge="start"
+								color="inherit"
+								onClick={this.props.handleClose}
+								aria-label="close"
+							>
+								<CloseIcon />
+							</IconButton>
+							<Typography variant="h6" className={classes.title}>
+								Create Contact
+							</Typography>
+							<Button
+								autoFocus
+								color="inherit"
+								onClick={() => {
+									this.props.dispatch(AddContact(this.state));
+									this.props.handleClose();
+									this.handleCleareForm();
+								}}
+							>
+								save
+							</Button>
+						</Toolbar>
+					</AppBar>
+					<DialogContent>
+						<FormCreate
+							handleChange={this.handleChange}
+							first_name={this.state.first_name}
+							last_name={this.state.last_name}
+							company={this.state.company}
+							birth_day={this.state.birth_day}
+							mobile={this.state.mobile}
+							photo_contact={this.state.photo_contact}
+							email={this.state.email}
+							// ActionWithData={() => {
+							// 	this.props.dispatch(AddContact(this.state));
+							// 	this.props.history.push('/');
+							// }}
+						/>
+					</DialogContent>
+				</Dialog>
+			</Grid>
 		);
 	}
 }
 
-export default connect()(CreateContact);
+export default connect()(withStyles(Styles)(CreateContact));

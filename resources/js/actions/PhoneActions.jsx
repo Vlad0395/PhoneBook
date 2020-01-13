@@ -6,7 +6,6 @@ export const AddNumber = data => {
 		axios
 			.post('api/phones', data)
 			.then(response => {
-				console.log('check_create_number');
 				return dispatch({
 					type: constants.GET_CONTACT_PHONES_SUCCES,
 					data: response.data,
@@ -23,12 +22,30 @@ export const getPhone = id => {
 			.get('api/phones/' + id)
 			.then(response => {
 				return dispatch({
-					type: constants.GET_CONTACT_PHONES_SUCCES,
+					type: constants.GET_CONTACT_PHONE_SUCCES,
 					data: response.data,
 				});
 			})
 			.catch(error => {
 				console.log('show_number_error', error);
+			});
+	};
+};
+export const getPhones = () => {
+	return dispatch => {
+		axios
+			.get('api/phones')
+			.then(response => {
+				dispatch({
+					type: constants.GET_PHONES_SUCCESS,
+					data: response.data,
+				});
+			})
+			.catch(error => {
+				dispatch({
+					type: constants.GET_PHONES_ERROR,
+					data: error,
+				});
 			});
 	};
 };
