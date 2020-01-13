@@ -73,8 +73,10 @@ class ContactsController extends Controller
 
         if ($data['photo_contact']) {
             $image = $data['photo_contact'];
-            $name = time() . '.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
-            \Image::make($data['photo_contact'])->save(public_path('images/') . $name);
+            if ($image != $contact->photo_contact) {
+                $name = time() . '.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+                \Image::make($data['photo_contact'])->save(public_path('images/') . $name);
+            }
         }
 
         if ($data) {
@@ -82,7 +84,7 @@ class ContactsController extends Controller
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
                 'company' => $data['company'],
-                'photo_contact' => $name,
+                'photo_contact' => $name ?? $image,
                 'email' => $data['email'],
                 'birth_day' => $conv_day_birth
             ]);
