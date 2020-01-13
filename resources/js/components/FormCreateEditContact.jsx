@@ -64,7 +64,6 @@ const Styles = theme => ({
 
 class FormCreateEditContact extends Component {
 	state = {
-		/**state FormContact */
 		src: null,
 		crop: {
 			unit: '%',
@@ -72,13 +71,8 @@ class FormCreateEditContact extends Component {
 			// aspect: 16 / 9,
 		},
 		croppedImageUrl: null,
-		/**endState FormContact */
-		/**state DialogWindow */
 		openDialog: false,
-		/**state DialogWindow */
 	};
-
-	/***FormContact function */
 
 	onSelectFile = e => {
 		if (e.target.files && e.target.files.length > 0) {
@@ -145,34 +139,42 @@ class FormCreateEditContact extends Component {
 			}, 'image/jpeg');
 		});
 	}
-	/***End FormContact function */ /***DialogWindow */
+
 	handleClickOpen = () => {
 		this.setState({
 			openDialog: !this.state.openDialog,
 		});
 	};
-	/***EndDialogWindow */
 
 	render() {
-		const { classes, handleChange, first_name, last_name, company, birth_day, mobile, email } = this.props;
-		/***FormContact state */
+		const {
+			classes,
+			handleChange,
+			first_name,
+			last_name,
+			company,
+			birth_day,
+			mobile,
+			email,
+			photo_contact,
+		} = this.props;
 		const { src, crop, croppedImageUrl } = this.state;
-		/***End FormContact state */ return (
+
+		return (
 			<Grid>
 				<Grid container spacing={2} alignItems="center" justify="center">
 					<Grid item md={6}>
 						<Grid container spacing={2} alignItems="flex-end" justify="center" direction="row">
 							<Grid item xs={1} className={classes.photo}>
-								{/* <input
-											accept="image/*"
-											className={classes.input}
-											id="icon-button-file"
-											type="file"
-										/> */}
-								{/* <label htmlFor="icon-button-file"> */}
 								<Avatar
 									alt="Remy Sharp"
-									src={croppedImageUrl ? croppedImageUrl : '/images/Contacts-icon.png'}
+									src={
+										croppedImageUrl
+											? croppedImageUrl
+											: photo_contact
+											? 'images/' + photo_contact
+											: 'images/Contacts-icon.png'
+									}
 									className={classes.large}
 								/>
 								<IconButton
@@ -291,6 +293,7 @@ class FormCreateEditContact extends Component {
 					onCropChange={this.onCropChange}
 					getCroppedImg={this.getCroppedImg}
 					makeClientCrop={this.makeClientCrop}
+					photo_contact={photo_contact}
 				/>
 			</Grid>
 		);

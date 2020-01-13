@@ -35,8 +35,8 @@ import map from 'lodash/map';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Fab from '@material-ui/core/Fab';
-import Create from './Create';
-import Edit from './Edit';
+import Create from './CreateContact';
+import Edit from './EditContact';
 
 class Contacts extends Component {
 	state = {
@@ -48,7 +48,7 @@ class Contacts extends Component {
 		selectedContactKey: null,
 		userPhone: null,
 		CreateContact: false,
-		EditContact: false,
+		editContact: false,
 	};
 
 	componentDidMount() {
@@ -84,8 +84,8 @@ class Contacts extends Component {
 	handleCreateContact = () => {
 		this.setState({ CreateContact: !this.state.CreateContact });
 	};
-	handleEditContact = () => {
-		this.setState({ EditContact: !this.state.EditContact });
+	handleEditContact = selectedContact => {
+		this.setState({ editContact: !this.state.editContact, selectedContact });
 	};
 
 	render() {
@@ -97,7 +97,7 @@ class Contacts extends Component {
 			dialogOpen,
 			selectedContact,
 			CreateContact,
-			EditContact,
+			editContact,
 		} = this.state;
 		const isMenuOpen = Boolean(anchorEl);
 		const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -228,12 +228,6 @@ class Contacts extends Component {
 						<AddIcon className={classes.extendedIcon} />
 						Create contact
 					</Fab>
-					{/* <IconButton>
-						<Grid container>
-							<AddIcon />
-							<Typography variant="h5">Create contact</Typography>
-						</Grid>
-					</IconButton> */}
 					<Divider />
 				</Drawer>
 				<main
@@ -296,7 +290,7 @@ class Contacts extends Component {
 										<IconButton
 											aria-label="edit"
 											className={classes.margin}
-											onClick={() => this.handleEditContact()}
+											onClick={() => this.handleEditContact(contact)}
 										>
 											<EditIcon />
 										</IconButton>
@@ -318,12 +312,8 @@ class Contacts extends Component {
 								handleClose={this.handleDialogInfo}
 							/>
 						)}
-						{EditContact && (
-							<Edit
-								open={EditContact}
-								contact_id={selectedContact}
-								handleClose={this.handleEditContact}
-							/>
+						{editContact && (
+							<Edit open={editContact} contact={selectedContact} handleClose={this.handleEditContact} />
 						)}
 						<Create open={CreateContact} handleClose={this.handleCreateContact} />
 					</Grid>

@@ -57,9 +57,6 @@ class MaxWidthDialog extends Component {
 		const { fullWidth, maxWidth } = this.state;
 		return (
 			<Grid>
-				{/* <Button className={classes.btn} onClick={this.handleClickOpen}>
-					Open window for donwload photo
-				</Button> */}
 				<Dialog
 					fullWidth={fullWidth}
 					maxWidth={maxWidth}
