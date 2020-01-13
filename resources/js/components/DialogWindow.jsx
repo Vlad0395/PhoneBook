@@ -13,22 +13,9 @@ import Styles from '../styles/StyleDialog';
 
 class MaxWidthDialog extends Component {
 	state = {
-		// open: false,
 		fullWidth: true,
 		maxWidth: 'sm',
 	};
-
-	// handleClickOpen = () => {
-	// 	this.setState({
-	// 		open: !this.state.open,
-	// 	});
-	// };
-
-	// handleClose = () => {
-	// 	this.setState({
-	// 		open: !this.state.open,
-	// 	});
-	// };
 
 	handleMaxWidthChange = event => {
 		this.setState({

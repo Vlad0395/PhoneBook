@@ -43,7 +43,7 @@ class Contacts extends Component {
 		anchorEl: null,
 		mobileMoreAnchorEl: null,
 		open: true,
-		dialogOpen: false,
+		dialogOpen: true,
 		selectedContact: {},
 		selectedContactKey: null,
 		userPhone: null,

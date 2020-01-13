@@ -112,10 +112,6 @@ class CreateContact extends Component {
 							mobile={this.state.mobile}
 							photo_contact={this.state.photo_contact}
 							email={this.state.email}
-							// ActionWithData={() => {
-							// 	this.props.dispatch(AddContact(this.state));
-							// 	this.props.history.push('/');
-							// }}
 						/>
 					</DialogContent>
 				</Dialog>

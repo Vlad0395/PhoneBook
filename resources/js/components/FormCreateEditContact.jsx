@@ -186,7 +186,6 @@ class FormCreateEditContact extends Component {
 								>
 									<PhotoCamera />
 								</IconButton>
-								{/* </label> */}
 							</Grid>
 							<Grid item xs={3}>
 								<TextField
