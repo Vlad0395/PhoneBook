@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-// import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
-import { Grid, IconButton, Avatar } from '@material-ui/core';
+import { Grid, IconButton, Avatar, Typography } from '@material-ui/core';
 import CancelIcon from '@material-ui/icons/Cancel';
 import EditIcon from '@material-ui/icons/Edit';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Styles from '../styles/StyleContact';
 import PhoneIcon from '@material-ui/icons/Phone';
+import CakeIcon from '@material-ui/icons/Cake';
+import BusinessIcon from '@material-ui/icons/Business';
+import EmailIcon from '@material-ui/icons/Email';
+
 const Transition = React.forwardRef(function Transition(props, ref) {
 	return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -26,16 +28,24 @@ class DialogInfoAboutContact extends Component {
 					keepMounted
 					onClose={handleClose}
 					fullWidth
-					maxWidth="md"
+					maxWidth="sm"
 					aria-labelledby="dialog-title"
 					aria-describedby="dialog-description"
 				>
 					<DialogTitle id="dialog-title" className={classes.dialogTitle}>
 						<Grid container spacing={2} key={contactKey} alignItems="center" justify="space-between">
 							<Grid item xs={3}>
-								<Avatar alt="Remy Sharp" src="\images\Contacts-icon.png" className={classes.large} />
+								<Avatar
+									alt="Remy Sharp"
+									src={
+										contact.photo_contact
+											? 'images/' + contact.photo_contact
+											: 'images/Contacts-icon.png'
+									}
+									className={classes.large}
+								/>
 							</Grid>
-							<Grid item xs={7}>
+							<Grid item xs={6}>
 								{contact.first_name} {contact.last_name}
 							</Grid>
 							<Grid item xs={2}>
@@ -50,20 +60,50 @@ class DialogInfoAboutContact extends Component {
 							</Grid>
 						</Grid>
 					</DialogTitle>
-					<DialogContent>
-						<Grid container spacing={2}>
-							<Grid item xs={12}>
-								<h3>Data contact</h3>
+					<DialogContent className={classes.contentContact}>
+						<Grid container spacing={2} className={classes.containerContent}>
+							<Grid container spacing={2} className={classes.Grid}>
+								<Grid item xs={12}>
+									<Typography>Data contact</Typography>
+								</Grid>
 							</Grid>
-							<Grid item xs={2}>
-								<PhoneIcon />
+							<Grid container spacing={2} alignItems="flex-end">
+								<Grid item xs={1}>
+									<PhoneIcon />
+								</Grid>
+								<Grid item xs={5}>
+									{contact.phones &&
+										contact.phones
+											.filter(phone => phone.contact_id === contact.id)
+											.map(item => <Typography key={item.id}>{item.number}</Typography>)}
+								</Grid>
 							</Grid>
-							<Grid item xs={5}>
-								<h5>{contact.phone_number}</h5>
+							<Grid container spacing={2} alignItems="">
+								<Grid item xs={1}>
+									<EmailIcon />
+								</Grid>
+								<Grid item xs={5}>
+									<Typography>{contact.email}</Typography>
+								</Grid>
+							</Grid>
+							<Grid container spacing={2} alignItems="">
+								<Grid item xs={1}>
+									<BusinessIcon />
+								</Grid>
+								<Grid item xs={5}>
+									<Typography>{contact.company}</Typography>
+								</Grid>
+							</Grid>
+							<Grid container spacing={2} alignItems="">
+								<Grid item xs={1}>
+									<CakeIcon />
+								</Grid>
+								<Grid item xs={5}>
+									<Typography>{contact.birth_day}</Typography>
+								</Grid>
 							</Grid>
 						</Grid>
 					</DialogContent>
-					<DialogActions>CONTENT</DialogActions>
 				</Dialog>
 			</div>
 		);

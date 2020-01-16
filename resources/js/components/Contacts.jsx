@@ -43,7 +43,7 @@ class Contacts extends Component {
 		anchorEl: null,
 		mobileMoreAnchorEl: null,
 		open: true,
-		dialogOpen: true,
+		dialogOpen: false,
 		selectedContact: {},
 		selectedContactKey: null,
 		userPhone: null,
@@ -261,7 +261,12 @@ class Contacts extends Component {
 							map(contacts, contact => (
 								<Fragment key={contact.id}>
 									<Grid item xs={3}>
-										<Grid container alignItems="center" spacing={1}>
+										<Grid
+											container
+											alignItems="center"
+											spacing={1}
+											onClick={() => this.handleDialogInfo(contact)}
+										>
 											<Grid item xs={2}>
 												<Avatar
 													alt="Remy Sharp"
@@ -269,21 +274,21 @@ class Contacts extends Component {
 													className={classes.avatar}
 												/>
 											</Grid>
-											<Grid item xs={10} onClick={() => this.handleDialogInfo(contact)}>
+											<Grid item xs={10}>
 												{contact.first_name} {contact.last_name}
 											</Grid>
 										</Grid>
 									</Grid>
-									<Grid item xs={3}>
+									<Grid item xs={3} onClick={() => this.handleDialogInfo(contact)}>
 										<Typography>{contact.email}</Typography>
 									</Grid>
-									<Grid item xs={2}>
+									<Grid item xs={2} onClick={() => this.handleDialogInfo(contact)}>
 										{phones &&
 											phones
 												.filter(phone => phone.contact_id === contact.id)
 												.map(item => <Typography key={item.id}>{item.number}</Typography>)}
 									</Grid>
-									<Grid item xs={2}>
+									<Grid item xs={2} onClick={() => this.handleDialogInfo(contact)}>
 										<Typography>{contact.company}</Typography>
 									</Grid>
 									<Grid item xs={1}>

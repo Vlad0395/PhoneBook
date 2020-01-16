@@ -130,5 +130,14 @@ const Styles = theme => ({
 		width: theme.spacing(7),
 		height: theme.spacing(7),
 	},
+	contentContact: {
+		height: 200,
+	},
+	containerContent: {
+		padding: '0 20px',
+	},
+	// Grid: {
+	// 	margin: '20px'
+	// }
 });
 export default Styles;
