@@ -63,6 +63,7 @@ class EditContact extends Component {
 	componentDidMount() {
 		const { contact, contacts } = this.props;
 		let phone = contact.phones.map(mobile => mobile.number);
+		console.log('phone', contact.phones);
 		const editContact = contacts && contacts.find(it => it.id === contact.id);
 		if (editContact) {
 			this.setState({
