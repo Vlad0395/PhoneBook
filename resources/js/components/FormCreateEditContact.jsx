@@ -157,127 +157,111 @@ class FormCreateEditContact extends Component {
 			mobile,
 			email,
 			photo_contact,
+			error,
 		} = this.props;
 		const { src, crop, croppedImageUrl } = this.state;
-
 		return (
 			<Grid>
 				<Grid container spacing={2} alignItems="center" justify="center">
-					<Grid item md={6}>
-						<Grid container spacing={2} alignItems="flex-end" justify="center" direction="row">
-							<Grid item xs={1} className={classes.photo}>
-								<Avatar
-									alt="Remy Sharp"
-									src={
-										croppedImageUrl
-											? croppedImageUrl
-											: photo_contact
-											? 'images/' + photo_contact
-											: 'images/Contacts-icon.png'
-									}
-									className={classes.large}
-								/>
-								<IconButton
-									className={classes.btnPhoto}
-									color="primary"
-									aria-label="upload picture"
-									component="span"
-									onClick={() => this.handleClickOpen()}
-								>
-									<PhotoCamera />
-								</IconButton>
-							</Grid>
-							<Grid item xs={3}>
-								<TextField
-									id="first_name"
-									label="Your Name"
-									name="first_name"
-									onChange={handleChange}
-									value={first_name}
-								/>
-							</Grid>
-							<Grid item xs={3}>
-								<TextField
-									id="last_name"
-									label="Your Surname"
-									name="last_name"
-									onChange={handleChange}
-									value={last_name}
-								/>
-							</Grid>
+					<Grid item xs={1} className={classes.photo}>
+						<Avatar
+							alt="Remy Sharp"
+							src={
+								croppedImageUrl
+									? croppedImageUrl
+									: photo_contact
+									? 'images/' + photo_contact
+									: 'images/Contacts-icon.png'
+							}
+							className={classes.large}
+						/>
+						<IconButton
+							className={classes.btnPhoto}
+							color="primary"
+							aria-label="upload picture"
+							component="span"
+							onClick={() => this.handleClickOpen()}
+						>
+							<PhotoCamera />
+						</IconButton>
+					</Grid>
+					<Grid item xs={3}>
+						<Grid>
+							<TextField
+								id="first_name"
+								label="Your Name"
+								name="first_name"
+								onChange={handleChange}
+								value={first_name}
+								error={Boolean(error && error.first_name)}
+							/>
+						</Grid>
+						<Grid>
+							<TextField
+								id="last_name"
+								label="Your Surname"
+								name="last_name"
+								onChange={handleChange}
+								value={last_name}
+							/>
 						</Grid>
 					</Grid>
 				</Grid>
-				<Grid container spacing={2} alignItems="center" justify="center">
-					<Grid item md={6}>
-						<Grid container spacing={2} alignItems="flex-end" justify="center" direction="row">
-							<Grid item xs={1}>
-								<PhoneIcon className={classes.phone} />
-							</Grid>
-							<Grid item xs={6}>
-								<FormatedInput name="mobile" mobile={mobile} onChange={handleChange} />
-							</Grid>
-						</Grid>
+				<Grid container spacing={2} alignItems="flex-end" justify="center">
+					<Grid item xs={1}>
+						<PhoneIcon className={classes.phone} />
+					</Grid>
+					<Grid item xs={3}>
+						<FormatedInput name="mobile" mobile={mobile} onChange={handleChange} />
 					</Grid>
 				</Grid>
-				<Grid container spacing={2} alignItems="center" justify="center">
-					<Grid item md={6}>
-						<Grid container spacing={2} alignItems="flex-end" justify="center" direction="row">
-							<Grid item xs={1}>
-								<CompanyIcon />
-							</Grid>
-							<Grid item xs={6}>
-								<TextField
-									className={classes.birthDay}
-									id="company"
-									label="Company"
-									name="company"
-									onChange={handleChange}
-									value={company}
-								/>
-							</Grid>
-						</Grid>
+				<Grid container spacing={2} alignItems="flex-end" justify="center">
+					<Grid item xs={1}>
+						<CompanyIcon />
+					</Grid>
+					<Grid item xs={3}>
+						<TextField
+							className={classes.birthDay}
+							id="company"
+							label="Company"
+							name="company"
+							onChange={handleChange}
+							value={company}
+						/>
 					</Grid>
 				</Grid>
-				<Grid container spacing={2} alignItems="center" justify="center">
-					<Grid item md={6}>
-						<Grid container spacing={2} alignItems="flex-end" justify="center" direction="row">
-							<Grid item xs={1}>
-								<EmailIcon />
-							</Grid>
-							<Grid item xs={6}>
-								<TextField
-									id="email"
-									label="Email"
-									name="email"
-									onChange={handleChange}
-									value={email}
-								/>
-							</Grid>
-						</Grid>
+				<Grid container spacing={2} alignItems="flex-end" justify="center">
+					<Grid item xs={1}>
+						<EmailIcon />
+					</Grid>
+					<Grid item xs={3}>
+						<TextField
+							id="email"
+							label="Email"
+							name="email"
+							onChange={handleChange}
+							value={email}
+							error={Boolean(error && error.email)}
+						/>
 					</Grid>
 				</Grid>
-				<Grid container spacing={2} alignItems="center" justify="center">
-					<Grid item md={6}>
-						<Grid container spacing={2} alignItems="flex-end" justify="center" direction="row">
-							<Grid item xs={1}>
-								<CakeIcon />
-							</Grid>
-							<Grid item xs={6}>
-								<TextField
-									id="birth_day"
-									name="birth_day"
-									label="Birthday"
-									type="date"
-									onChange={handleChange}
-									value={birth_day}
-									className={classes.textField}
-									InputLabelProps={{
-										shrink: true,
-									}}
-								/>
-							</Grid>
-						</Grid>
+				<Grid container spacing={2} alignItems="flex-end" justify="center">
+					<Grid item xs={1}>
+						<CakeIcon />
+					</Grid>
+					<Grid item xs={3}>
+						<TextField
+							id="birth_day"
+							name="birth_day"
+							label="Birthday"
+							type="date"
+							onChange={handleChange}
+							value={birth_day}
+							className={classes.textField}
+							InputLabelProps={{
+								shrink: true,
+							}}
+						/>
 					</Grid>
 				</Grid>
 				<DialogWindow

@@ -62,12 +62,8 @@ class DialogInfoAboutContact extends Component {
 					</DialogTitle>
 					<DialogContent className={classes.contentContact}>
 						<Grid container spacing={2} className={classes.containerContent}>
-							<Grid container spacing={2} className={classes.Grid}>
-								<Grid item xs={12}>
-									<Typography variant="h5">Data contact</Typography>
-								</Grid>
-							</Grid>
-							<Grid container spacing={2} alignItems="flex-end" className={classes.Grid}>
+							<Typography variant="h5">Data contact</Typography>
+							<Grid container spacing={2}>
 								<Grid item xs={1}>
 									<PhoneIcon />
 								</Grid>
@@ -78,7 +74,7 @@ class DialogInfoAboutContact extends Component {
 											.map(item => <Typography key={item.id}>{item.number}</Typography>)}
 								</Grid>
 							</Grid>
-							<Grid container spacing={2} className={classes.Grid}>
+							<Grid container spacing={2}>
 								<Grid item xs={1}>
 									<EmailIcon />
 								</Grid>
@@ -86,7 +82,7 @@ class DialogInfoAboutContact extends Component {
 									<Typography>{contact.email}</Typography>
 								</Grid>
 							</Grid>
-							<Grid container spacing={2} className={classes.Grid}>
+							<Grid container spacing={2}>
 								<Grid item xs={1}>
 									<BusinessIcon />
 								</Grid>
@@ -94,7 +90,7 @@ class DialogInfoAboutContact extends Component {
 									<Typography>{contact.company}</Typography>
 								</Grid>
 							</Grid>
-							<Grid container spacing={2} className={classes.Grid}>
+							<Grid container spacing={2}>
 								<Grid item xs={1}>
 									<CakeIcon />
 								</Grid>

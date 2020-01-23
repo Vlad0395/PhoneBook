@@ -134,7 +134,8 @@ const Styles = theme => ({
 		height: 230,
 	},
 	containerContent: {
-		padding: '0 20px',
+		// padding: '0 20px',
+		height: '100%',
 	},
 	Grid: {
 		margin: 0,

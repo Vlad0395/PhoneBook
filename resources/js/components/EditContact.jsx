@@ -37,9 +37,30 @@ class EditContact extends Component {
 		photo_contact: '',
 		email: '',
 		birth_day: '',
+		errorValidation: {},
 	};
 
 	handleChange = event => {
+		let error = { ...this.state.errorValidation };
+		let regular = '';
+		switch (event.target.name) {
+			case 'first_name':
+				regular = RegExp('^[a-zA-Z0-9]{1,15}$');
+				error[event.target.name] = 'Name must contain of latin letters and numbers';
+				break;
+			case 'last_name':
+				regular = RegExp('^[a-zA-Z0-9]{1,15}$');
+				error[event.target.name] = 'Surname must contain of latin letters and numbers';
+				break;
+			case 'email':
+				regular = RegExp('^.+@.+..+');
+				error[event.target.name] = 'email not valid';
+				break;
+			default:
+				regular = '';
+				break;
+		}
+
 		if (event.target.name === 'photo_contact') {
 			let imgUrl = event.target.value;
 			this.createImage(imgUrl);
@@ -47,6 +68,12 @@ class EditContact extends Component {
 			this.setState({
 				[event.target.name]: event.target.value,
 			});
+			if (event.target.value.match(regular)) {
+				error[event.target.name] = '';
+				this.setState({ errorValidation: error });
+			} else {
+				this.setState({ errorValidation: error });
+			}
 		}
 	};
 
@@ -104,6 +131,17 @@ class EditContact extends Component {
 									this.props.dispatch(UpdateContact(this.state, this.state.id));
 									this.props.handleClose();
 								}}
+								disabled={
+									!this.state.first_name ||
+									!this.state.mobile ||
+									!this.state.last_name ||
+									!this.state.email ||
+									!this.state.birth_day ||
+									!this.state.company ||
+									Boolean(this.state.errorValidation.first_name) ||
+									Boolean(this.state.errorValidation.last_name) ||
+									Boolean(this.state.errorValidation.email)
+								}
 							>
 								update
 							</Button>
@@ -119,6 +157,7 @@ class EditContact extends Component {
 							mobile={this.state.mobile}
 							photo_contact={this.state.photo_contact}
 							email={this.state.email}
+							error={this.state.errorValidation}
 						/>
 					</DialogContent>
 				</Dialog>
