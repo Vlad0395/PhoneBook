@@ -37,6 +37,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Fab from '@material-ui/core/Fab';
 import Create from './CreateContact';
 import Edit from './EditContact';
+import Hidden from '@material-ui/core/Hidden';
+import withWidth from '@material-ui/core/withWidth';
 
 class Contacts extends Component {
 	state = {
@@ -101,6 +103,8 @@ class Contacts extends Component {
 		} = this.state;
 		const isMenuOpen = Boolean(anchorEl);
 		const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+		const isMobile = window.innerWidth <= Number('1055');
+		console.log('isMobile', isMobile);
 
 		const menuId = 'primary-search-account-menu';
 		const renderMenu = (
@@ -214,22 +218,24 @@ class Contacts extends Component {
 						</Grid>
 					</Toolbar>
 				</AppBar>
-				<Drawer
-					className={classes.drawer}
-					variant="persistent"
-					anchor="left"
-					open={open}
-					classes={{
-						paper: classes.drawerPaper,
-					}}
-				>
-					<Divider />
-					<Fab variant="extended" className={classes.btnFab} onClick={() => this.handleCreateContact()}>
-						<AddIcon className={classes.extendedIcon} />
-						Create contact
-					</Fab>
-					<Divider />
-				</Drawer>
+				{!isMobile && (
+					<Drawer
+						className={classes.drawer}
+						variant="persistent"
+						anchor="left"
+						open={open}
+						classes={{
+							paper: classes.drawerPaper,
+						}}
+					>
+						<Divider />
+						<Fab variant="extended" className={classes.btnFab} onClick={() => this.handleCreateContact()}>
+							<AddIcon className={classes.extendedIcon} />
+							Create contact
+						</Fab>
+						<Divider />
+					</Drawer>
+				)}
 				<main
 					className={clsx(classes.content, {
 						[classes.contentShift]: open,
@@ -237,21 +243,19 @@ class Contacts extends Component {
 				>
 					<Grid className={classes.drawerHeader} />
 					<Grid container className={classes.headerTable} spacing={2}>
-						<Grid item xs={3}>
+						<Grid item xs={12} md={4} lg={4}>
 							<Typography>Name</Typography>
 						</Grid>
-						<Grid item xs={3}>
-							<Typography>E-mail</Typography>
-						</Grid>
-						<Grid item xs={2}>
-							<Typography>Number phone</Typography>
-						</Grid>
-						<Grid item xs={2}>
-							<Typography>Company</Typography>
-						</Grid>
-						<Grid item xs={1}>
-							<Typography>Other</Typography>
-						</Grid>
+						<Hidden smDown>
+							<Grid item md={3} lg={3}>
+								<Typography>Number phone</Typography>
+							</Grid>
+						</Hidden>
+						<Hidden mdDown>
+							<Grid item lg={3}>
+								<Typography>Company</Typography>
+							</Grid>
+						</Hidden>
 					</Grid>
 					<Grid container spacing={2}>
 						<Grid item xs={12}>
@@ -260,38 +264,40 @@ class Contacts extends Component {
 						{contacts &&
 							map(contacts, contact => (
 								<Fragment key={contact.id}>
-									<Grid item xs={3}>
+									<Grid item xs={8} md={4}>
 										<Grid
 											container
 											alignItems="center"
 											spacing={1}
 											onClick={() => this.handleDialogInfo(contact)}
 										>
-											<Grid item xs={2}>
+											<Grid item xs={2} md={3}>
 												<Avatar
 													alt="Remy Sharp"
 													src={'./images/' + (contact.photo_contact || 'Contacts-icon.png')}
 													className={classes.avatar}
 												/>
 											</Grid>
-											<Grid item xs={10}>
+											<Grid item xs={10} md={9}>
 												{contact.first_name} {contact.last_name}
 											</Grid>
 										</Grid>
 									</Grid>
-									<Grid item xs={3} onClick={() => this.handleDialogInfo(contact)}>
-										<Typography>{contact.email}</Typography>
-									</Grid>
-									<Grid item xs={2} onClick={() => this.handleDialogInfo(contact)}>
-										{phones &&
-											phones
-												.filter(phone => phone.contact_id === contact.id)
-												.map(item => <Typography key={item.id}>{item.number}</Typography>)}
-									</Grid>
-									<Grid item xs={2} onClick={() => this.handleDialogInfo(contact)}>
-										<Typography>{contact.company}</Typography>
-									</Grid>
-									<Grid item xs={1}>
+									<Hidden smDown>
+										<Grid item md={3} onClick={() => this.handleDialogInfo(contact)}>
+											{phones &&
+												phones
+													.filter(phone => phone.contact_id === contact.id)
+													.map(item => <Typography key={item.id}>{item.number}</Typography>)}
+										</Grid>
+									</Hidden>
+									<Hidden mdDown>
+										<Grid item md={3} onClick={() => this.handleDialogInfo(contact)}>
+											<Typography>{contact.company}</Typography>
+										</Grid>
+									</Hidden>
+
+									<Grid item xs={4} md={2}>
 										<IconButton
 											aria-label="edit"
 											className={classes.margin}
@@ -338,4 +344,4 @@ const mapStateToProps = state => {
 	};
 };
 
-export default connect(mapStateToProps)(withStyles(Styles, { withTheme: true })(Contacts));
+export default connect(mapStateToProps)(withWidth()(withStyles(Styles, { withTheme: true })(Contacts)));

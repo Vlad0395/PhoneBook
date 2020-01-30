@@ -134,12 +134,17 @@ const Styles = theme => ({
 		height: 230,
 	},
 	containerContent: {
-		// padding: '0 20px',
 		height: '100%',
 	},
-	Grid: {
-		margin: 0,
-		padding: 0,
+	hiddenIcon: {
+		display: 'inline-block',
+	},
+	visibilitiIcon: {
+		'&:hover': {
+			'&$hiddenIcon': {
+				display: 'none',
+			},
+		},
 	},
 });
 export default Styles;
