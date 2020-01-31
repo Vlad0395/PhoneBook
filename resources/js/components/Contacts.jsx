@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { Link } from 'react-router-dom';
 import clsx from 'clsx';
@@ -44,7 +44,7 @@ class Contacts extends Component {
 	state = {
 		anchorEl: null,
 		mobileMoreAnchorEl: null,
-		open: true,
+		open: false,
 		dialogOpen: false,
 		selectedContact: {},
 		selectedContactKey: null,
@@ -103,8 +103,7 @@ class Contacts extends Component {
 		} = this.state;
 		const isMenuOpen = Boolean(anchorEl);
 		const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-		const isMobile = window.innerWidth <= Number('1055');
-		console.log('isMobile', isMobile);
+		// const isMobile = window.innerWidth <= Number('1055');
 
 		const menuId = 'primary-search-account-menu';
 		const renderMenu = (
@@ -218,24 +217,24 @@ class Contacts extends Component {
 						</Grid>
 					</Toolbar>
 				</AppBar>
-				{!isMobile && (
-					<Drawer
-						className={classes.drawer}
-						variant="persistent"
-						anchor="left"
-						open={open}
-						classes={{
-							paper: classes.drawerPaper,
-						}}
-					>
-						<Divider />
-						<Fab variant="extended" className={classes.btnFab} onClick={() => this.handleCreateContact()}>
-							<AddIcon className={classes.extendedIcon} />
-							Create contact
-						</Fab>
-						<Divider />
-					</Drawer>
-				)}
+
+				<Drawer
+					className={classes.drawer}
+					variant="persistent"
+					anchor="left"
+					open={open}
+					classes={{
+						paper: classes.drawerPaper,
+					}}
+				>
+					<Divider />
+					<Fab variant="extended" className={classes.btnFab} onClick={() => this.handleCreateContact()}>
+						<AddIcon className={classes.extendedIcon} />
+						Create contact
+					</Fab>
+					<Divider />
+				</Drawer>
+
 				<main
 					className={clsx(classes.content, {
 						[classes.contentShift]: open,
@@ -243,16 +242,21 @@ class Contacts extends Component {
 				>
 					<Grid className={classes.drawerHeader} />
 					<Grid container className={classes.headerTable} spacing={2}>
-						<Grid item xs={12} md={4} lg={4}>
+						<Grid item xs={12} sm={7} md={3} lg={3}>
 							<Typography>Name</Typography>
 						</Grid>
+						<Hidden xsDown>
+							<Grid item sm={3} md={3} lg={3}>
+								<Typography>Email</Typography>
+							</Grid>
+						</Hidden>
 						<Hidden smDown>
-							<Grid item md={3} lg={3}>
+							<Grid item md={3} lg={2}>
 								<Typography>Number phone</Typography>
 							</Grid>
 						</Hidden>
 						<Hidden mdDown>
-							<Grid item lg={3}>
+							<Grid item lg={2}>
 								<Typography>Company</Typography>
 							</Grid>
 						</Hidden>
@@ -263,8 +267,15 @@ class Contacts extends Component {
 						</Grid>
 						{contacts &&
 							map(contacts, contact => (
-								<Fragment key={contact.id}>
-									<Grid item xs={8} md={4}>
+								<Grid
+									key={contact.id}
+									container
+									spacing={2}
+									alignItems="center"
+									direction="row"
+									className={classes.rowSelection}
+								>
+									<Grid item xs={8} sm={7} md={3}>
 										<Grid
 											container
 											alignItems="center"
@@ -283,8 +294,13 @@ class Contacts extends Component {
 											</Grid>
 										</Grid>
 									</Grid>
+									<Hidden xsDown>
+										<Grid item sm={3} md={3} onClick={() => this.handleDialogInfo(contact)}>
+											<Typography>{`${contact.email.slice(0, -20)}...`}</Typography>
+										</Grid>
+									</Hidden>
 									<Hidden smDown>
-										<Grid item md={3} onClick={() => this.handleDialogInfo(contact)}>
+										<Grid item md={2} onClick={() => this.handleDialogInfo(contact)}>
 											{phones &&
 												phones
 													.filter(phone => phone.contact_id === contact.id)
@@ -292,12 +308,12 @@ class Contacts extends Component {
 										</Grid>
 									</Hidden>
 									<Hidden mdDown>
-										<Grid item md={3} onClick={() => this.handleDialogInfo(contact)}>
+										<Grid item md={2} onClick={() => this.handleDialogInfo(contact)}>
 											<Typography>{contact.company}</Typography>
 										</Grid>
 									</Hidden>
 
-									<Grid item xs={4} md={2}>
+									<Grid item xs={4} sm={2} md={2} className={classes.action}>
 										<IconButton
 											aria-label="edit"
 											className={classes.margin}
@@ -314,7 +330,7 @@ class Contacts extends Component {
 											<DeleteIcon />
 										</IconButton>
 									</Grid>
-								</Fragment>
+								</Grid>
 							))}
 						{dialogOpen && (
 							<DialogInfoAboutContact

@@ -146,5 +146,17 @@ const Styles = theme => ({
 			},
 		},
 	},
+	rowSelection: {
+		'&:hover': {
+			boxShadow: 'inset 0 0 3px rgba(0, 0, 0, .3)',
+			'& $action': {
+				display: 'inline-block',
+			},
+		},
+		padding: theme.spacing(1),
+	},
+	action: {
+		display: 'none',
+	},
 });
 export default Styles;

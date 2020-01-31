@@ -82,7 +82,6 @@ class FormCreateEditContact extends Component {
 		}
 	};
 
-	// If you setState the crop in here you should return false.
 	onImageLoaded = image => {
 		this.imageRef = image;
 	};
@@ -163,7 +162,7 @@ class FormCreateEditContact extends Component {
 		return (
 			<Grid>
 				<Grid container spacing={2} alignItems="center" justify="center">
-					<Grid item xs={1} className={classes.photo}>
+					<Grid item xs={1} sm={1} md={1} lg={1} className={classes.photo}>
 						<Avatar
 							alt="Remy Sharp"
 							src={
@@ -185,7 +184,7 @@ class FormCreateEditContact extends Component {
 							<PhotoCamera />
 						</IconButton>
 					</Grid>
-					<Grid item xs={3}>
+					<Grid item xs={9} sm={7} md={4} lg={3}>
 						<Grid>
 							<TextField
 								id="first_name"
@@ -208,18 +207,18 @@ class FormCreateEditContact extends Component {
 					</Grid>
 				</Grid>
 				<Grid container spacing={2} alignItems="flex-end" justify="center">
-					<Grid item xs={1}>
+					<Grid item xs={1} sm={1} md={1} lg={1}>
 						<PhoneIcon className={classes.phone} />
 					</Grid>
-					<Grid item xs={3}>
+					<Grid item xs={9} sm={7} md={4} lg={3}>
 						<FormatedInput name="mobile" mobile={mobile} onChange={handleChange} />
 					</Grid>
 				</Grid>
 				<Grid container spacing={2} alignItems="flex-end" justify="center">
-					<Grid item xs={1}>
+					<Grid item xs={1} sm={1} md={1} lg={1}>
 						<CompanyIcon />
 					</Grid>
-					<Grid item xs={3}>
+					<Grid item xs={9} sm={7} md={4} lg={3}>
 						<TextField
 							className={classes.birthDay}
 							id="company"
@@ -231,10 +230,10 @@ class FormCreateEditContact extends Component {
 					</Grid>
 				</Grid>
 				<Grid container spacing={2} alignItems="flex-end" justify="center">
-					<Grid item xs={1}>
+					<Grid item xs={1} sm={1} md={1} lg={1}>
 						<EmailIcon />
 					</Grid>
-					<Grid item xs={3}>
+					<Grid item xs={9} sm={7} md={4} lg={3}>
 						<TextField
 							id="email"
 							label="Email"
@@ -246,10 +245,10 @@ class FormCreateEditContact extends Component {
 					</Grid>
 				</Grid>
 				<Grid container spacing={2} alignItems="flex-end" justify="center">
-					<Grid item xs={1}>
+					<Grid item xs={1} sm={1} md={1} lg={1}>
 						<CakeIcon />
 					</Grid>
-					<Grid item xs={3}>
+					<Grid item xs={9} sm={7} md={4} lg={3}>
 						<TextField
 							id="birth_day"
 							name="birth_day"
