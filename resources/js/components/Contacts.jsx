@@ -175,9 +175,6 @@ class Contacts extends Component {
 						>
 							<MenuIcon />
 						</IconButton>
-						<Typography className={classes.title} variant="h6" noWrap>
-							Contacts
-						</Typography>
 						<Grid className={classes.search}>
 							<Grid className={classes.searchIcon}>
 								<SearchIcon />

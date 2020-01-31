@@ -118,7 +118,8 @@ const Styles = theme => ({
 		borderBottom: '1px solid grey',
 	},
 	dialogTitle: {
-		borderBottom: '1px solid black',
+		background: theme.palette.primary.main,
+		color: '#ffffff',
 	},
 	extendedIcon: {
 		marginRight: theme.spacing(1),
@@ -148,7 +149,7 @@ const Styles = theme => ({
 	},
 	rowSelection: {
 		'&:hover': {
-			boxShadow: 'inset 0 0 3px rgba(0, 0, 0, .3)',
+			boxShadow: ' 0 5px 10px rgba(0, 0, 0, .1)',
 			'& $action': {
 				display: 'inline-block',
 			},
@@ -157,6 +158,9 @@ const Styles = theme => ({
 	},
 	action: {
 		display: 'none',
+	},
+	margin: {
+		color: '#ffffff',
 	},
 });
 export default Styles;
