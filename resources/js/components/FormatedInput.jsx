@@ -10,7 +10,7 @@ const Styles = () => ({
 	container: {
 		display: 'flex',
 		flexWrap: 'wrap',
-		width: '45%',
+		width: '200px',
 	},
 });
 

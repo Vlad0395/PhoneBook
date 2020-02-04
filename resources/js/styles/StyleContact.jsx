@@ -159,7 +159,7 @@ const Styles = theme => ({
 	action: {
 		display: 'none',
 	},
-	margin: {
+	btnInfo: {
 		color: '#ffffff',
 	},
 });

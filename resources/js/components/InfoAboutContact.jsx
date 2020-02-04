@@ -12,13 +12,21 @@ import PhoneIcon from '@material-ui/icons/Phone';
 import CakeIcon from '@material-ui/icons/Cake';
 import BusinessIcon from '@material-ui/icons/Business';
 import EmailIcon from '@material-ui/icons/Email';
+import Edit from './EditContact';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
 	return <Slide direction="up" ref={ref} {...props} />;
 });
 
 class DialogInfoAboutContact extends Component {
+	state = {
+		editContact: false,
+	};
+	handleEditContact = Contact => {
+		this.setState({ editContact: !this.state.editContact, Contact });
+	};
 	render() {
+		const { editContact } = this.state;
 		const { open, handleClose, contact, contactKey, classes } = this.props;
 		return (
 			<div>
@@ -50,11 +58,15 @@ class DialogInfoAboutContact extends Component {
 							</Grid>
 							<Grid item xs={2}>
 								<Grid container spacing={2} direction="row" justify="flex-end">
-									<IconButton aria-label="edit" className={classes.margin}>
-										<EditIcon fontSize="small" />
+									<IconButton
+										aria-label="edit"
+										className={classes.margin}
+										onClick={() => this.handleEditContact(contact)}
+									>
+										<EditIcon fontSize="small" className={classes.btnInfo} />
 									</IconButton>
 									<IconButton aria-label="cancel" className={classes.margin} onClick={handleClose}>
-										<CancelIcon fontSize="small" />
+										<CancelIcon fontSize="small" className={classes.btnInfo} />
 									</IconButton>
 								</Grid>
 							</Grid>
@@ -101,6 +113,7 @@ class DialogInfoAboutContact extends Component {
 						</Grid>
 					</DialogContent>
 				</Dialog>
+				{editContact && <Edit open={editContact} contact={contact} handleClose={this.handleEditContact} />}
 			</div>
 		);
 	}

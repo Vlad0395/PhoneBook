@@ -153,14 +153,15 @@ class FormCreateEditContact extends Component {
 			last_name,
 			company,
 			birth_day,
-			mobile,
+			phones,
 			email,
 			photo_contact,
 			error,
 		} = this.props;
+		console.log('object', phones);
 		const { src, crop, croppedImageUrl } = this.state;
 		return (
-			<Grid>
+			<Grid container justify="center">
 				<Grid container spacing={2} alignItems="center" justify="center">
 					<Grid item xs={1} sm={1} md={1} lg={1} className={classes.photo}>
 						<Avatar
@@ -184,7 +185,7 @@ class FormCreateEditContact extends Component {
 							<PhotoCamera />
 						</IconButton>
 					</Grid>
-					<Grid item xs={9} sm={7} md={4} lg={3}>
+					<Grid item xs={4} sm={4} md={4} lg={4}>
 						<Grid>
 							<TextField
 								id="first_name"
@@ -210,15 +211,26 @@ class FormCreateEditContact extends Component {
 					<Grid item xs={1} sm={1} md={1} lg={1}>
 						<PhoneIcon className={classes.phone} />
 					</Grid>
-					<Grid item xs={9} sm={7} md={4} lg={3}>
-						<FormatedInput name="mobile" mobile={mobile} onChange={handleChange} />
+					<Grid item xs={4} sm={4} md={4} lg={4}>
+						{phones ? (
+							phones.map(mobile => (
+								<FormatedInput
+									key={`${mobile.contact_id}+'10000001'`}
+									name="mobile"
+									mobile={mobile}
+									onChange={handleChange}
+								/>
+							))
+						) : (
+							<FormatedInput name="mobile" mobile={phones} onChange={handleChange} />
+						)}
 					</Grid>
 				</Grid>
 				<Grid container spacing={2} alignItems="flex-end" justify="center">
 					<Grid item xs={1} sm={1} md={1} lg={1}>
 						<CompanyIcon />
 					</Grid>
-					<Grid item xs={9} sm={7} md={4} lg={3}>
+					<Grid item xs={4} sm={4} md={4} lg={4}>
 						<TextField
 							className={classes.birthDay}
 							id="company"
@@ -233,7 +245,7 @@ class FormCreateEditContact extends Component {
 					<Grid item xs={1} sm={1} md={1} lg={1}>
 						<EmailIcon />
 					</Grid>
-					<Grid item xs={9} sm={7} md={4} lg={3}>
+					<Grid item xs={4} sm={4} md={4} lg={4}>
 						<TextField
 							id="email"
 							label="Email"
@@ -248,7 +260,7 @@ class FormCreateEditContact extends Component {
 					<Grid item xs={1} sm={1} md={1} lg={1}>
 						<CakeIcon />
 					</Grid>
-					<Grid item xs={9} sm={7} md={4} lg={3}>
+					<Grid item xs={4} sm={4} md={4} lg={4}>
 						<TextField
 							id="birth_day"
 							name="birth_day"

@@ -102,7 +102,13 @@ class CreateContact extends Component {
 
 		return (
 			<Grid>
-				<Dialog fullScreen open={open} onClose={this.props.handleClose} TransitionComponent={Transition}>
+				<Dialog
+					fullWidth={Boolean(true)}
+					maxWidth="md"
+					open={open}
+					onClose={this.props.handleClose}
+					TransitionComponent={Transition}
+				>
 					<AppBar className={classes.appBar}>
 						<Toolbar>
 							<IconButton

@@ -293,7 +293,11 @@ class Contacts extends Component {
 									</Grid>
 									<Hidden xsDown>
 										<Grid item sm={3} md={3} onClick={() => this.handleDialogInfo(contact)}>
-											<Typography>{`${contact.email.slice(0, -20)}...`}</Typography>
+											<Typography>
+												{contact.email.length > '20'
+													? `${contact.email.slice(0, -20)}...`
+													: contact.email}
+											</Typography>
 										</Grid>
 									</Hidden>
 									<Hidden smDown>
@@ -313,6 +317,7 @@ class Contacts extends Component {
 									<Grid item xs={4} sm={2} md={2} className={classes.action}>
 										<IconButton
 											aria-label="edit"
+											color="primary"
 											className={classes.margin}
 											onClick={() => this.handleEditContact(contact)}
 										>
@@ -320,6 +325,7 @@ class Contacts extends Component {
 										</IconButton>
 										<IconButton
 											aria-label="delete"
+											color="primary"
 											name={contact.id}
 											className={classes.margin}
 											onClick={() => this.props.dispatch(DeleteContact(contact.id))}
@@ -334,6 +340,7 @@ class Contacts extends Component {
 								open={dialogOpen}
 								contact={selectedContact}
 								handleClose={this.handleDialogInfo}
+								handleEditContact={this.handleEditContact}
 							/>
 						)}
 						{editContact && (

@@ -32,7 +32,7 @@ class EditContact extends Component {
 	state = {
 		first_name: '',
 		last_name: '',
-		mobile: '',
+		mobile: [],
 		company: '',
 		photo_contact: '',
 		email: '',
@@ -90,7 +90,6 @@ class EditContact extends Component {
 	componentDidMount() {
 		const { contact, contacts } = this.props;
 		let phone = contact.phones.map(mobile => mobile.number);
-		console.log('phone', contact.phones);
 		const editContact = contacts && contacts.find(it => it.id === contact.id);
 		if (editContact) {
 			this.setState({
@@ -98,7 +97,7 @@ class EditContact extends Component {
 				last_name: editContact.last_name,
 				company: editContact.company,
 				birth_day: editContact.birth_day,
-				mobile: Number(phone),
+				mobile: phone,
 				photo_contact: editContact.photo_contact,
 				email: editContact.email,
 				id: editContact.id,
@@ -107,10 +106,16 @@ class EditContact extends Component {
 	}
 
 	render() {
-		const { open, classes } = this.props;
+		const { open, classes, contact } = this.props;
 		return (
 			<Grid>
-				<Dialog fullScreen open={open} onClose={this.props.handleClose} TransitionComponent={Transition}>
+				<Dialog
+					fullWidth={Boolean(true)}
+					maxWidth="md"
+					open={open}
+					onClose={this.props.handleClose}
+					TransitionComponent={Transition}
+				>
 					<AppBar className={classes.appBar}>
 						<Toolbar>
 							<IconButton
@@ -154,10 +159,11 @@ class EditContact extends Component {
 							last_name={this.state.last_name}
 							company={this.state.company}
 							birth_day={this.state.birth_day}
-							mobile={this.state.mobile}
+							phones={this.state.mobile}
 							photo_contact={this.state.photo_contact}
 							email={this.state.email}
 							error={this.state.errorValidation}
+							contact={contact}
 						/>
 					</DialogContent>
 				</Dialog>
