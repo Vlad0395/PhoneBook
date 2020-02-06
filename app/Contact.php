@@ -11,6 +11,7 @@ class Contact extends Model
         "last_name",
         "company",
         "email",
+        "number",
         "photo_contact",
         "birth_day"
     ];

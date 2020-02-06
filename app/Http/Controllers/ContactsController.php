@@ -36,12 +36,14 @@ class ContactsController extends Controller
             \Image::make($data['photo_contact'])->save(public_path('images/') . $name);
         }
         if ($data) {
+//            dd($data);
             $contact = Contact::create([
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
                 'company' => $data['company'],
                 'photo_contact' => $name,
                 'email' => $data['email'],
+                'number' => $data['number'],
                 'birth_day' => $conv_day_birth
             ]);
         }
@@ -80,13 +82,16 @@ class ContactsController extends Controller
         }
 
         if ($data) {
+//            dd($data);
             $contact->update([
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
                 'company' => $data['company'],
+                'number' => $data['number'],
                 'photo_contact' => $name ?? $image,
                 'email' => $data['email'],
-                'birth_day' => $conv_day_birth
+//                'birth_day' => $conv_day_birth
+                'birth_day' => $data['birth_day']
             ]);
         }
         return response()->json($contact);

@@ -91,7 +91,7 @@ class Contacts extends Component {
 	};
 
 	render() {
-		const { classes, contacts, phones } = this.props;
+		const { classes, contacts } = this.props;
 		const {
 			anchorEl,
 			mobileMoreAnchorEl,
@@ -259,9 +259,6 @@ class Contacts extends Component {
 						</Hidden>
 					</Grid>
 					<Grid container spacing={2}>
-						<Grid item xs={12}>
-							Contacts
-						</Grid>
 						{contacts &&
 							map(contacts, contact => (
 								<Grid
@@ -301,11 +298,14 @@ class Contacts extends Component {
 										</Grid>
 									</Hidden>
 									<Hidden smDown>
-										<Grid item md={2} onClick={() => this.handleDialogInfo(contact)}>
+										{/* <Grid item md={2} onClick={() => this.handleDialogInfo(contact)}>
 											{phones &&
 												phones
 													.filter(phone => phone.contact_id === contact.id)
 													.map(item => <Typography key={item.id}>{item.number}</Typography>)}
+										</Grid> */}
+										<Grid item md={2} onClick={() => this.handleDialogInfo(contact)}>
+											<Typography>{contact.number}</Typography>
 										</Grid>
 									</Hidden>
 									<Hidden mdDown>

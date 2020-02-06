@@ -32,7 +32,7 @@ class EditContact extends Component {
 	state = {
 		first_name: '',
 		last_name: '',
-		mobile: [],
+		number: '',
 		company: '',
 		photo_contact: '',
 		email: '',
@@ -43,6 +43,7 @@ class EditContact extends Component {
 	handleChange = event => {
 		let error = { ...this.state.errorValidation };
 		let regular = '';
+
 		switch (event.target.name) {
 			case 'first_name':
 				regular = RegExp('^[a-zA-Z0-9]{1,15}$');
@@ -89,7 +90,7 @@ class EditContact extends Component {
 
 	componentDidMount() {
 		const { contact, contacts } = this.props;
-		let phone = contact.phones.map(mobile => mobile.number);
+		// let phone = contact.phones.map(number => number.number);
 		const editContact = contacts && contacts.find(it => it.id === contact.id);
 		if (editContact) {
 			this.setState({
@@ -97,7 +98,7 @@ class EditContact extends Component {
 				last_name: editContact.last_name,
 				company: editContact.company,
 				birth_day: editContact.birth_day,
-				mobile: phone,
+				number: editContact.number,
 				photo_contact: editContact.photo_contact,
 				email: editContact.email,
 				id: editContact.id,
@@ -138,7 +139,7 @@ class EditContact extends Component {
 								}}
 								disabled={
 									!this.state.first_name ||
-									!this.state.mobile ||
+									!this.state.number ||
 									!this.state.last_name ||
 									!this.state.email ||
 									!this.state.birth_day ||
@@ -159,7 +160,7 @@ class EditContact extends Component {
 							last_name={this.state.last_name}
 							company={this.state.company}
 							birth_day={this.state.birth_day}
-							phones={this.state.mobile}
+							number={this.state.number}
 							photo_contact={this.state.photo_contact}
 							email={this.state.email}
 							error={this.state.errorValidation}

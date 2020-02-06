@@ -37,7 +37,7 @@ class PhonesController extends Controller
         $data = $request->validated();
         if ($data) {
             $phone = Phone::create([
-                'number' => $data['mobile'],
+                'number' => $data['number'],
                 'contact_id' => $data['contact_id'],
             ]);
         }

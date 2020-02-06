@@ -29,6 +29,7 @@ class ContactRequest extends FormRequest
             'last_name' => 'max:255',
             'photo_contact' => '',
             'birth_day' => 'required',
+            'number' =>' max:12',
             'email' => 'required|unique:phone_book_contact,id|max:255',
             'company' => 'max:255',
         ];

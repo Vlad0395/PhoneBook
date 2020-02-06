@@ -153,12 +153,12 @@ class FormCreateEditContact extends Component {
 			last_name,
 			company,
 			birth_day,
-			phones,
+			number,
 			email,
 			photo_contact,
 			error,
 		} = this.props;
-		console.log('object', phones);
+
 		const { src, crop, croppedImageUrl } = this.state;
 		return (
 			<Grid container justify="center">
@@ -212,18 +212,7 @@ class FormCreateEditContact extends Component {
 						<PhoneIcon className={classes.phone} />
 					</Grid>
 					<Grid item xs={4} sm={4} md={4} lg={4}>
-						{phones ? (
-							phones.map(mobile => (
-								<FormatedInput
-									key={`${mobile.contact_id}+'10000001'`}
-									name="mobile"
-									mobile={mobile}
-									onChange={handleChange}
-								/>
-							))
-						) : (
-							<FormatedInput name="mobile" mobile={phones} onChange={handleChange} />
-						)}
+						<FormatedInput name="number" number={number} onChange={handleChange} />
 					</Grid>
 				</Grid>
 				<Grid container spacing={2} alignItems="flex-end" justify="center">

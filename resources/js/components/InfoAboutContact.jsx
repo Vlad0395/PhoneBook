@@ -79,11 +79,14 @@ class DialogInfoAboutContact extends Component {
 								<Grid item xs={1}>
 									<PhoneIcon />
 								</Grid>
-								<Grid item xs={5}>
+								{/* <Grid item xs={5}>
 									{contact.phones &&
 										contact.phones
 											.filter(phone => phone.contact_id === contact.id)
 											.map(item => <Typography key={item.id}>{item.number}</Typography>)}
+								</Grid> */}
+								<Grid item xs={5}>
+									<Typography>{contact.number}</Typography>
 								</Grid>
 							</Grid>
 							<Grid container spacing={2}>

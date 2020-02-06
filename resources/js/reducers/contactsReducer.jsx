@@ -37,7 +37,7 @@ export default (state = initialState, action) => {
 				...state,
 				contact: action.data,
 			};
-		case constants.GET_CONTACT_PHONES_SUCCES:
+		case constants.GET_CONTACT_PHONES_SUCCESS:
 			return {
 				...state,
 				phone: action.data,

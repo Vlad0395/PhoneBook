@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { AddContact } from '../actions/ContactActions';
+// import { AddNumber } from '../actions/PhoneActions';
 import { Grid } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Button from '@material-ui/core/Button';
@@ -32,7 +33,7 @@ class CreateContact extends Component {
 	state = {
 		first_name: '',
 		last_name: '',
-		mobile: '',
+		number: '',
 		company: '',
 		photo_contact: '',
 		email: '',
@@ -90,7 +91,7 @@ class CreateContact extends Component {
 		this.setState({
 			first_name: '',
 			last_name: '',
-			mobile: '',
+			number: '',
 			company: '',
 			photo_contact: '',
 			email: '',
@@ -127,12 +128,13 @@ class CreateContact extends Component {
 								color="inherit"
 								onClick={() => {
 									this.props.dispatch(AddContact(this.state));
+									// this.props.dispatch(AddNumber(this.state));
 									this.props.handleClose();
 									this.handleCleareForm();
 								}}
 								disabled={
 									!this.state.first_name ||
-									!this.state.mobile ||
+									!this.state.number ||
 									!this.state.last_name ||
 									!this.state.email ||
 									!this.state.birth_day ||
@@ -153,7 +155,7 @@ class CreateContact extends Component {
 							last_name={this.state.last_name}
 							company={this.state.company}
 							birth_day={this.state.birth_day}
-							mobile={this.state.mobile}
+							number={this.state.number}
 							photo_contact={this.state.photo_contact}
 							email={this.state.email}
 							error={this.state.errorValidation}

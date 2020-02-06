@@ -38,16 +38,16 @@ TextMaskCustom.propTypes = {
 
 class FormatInput extends Component {
 	render() {
-		const { classes, mobile, onChange } = this.props;
+		const { classes, number, onChange } = this.props;
 
 		return (
 			<div className={classes.container}>
 				<FormControl fullWidth className={classes.formControl}>
 					<InputLabel htmlFor="formatted-text-mask-input">Mobile</InputLabel>
 					<Input
-						value={mobile}
+						value={number}
 						id="formatted-text-mask-input"
-						name="mobile"
+						name="number"
 						onChange={onChange}
 						inputComponent={TextMaskCustom}
 					/>
